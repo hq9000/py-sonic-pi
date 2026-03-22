@@ -1,10 +1,20 @@
-from py_sonic_pi.inventory import HPFilter, Pattern, Project, Sample, SampleName, Track
+from py_sonic_pi.inventory import BusTrack, GeneratorTrack, HPFilter, Pattern, Project, Sample, Sampler, StockSampleName, Note, SamplePattern, Track
 from py_sonic_pi.transformer import transform
 
-bd_track = Track(generator=Sample(name=SampleName.BD_HAUS), pattern=Pattern(raw="x---x---x---x---"))
 
+bd_pattern_elements = [
+    Note(65),
+]
 
+bd_track = GeneratorTrack('bd', generator=Sampler(Sample(stock_sample_name=StockSampleName.BD_HAUS)), pattern=SamplePattern(elements=bd_pattern_elements))
+bass_bd = BusTrack('bass_bd', children=[bd_track], effects=[HPFilter(cutoff=100.0, resonance=0.5)])
 
-p = Project(tracks=[], master_effects=[HPFilter(cutoff=100.0, resonance=0.5)])
+p = Project(
+    tracks=[bass_bd],
+    master_effects=[HPFilter(cutoff=100.0, resonance=0.5)],
+    beat_length_seconds=0.6
+)
 
-print(transform(p))
+lines = transform(p)
+for line in lines:
+    print(line)
