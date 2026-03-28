@@ -7,11 +7,12 @@ bd_pattern_elements = [
 ]
 
 bd_track = GeneratorTrack(id='bd', generator=Sampler(Sample(stock_sample_name=StockSampleName.BD_HAUS)), pattern=SamplePattern(elements=bd_pattern_elements))
-bass_bd = GroupTrack(id='bass_bd', children=[bd_track], effects=[HPFilter(cutoff=100.0, resonance=0.5)])
+bass_bd = GroupTrack(id='bass_bd', children=[bd_track], effects=[HPFilter(id="bdhpf", cutoff=100.0)])
+
+master_track = GroupTrack(id='master', children=[bass_bd], effects=[HPFilter(id="masterhpf", cutoff=100.0)])
 
 p = Project(
-    top_level_tracks=[bass_bd],
-    master_effects=[HPFilter(cutoff=100.0, resonance=0.5)],
+    top_level_tracks=[master_track],
     beat_length_seconds=0.6
 )
 

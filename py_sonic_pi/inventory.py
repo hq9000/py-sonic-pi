@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from abc import ABC
+from abc import ABC, abstractmethod
 
 class Generator:
     pass
@@ -24,14 +24,35 @@ class Sampler(Generator):
 
 
 @dataclass
-class Effect:
+class EffectInstance(ABC):
     id: str = ""
 
-@dataclass
-class HPFilter(Effect):
-    cutoff: float = 0.0
-    resonance: float = 0.0
+    @abstractmethod
+    def get_ruby_effect_name(self) -> str:
+        raise NotImplementedError("Subclasses must implement get_ruby_effect_name()")
 
+    @abstractmethod
+    def get_fx_params_dict(self) -> dict[str, float]:
+        raise NotImplementedError("Subclasses must implement get_fx_params_dict()")
+
+
+class HPFilter(EffectInstance):
+    cutoff: float = 0.0
+    cutoff_slide: float = 0.0
+
+    def __init__(self, id: str, cutoff: float = 0.0, cutoff_slide: float = 0.0):
+        super().__init__(id=id)
+        self.cutoff = cutoff
+        self.cutoff_slide = cutoff_slide
+
+    def get_ruby_effect_name(self) -> str:
+        return "rhpf"
+
+    def get_fx_params_dict(self) -> dict[str, float]:
+        return {
+            "cutoff": self.cutoff,
+            "cutoff_slide": self.cutoff_slide
+        }
 
 class PatternElement(ABC):
     pass
@@ -47,7 +68,6 @@ class Note(PatternElement):
     release_seconds: float = 0.0
     sample: Sample|None = None
     rate: float = 1.0
-
 
 class Sleep(PatternElement):
     def __init__(self, duration_beats: float):
@@ -68,7 +88,7 @@ class TrackType(Enum):
 @dataclass(kw_only=True)
 class Track(ABC):
     id: str
-    effects: list[Effect] = field(default_factory=list)
+    effects: list[EffectInstance] = field(default_factory=list)
     gain: float = 1.0
     pan: float = 0.0
     mute: bool = False
@@ -77,7 +97,7 @@ class Track(ABC):
 
 class GeneratorTrack(Track):
 
-    def __init__(self, id: str, generator: Generator, pattern: Pattern, effects: list[Effect] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
+    def __init__(self, id: str, generator: Generator, pattern: Pattern, effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
         super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
         self.generator = generator
         self.pattern = pattern
@@ -88,14 +108,27 @@ class GeneratorTrack(Track):
 
 
 class GroupTrack(Track):
-    def __init__(self, id: str, children: list[Track], effects: list[Effect] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
+    def __init__(self, id: str, children: list[Track], effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
         super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
         self.children = children
 
 
 class Project:
-    def __init__(self, top_level_tracks: list[Track], master_effects: list[Effect] = [], beat_length_seconds: float = 0.5):
+    def __init__(self, top_level_tracks: list[Track], beat_length_seconds: float = 0.5):
         self.top_level_tracks = top_level_tracks
-        self.master_effects = master_effects
         self.beat_length_seconds = beat_length_seconds
+
+    def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
+        generator_tracks = []
+        def _traverse(track: Track):
+            if isinstance(track, GeneratorTrack):
+                generator_tracks.append(track)
+            elif isinstance(track, GroupTrack):
+                for child in track.children:
+                    _traverse(child)
+
+        for top_level_track in self.top_level_tracks:
+            _traverse(top_level_track)
+
+        return generator_tracks 
 
