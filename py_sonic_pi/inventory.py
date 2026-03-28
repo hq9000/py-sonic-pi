@@ -26,6 +26,7 @@ class Sampler(Generator):
 @dataclass
 class EffectInstance(ABC):
     id: str = ""
+    controllable: bool = False
 
     @abstractmethod
     def get_ruby_effect_name(self) -> str:
@@ -35,13 +36,17 @@ class EffectInstance(ABC):
     def get_fx_params_dict(self) -> dict[str, float]:
         raise NotImplementedError("Subclasses must implement get_fx_params_dict()")
 
+    @abstractmethod
+    def get_param_names(self) -> list[str]:
+        raise NotImplementedError("Subclasses must implement get_param_names()")
+
 
 class HPFilter(EffectInstance):
     cutoff: float = 0.0
     cutoff_slide: float = 0.0
 
-    def __init__(self, id: str, cutoff: float = 0.0, cutoff_slide: float = 0.0):
-        super().__init__(id=id)
+    def __init__(self, id: str, cutoff: float = 0.0, cutoff_slide: float = 0.0, controllable: bool = False):
+        super().__init__(id=id, controllable=controllable)
         self.cutoff = cutoff
         self.cutoff_slide = cutoff_slide
 
@@ -53,6 +58,9 @@ class HPFilter(EffectInstance):
             "cutoff": self.cutoff,
             "cutoff_slide": self.cutoff_slide
         }
+
+    def get_param_names(self):
+        return ["cutoff", "cutoff_slide"]
 
 class PatternElement(ABC):
     pass
@@ -136,3 +144,17 @@ class Project:
 
         return generator_tracks
 
+    def get_all_controllable_fxs(self) -> list[EffectInstance]:
+        controllable_fxs = []
+        def _traverse(track: Track):
+            for fx in track.effects:
+                if fx.controllable:
+                    controllable_fxs.append(fx)
+            if isinstance(track, GroupTrack):
+                for child in track.children:
+                    _traverse(child)
+
+        for top_level_track in self.top_level_tracks:
+            _traverse(top_level_track)
+
+        return controllable_fxs

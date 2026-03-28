@@ -18,7 +18,8 @@ def transform(project: Project) -> list[str]:
         "project": project,
         "TrackType": GeneratorTrackType,
         "source_block_lines": _generate_source_block_lines(project),
-        "processing_block_lines": _generate_processing_block(project)
+        "processing_block_lines": _generate_processing_block(project),
+        "control_block_lines": _generate_control_block_lines(project)
     }
     rendered_content = template.render(**data)
     return rendered_content.splitlines()
@@ -59,6 +60,19 @@ def _generate_source_block_lines(project: Project) -> list[str]:
     lines = []
     for track in project.get_flat_list_of_generator_tracks():
         lines += _generate_source_block_lines_for_one_track(track)
+    return lines
+
+def _generate_control_block_lines(project: Project) -> list[str]:
+
+    lines = [ "live_loop :control_loop do" ]
+
+    for fx in project.get_all_controllable_fxs():
+        lines.append(f"{' ' * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
+        for param in fx.get_param_names():
+            lines.append(f"{' ' * _INDENT_STEP}control fx, {param}: {fx.get_fx_params_dict()[param]}")
+
+    lines.append(f"{' ' * _INDENT_STEP}sleep 1 * get(:beat_length)")
+    lines.append("end")
     return lines
 
 def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[str]:
