@@ -65,32 +65,37 @@ class SamplePattern(Pattern):
 class TrackType(Enum):
     SYNTH = "synth"
     SAMPLE = "sample"
-@dataclass
+@dataclass(kw_only=True)
 class Track(ABC):
-    id = id
+    id: str
     effects: list[Effect] = field(default_factory=list)
     gain: float = 1.0
     pan: float = 0.0
     mute: bool = False
     solo: bool = False
 
-@dataclass
+
 class GeneratorTrack(Track):
-    generator: Generator
-    pattern: Pattern
+
+    def __init__(self, id: str, generator: Generator, pattern: Pattern, effects: list[Effect] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
+        super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+        self.generator = generator
+        self.pattern = pattern
 
     def getTrackType(self) -> TrackType:
         return TrackType.SYNTH if isinstance(self.generator, Synth) else TrackType.SAMPLE
 
 
-@dataclass
-class BusTrack(Track):
-    children: list[Track] = field(default_factory=list)
+
+class GroupTrack(Track):
+    def __init__(self, id: str, children: list[Track], effects: list[Effect] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
+        super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+        self.children = children
 
 
 class Project:
-    def __init__(self, tracks: list[Track], master_effects: list[Effect] = [], beat_length_seconds: float = 0.5):
-        self.tracks = tracks
+    def __init__(self, top_level_tracks: list[Track], master_effects: list[Effect] = [], beat_length_seconds: float = 0.5):
+        self.top_level_tracks = top_level_tracks
         self.master_effects = master_effects
         self.beat_length_seconds = beat_length_seconds
 
