@@ -1,9 +1,16 @@
-from py_sonic_pi.inventory import GroupTrack, GeneratorTrack, HPFilter, Pattern, Project, Sample, Sampler, StockSampleName, Note, SamplePattern, Track
+from py_sonic_pi.inventory import GroupTrack, GeneratorTrack, HPFilter, Pattern, Project, Sample, Sampler, Sleep, StockSampleName, Note, SamplePattern, Sync, Track, GeneratorTrackType
 from py_sonic_pi.transformer import transform
 
 
 bd_pattern_elements = [
+    Sync(n_bars=1),
     Note(65),
+    Sleep(1),
+    Note(65),
+    Sleep(1),
+    Note(65),
+    Sleep(1),
+    Note(65)
 ]
 
 bd_track = GeneratorTrack(id='bd', generator=Sampler(Sample(stock_sample_name=StockSampleName.BD_HAUS)), pattern=SamplePattern(elements=bd_pattern_elements))
@@ -17,5 +24,6 @@ p = Project(
 )
 
 lines = transform(p)
-for line in lines:
-    print(line)
+with open('output.rb', 'w') as f:
+    for line in lines:
+        f.write(line + '\n')

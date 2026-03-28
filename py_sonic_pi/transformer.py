@@ -1,7 +1,9 @@
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 
-from py_sonic_pi.inventory import GeneratorTrack, GroupTrack, Project, Track, TrackType, EffectInstance
+_INDENT_STEP = 2
+
+from py_sonic_pi.inventory import GeneratorTrack, GroupTrack, Note, Project, Sleep, Sleep, Sync, Sync, Track, GeneratorTrackType, EffectInstance
 
 
 def transform(project: Project) -> list[str]:
@@ -14,7 +16,8 @@ def transform(project: Project) -> list[str]:
 
     data = {
         "project": project,
-        "TrackType": TrackType,
+        "TrackType": GeneratorTrackType,
+        "source_block_lines": _generate_source_block_lines(project),
         "processing_block_lines": _generate_processing_block(project)
     }
     rendered_content = template.render(**data)
@@ -46,7 +49,48 @@ def _generate_track_block(track: Track, lines: list[str], indent: int) -> None:
         lines.append(f"{' ' * indent}{track.id}_loop()")
     elif type(track) == GroupTrack:
         for child_track in track.children:
-            _generate_track_block(child_track, lines, indent + 4)
+            _generate_track_block(child_track, lines, indent + _INDENT_STEP)
 
     for fx in track.effects:
         lines.append(f"{' ' * indent}end")
+
+
+def _generate_source_block_lines(project: Project) -> list[str]:
+    lines = []
+    for track in project.get_flat_list_of_generator_tracks():
+        lines += _generate_source_block_lines_for_one_track(track)
+    return lines
+
+def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[str]:
+    lines = [f"def {track.id}_loop()"]
+    lines.append(f"{' ' * _INDENT_STEP}live_loop :{track.id}_loop do")
+
+    indent = " " * (_INDENT_STEP * 2)
+    for element in track.pattern.elements:
+        if isinstance(element, Note):
+            if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
+                line = f"{indent}sample :{track.generator.sample.name.value}"
+            if element.amp != 1.0:
+                line += f", amp: {element.amp}"
+            if element.pan != 0.0:
+                line += f", pan: {element.pan}"
+            if element.attack_seconds != 0.0:
+                line += f", attack: {element.attack_seconds}"
+            if element.decay_seconds != 0.0:
+                line += f", decay: {element.decay_seconds}"
+            if element.sustain_seconds != 0.5:
+                line += f", sustain: {element.sustain_seconds}"
+            if element.release_seconds != 0.0:
+                line += f", release: {element.release_seconds}"
+            if element.sample is not None:
+                line += f", sample: \"{element.sample}\""
+            if element.rate != 1.0:
+                line += f", rate: {element.rate}"
+            lines.append(line)
+        elif isinstance(element, Sleep):
+            lines.append(f"{indent}sleep {element.duration_beats }*get(:beat_length)")
+        elif isinstance(element, Sync):
+            lines.append(f"{indent}sync :start_{element.n_bars}_bars")
+    lines.append(f"{' ' * (_INDENT_STEP * 2)}end")
+    lines.append("end")
+    return lines

@@ -1,19 +1,19 @@
 live_loop :metronome_loop_1_bars do
-    cue :1_bars_start
-    sleep 4*get(:beat_duration)
+    cue :start_1_bars
+    sleep 4*get(:beat_length)
 end
 
 live_loop :metronome_loop_2_bars do
-    cue :2_bars_start
-    sleep 2*4*get(:beat_duration)
+    cue :start_2_bars
+    sleep 2*4*get(:beat_length)
 end
 
 live_loop :metronome_loop_4_bars do
-    cue :4_bars_start
-    sleep 4*4*get(:beat_duration)
+    cue :start_4_bars
+    sleep 4*4*get(:beat_length)
 end
 
 live_loop :metronome_loop_beats do
     cue :beat_start
-    sleep get(:beat_duration)
+    sleep get(:beat_length)
 end

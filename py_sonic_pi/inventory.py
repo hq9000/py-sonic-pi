@@ -69,6 +69,10 @@ class Note(PatternElement):
     sample: Sample|None = None
     rate: float = 1.0
 
+@dataclass
+class Sync(PatternElement):
+    n_bars: int
+
 class Sleep(PatternElement):
     def __init__(self, duration_beats: float):
         self.duration_beats = duration_beats
@@ -82,7 +86,7 @@ class SamplePattern(Pattern):
     elements: list[PatternElement] = field(default_factory=list)
     every_n_bars: int = 1
 
-class TrackType(Enum):
+class GeneratorTrackType(Enum):
     SYNTH = "synth"
     SAMPLE = "sample"
 @dataclass(kw_only=True)
@@ -102,8 +106,8 @@ class GeneratorTrack(Track):
         self.generator = generator
         self.pattern = pattern
 
-    def getTrackType(self) -> TrackType:
-        return TrackType.SYNTH if isinstance(self.generator, Synth) else TrackType.SAMPLE
+    def get_type(self) -> GeneratorTrackType:
+        return GeneratorTrackType.SYNTH if isinstance(self.generator, Synth) else GeneratorTrackType.SAMPLE
 
 
 
@@ -130,5 +134,5 @@ class Project:
         for top_level_track in self.top_level_tracks:
             _traverse(top_level_track)
 
-        return generator_tracks 
+        return generator_tracks
 
