@@ -49,27 +49,6 @@ class EffectInstance(ABC):
         raise NotImplementedError("Subclasses must implement get_param_names()")
 
 
-class HPFilter(EffectInstance):
-    cutoff: float = 0.0
-    cutoff_slide: float = 0.0
-
-    def __init__(self, id: str, cutoff: float = 0.0, cutoff_slide: float = 0.0, controllable: bool = False):
-        super().__init__(id=id, controllable=controllable)
-        self.cutoff = cutoff
-        self.cutoff_slide = cutoff_slide
-
-    def get_ruby_effect_name(self) -> str:
-        return "rhpf"
-
-    def get_fx_params_dict(self) -> dict[str, float]:
-        return {
-            "cutoff": self.cutoff,
-            "cutoff_slide": self.cutoff_slide
-        }
-
-    def get_param_names(self):
-        return ["cutoff", "cutoff_slide"]
-
 class PatternElement(ABC):
     pass
 
@@ -108,17 +87,23 @@ class GeneratorTrackType(Enum):
 @dataclass(kw_only=True)
 class Track(ABC):
     id: str
-    effects: list[EffectInstance] = field(default_factory=list)
+    custom_effects: list[EffectInstance] = field(default_factory=list)
     gain: float = 1.0
     pan: float = 0.0
     mute: bool = False
     solo: bool = False
 
+    def get_effects(self):
+        from py_sonic_pi.effects import Gain
+        all = list(self.custom_effects)
+        all.append(Gain(id=f"track_{self.id}_gain", gain=self.gain, controllable=True))
+        return all
+
 
 class GeneratorTrack(Track):
 
     def __init__(self, id: str, generator: Generator, pattern: Pattern, effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
-        super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
         self.generator = generator
         self.pattern = pattern
 
@@ -129,7 +114,7 @@ class GeneratorTrack(Track):
 
 class GroupTrack(Track):
     def __init__(self, id: str, children: list[Track], effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
-        super().__init__(id=id, effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
         self.children = children
 
 
@@ -155,7 +140,7 @@ class Project:
     def get_all_controllable_fxs(self) -> list[EffectInstance]:
         controllable_fxs = []
         def _traverse(track: Track):
-            for fx in track.effects:
+            for fx in track.get_effects():
                 if fx.controllable:
                     controllable_fxs.append(fx)
             if isinstance(track, GroupTrack):

@@ -35,7 +35,7 @@ def get_internal_fx_name(fx: EffectInstance) -> str:
 
 def _generate_track_block(track: Track, lines: list[str], indent: int) -> None:
     lines.append(f"{' ' * indent}# Track: {track.id}")
-    for fx in track.effects:
+    for fx in track.get_effects():
         comma_separated_parts = [
             f"with_fx :{fx.get_ruby_effect_name()}",
         ]
@@ -52,7 +52,7 @@ def _generate_track_block(track: Track, lines: list[str], indent: int) -> None:
         for child_track in track.children:
             _generate_track_block(child_track, lines, indent + _INDENT_STEP)
 
-    for fx in track.effects:
+    for fx in track.get_effects():
         lines.append(f"{' ' * indent}end")
 
 
