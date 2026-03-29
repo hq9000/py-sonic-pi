@@ -80,10 +80,17 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
     lines.append(f"{' ' * _INDENT_STEP}live_loop :{track.id}_loop do")
 
     indent = " " * (_INDENT_STEP * 2)
+
+    if track.get_type() == GeneratorTrackType.SYNTH:
+        lines.append(f"{indent}use_synth :{track.generator.get_ruby_synth_name()}")
+
     for element in track.pattern.elements:
         if isinstance(element, Note):
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
                 line = f"{indent}sample :{track.generator.sample.name.value}"
+            elif track.get_type() == GeneratorTrackType.SYNTH:
+                line = f"{indent}play {element.note}"
+
             if element.amp != 1.0:
                 line += f", amp: {element.amp}"
             if element.pan != 0.0:

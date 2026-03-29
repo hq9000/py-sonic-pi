@@ -2,11 +2,14 @@ from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
 
-class Generator:
+class Generator(ABC):
     pass
 
+
 class Synth(Generator):
-    pass
+    @abstractmethod
+    def get_ruby_synth_name(self) -> str:
+        raise NotImplementedError("Subclasses must implement get_ruby_synth_name()")
 
 class StockSampleName(Enum):
     BD_HAUS = "bd_haus"
@@ -21,6 +24,11 @@ class Sample:
 @dataclass
 class Sampler(Generator):
     sample: Sample|None = None
+
+
+class Tb303(Synth):
+    def get_ruby_synth_name(self) -> str:
+        return "tb303"
 
 
 @dataclass

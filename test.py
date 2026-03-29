@@ -1,4 +1,4 @@
-from py_sonic_pi.inventory import GroupTrack, GeneratorTrack, HPFilter, Pattern, Project, Sample, Sampler, Sleep, StockSampleName, Note, SamplePattern, Sync, Track, GeneratorTrackType
+from py_sonic_pi.inventory import GroupTrack, GeneratorTrack, HPFilter, Pattern, Project, Sample, Sampler, Sleep, StockSampleName, Note, SamplePattern, Sync, Tb303, Track, GeneratorTrackType
 from py_sonic_pi.transformer import transform
 
 
@@ -13,8 +13,21 @@ bd_pattern_elements = [
     Note(65)
 ]
 
+bass_pattern_elements = [
+    Sync(n_bars=1),
+    Sleep(0.5),
+    Note(40),
+    Sleep(1),
+    Note(40),
+    Sleep(1),
+    Note(40),
+    Sleep(0.75),
+    Note(41)
+]
+
 bd_track = GeneratorTrack(id='bd', generator=Sampler(Sample(stock_sample_name=StockSampleName.BD_HAUS)), pattern=SamplePattern(elements=bd_pattern_elements))
-bass_bd = GroupTrack(id='bass_bd', children=[bd_track], effects=[])
+bass_track = GeneratorTrack(id='bass', generator=Tb303(), pattern=SamplePattern(elements=bass_pattern_elements))
+bass_bd = GroupTrack(id='bass_bd', children=[bd_track, bass_track], effects=[])
 
 master_track = GroupTrack(id='master', children=[bass_bd], effects=[HPFilter(id="masterhpf", cutoff=0.0, controllable=True)])
 
