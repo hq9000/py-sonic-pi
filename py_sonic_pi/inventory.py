@@ -90,7 +90,7 @@ class Track(ABC):
     custom_effects: list[EffectInstance] = field(default_factory=list)
     gain: float = 1.0
     pan: float = 0.0
-    mute: bool = False
+    muted: bool = False
     solo: bool = False
 
     def get_effects(self):
@@ -103,7 +103,7 @@ class Track(ABC):
 class GeneratorTrack(Track):
 
     def __init__(self, id: str, generator: Generator, pattern: Pattern, effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
-        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, muted=mute, solo=solo)
         self.generator = generator
         self.pattern = pattern
 
@@ -113,8 +113,8 @@ class GeneratorTrack(Track):
 
 
 class GroupTrack(Track):
-    def __init__(self, id: str, children: list[Track], effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, mute: bool = False, solo: bool = False):
-        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, mute=mute, solo=solo)
+    def __init__(self, id: str, children: list[Track], effects: list[EffectInstance] = [], gain: float = 1.0, pan: float = 0.0, muted: bool = False, solo: bool = False):
+        super().__init__(id=id, custom_effects=effects, gain=gain, pan=pan, muted=muted, solo=solo)
         self.children = children
 
 

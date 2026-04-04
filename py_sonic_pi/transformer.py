@@ -65,6 +65,7 @@ def _generate_source_block_lines(project: Project) -> list[str]:
 def _generate_control_block_lines(project: Project) -> list[str]:
 
     lines = [ "live_loop :control_loop do" ]
+    lines.append("sync :start_1_bars")
 
     for fx in project.get_all_controllable_fxs():
         lines.append(f"{' ' * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
@@ -84,7 +85,9 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
     if track.get_type() == GeneratorTrackType.SYNTH:
         lines.append(f"{indent}use_synth :{track.generator.get_ruby_synth_name()}")
 
-    for element in track.pattern.elements:
+    elements = track.pattern.elements if not track.muted else []
+
+    for element in elements:
         if isinstance(element, Note):
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
                 line = f"{indent}sample :{track.generator.sample.name.value}"
