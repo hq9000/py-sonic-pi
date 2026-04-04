@@ -31,7 +31,8 @@ bass_track = GeneratorTrack(id='bass', generator=Tb303(), pattern=SamplePattern(
 bass_bd = GroupTrack(id='bass_bd', children=[bd_track, bass_track], effects=[])
 
 
-bass_track.gain =0.1
+bass_track.gain =0.3
+bass_track.pan = 0.5
 bass_track.muted = False
 
 
