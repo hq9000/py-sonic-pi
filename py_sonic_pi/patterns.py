@@ -47,22 +47,23 @@ class MatterKeywords(Enum):
     SUSTAIN_AMPS = "sustain_amps"
 
 
-def get_pattern_from_matter(matter: str) -> Pattern:
+def construct_pattern_from_matter(matter: str) -> Pattern:
     matter = matter.replace(" ", "")
     lines = [
         re.sub(r"#.*", "", line) for line in matter.split("\n") if line.strip() != ""
     ]
 
     sync = 1
-    base_note = _convert_note_str_to_int("C2")
-    base_amp = 1
-    base_pan = 0
-    base_attack = 0
-    base_decay = 0
-    base_sustain = 1.0
-    base_release = 0.0
-    base_sustain_amp = 1.0
     resolution_beats = 1.0
+    base_note = None
+    base_amp = None
+    base_pan = None
+    base_attack = None
+    base_decay = None
+    base_sustain = None
+    base_release = None
+    base_sustain_amp = None
+
 
     notes_and_sleeps: list[Note | Sleep] = []
     amps = []
@@ -152,14 +153,22 @@ def get_pattern_from_matter(matter: str) -> Pattern:
     notes = [element for element in notes_and_sleeps if isinstance(element, Note)]
 
     for note in notes:
-        note.note += base_note
-        note.amp = base_amp
-        note.attack_beats = base_attack
-        note.decay_beats = base_decay
-        note.sustain_beats = base_sustain
-        note.sustain_amp = base_sustain_amp
-        note.release_beats = base_release
-        note.pan = base_pan
+        if base_note is not None:
+            note.note += base_note
+        if base_amp is not None:
+            note.amp = base_amp
+        if base_attack is not None:
+            note.attack_beats = base_attack
+        if base_decay is not None:
+            note.decay_beats = base_decay
+        if base_sustain is not None:
+            note.sustain_beats = base_sustain
+        if base_sustain_amp is not None:
+            note.sustain_amp = base_sustain_amp
+        if base_release is not None:
+            note.release_beats = base_release
+        if base_pan is not None:
+            note.pan = base_pan
 
     if len(amps) and len(amps) != len(notes):
         raise ValueError(
@@ -213,6 +222,9 @@ def get_pattern_from_matter(matter: str) -> Pattern:
     elements: list[PatternElement] = []
     elements.append(Sync(n_bars=sync))
     elements.extend(notes_and_sleeps)
+
+    if elements[-1] and isinstance(elements[-1], Sleep):
+        elements.pop()
 
     return Pattern(elements=elements)
 

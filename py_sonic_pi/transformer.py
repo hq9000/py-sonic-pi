@@ -129,8 +129,8 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
                 line += f", decay: {element.decay_beats}"
             if element.sustain_beats != 0.5:
                 line += f", sustain: {element.sustain_beats}"
-            if element.release_seconds != 0.0:
-                line += f", release: {element.release_seconds}"
+            if element.release_beats != 0.0:
+                line += f", release: {element.release_beats}"
             if element.sample is not None:
                 line += f', sample: "{element.sample}"'
             if element.rate != 1.0:

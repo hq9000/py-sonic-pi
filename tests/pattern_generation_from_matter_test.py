@@ -1,7 +1,7 @@
 from py_sonic_pi.inventory import Note, Pattern, Sleep, Sync
 from py_sonic_pi.patterns import (
     _generate_blank_notes_from_matter_line,
-    get_pattern_from_matter,
+    construct_pattern_from_matter,
 )
 
 
@@ -27,7 +27,7 @@ def test_pattern_generation_from_matter():
         sustain_amps: 0.8, 0.8, 0.8, 0.8, 0.8
         releases: 0.1,0.1,0.1,0.1,0.1
     """
-    pattern = get_pattern_from_matter(matter)
+    pattern = construct_pattern_from_matter(matter)
 
     assert len(pattern.elements) == 10
     assert isinstance(pattern.elements[0], Sync)
