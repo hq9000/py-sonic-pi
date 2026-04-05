@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
 
+
 class Generator(ABC):
     pass
 
@@ -51,9 +52,8 @@ class EffectInstance(ABC):
     def get_fx_params_dict(self) -> dict[str, float]:
         raise NotImplementedError("Subclasses must implement get_fx_params_dict()")
 
-    @abstractmethod
     def get_param_names(self) -> list[str]:
-        raise NotImplementedError("Subclasses must implement get_param_names()")
+        return list(self.get_fx_params_dict().keys())
 
 
 class PatternElement(ABC):
