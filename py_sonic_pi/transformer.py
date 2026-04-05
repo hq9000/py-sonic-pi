@@ -123,12 +123,12 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
                 line += f", amp: {element.amp}"
             if element.pan != 0.0:
                 line += f", pan: {element.pan}"
-            if element.attack_seconds != 0.0:
-                line += f", attack: {element.attack_seconds}"
-            if element.decay_seconds != 0.0:
-                line += f", decay: {element.decay_seconds}"
-            if element.sustain_seconds != 0.5:
-                line += f", sustain: {element.sustain_seconds}"
+            if element.attack_beats != 0.0:
+                line += f", attack: {element.attack_beats}"
+            if element.decay_beats != 0.0:
+                line += f", decay: {element.decay_beats}"
+            if element.sustain_beats != 0.5:
+                line += f", sustain: {element.sustain_beats}"
             if element.release_seconds != 0.0:
                 line += f", release: {element.release_seconds}"
             if element.sample is not None:

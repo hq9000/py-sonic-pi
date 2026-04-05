@@ -65,10 +65,11 @@ class Note(PatternElement):
     note: float = 0.0
     amp: float = 1.0
     pan: float = 0.0
-    attack_seconds: float = 0.0
-    decay_seconds: float = 0.0
-    sustain_seconds: float = 0.5
-    release_seconds: float = 0.0
+    attack_beats: float = 0.0
+    decay_beats: float = 0.0
+    sustain_beats: float = 0.5
+    sustain_amp: float = 1.0
+    release_beats: float = 0.0
     sample: Sample | None = None
     rate: float = 1.0
 
@@ -83,14 +84,9 @@ class Sleep(PatternElement):
         self.duration_beats = duration_beats
 
 
-class Pattern(ABC):
-    pass
-
-
 @dataclass
-class SamplePattern(Pattern):
+class Pattern:
     elements: list[PatternElement] = field(default_factory=list)
-    every_n_bars: int = 1
 
 
 class GeneratorTrackType(Enum):
