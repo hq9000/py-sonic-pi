@@ -16,6 +16,7 @@ class Synth(Generator):
 class StockSampleName(Enum):
     BD_HAUS = "bd_haus"
     RIDE_TRI = "ride_tri"
+    ELEC_TICK = "elec_tick"
 
 
 class Sample:

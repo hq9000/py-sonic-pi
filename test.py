@@ -2,31 +2,14 @@ from py_sonic_pi.effects import HPFilter, Reverb
 from py_sonic_pi.inventory import (
     GroupTrack,
     GeneratorTrack,
-    Pattern,
     Project,
     Sample,
     Sampler,
-    Sleep,
     StockSampleName,
-    Note,
-    Pattern,
-    Sync,
     Tb303,
 )
 from py_sonic_pi.patterns import construct_pattern_from_matter
 from py_sonic_pi.transformer import transform
-
-bass_pattern_elements = [
-    Sync(n_bars=1),
-    Sleep(0.5),
-    Note(40),
-    Sleep(1),
-    Note(40),
-    Sleep(1),
-    Note(40),
-    Sleep(0.75),
-    Note(41),
-]
 
 bd_pattern = construct_pattern_from_matter(
     """
@@ -57,8 +40,19 @@ crash_track = GeneratorTrack(
     gain=0.5,
     pattern=construct_pattern_from_matter(
         """
-        sync: 1
+        sync: 2
         notes: 0
+        """
+    ),
+)
+snare_track = GeneratorTrack(
+    id="snare",
+    generator=Sampler(Sample(stock_sample_name=StockSampleName.ELEC_TICK)),
+    gain=1.5,
+    pattern=construct_pattern_from_matter(
+        """
+        sync: 1
+        notes: _0__0
         """
     ),
 )
@@ -71,7 +65,7 @@ bass_track = GeneratorTrack(
 bass_bd = GroupTrack(
     id="bass_bd",
     children=[bd_track, bass_track],
-    effects=[Reverb(id="bass_bd_reverb", room=1)],
+    effects=[Reverb(id="bass_bd_reverb", room=1, controllable=True)],
 )
 
 
@@ -82,7 +76,7 @@ bass_track.muted = False
 
 master_track = GroupTrack(
     id="master",
-    children=[bass_bd, crash_track],
+    children=[bass_bd, crash_track, snare_track],
     effects=[HPFilter(id="masterhpf", cutoff=0.0, controllable=True)],
 )
 
