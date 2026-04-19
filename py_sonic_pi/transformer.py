@@ -37,6 +37,11 @@ def transform(project: Project) -> list[str]:
     return rendered_content.splitlines()
 
 
+def transform_to_file(project: Project, output_file_path: str) -> None:
+    lines = transform(project)
+    with open(output_file_path, "w") as f:
+        f.write("\n".join(lines))
+
 def _generate_processing_block(project: Project) -> list[str]:
     lines = []
     for track in project.top_level_tracks:
