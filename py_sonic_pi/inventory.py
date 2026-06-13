@@ -6,6 +6,7 @@ from abc import ABC, abstractmethod
 class Generator(ABC):
     pass
 
+
 @dataclass
 class SynthParameterDefinition:
     name: str
@@ -13,8 +14,8 @@ class SynthParameterDefinition:
     min_value: float | None = None
     max_value: float | None = None
 
-class Synth(Generator):
 
+class Synth(Generator):
     def __init__(self):
         self._parameter_values: dict[str, float] = {}
 
@@ -22,13 +23,16 @@ class Synth(Generator):
     def get_ruby_synth_name(self) -> str:
         raise NotImplementedError("Subclasses must implement get_ruby_synth_name()")
 
-
     @classmethod
     @abstractmethod
     def get_parameters_definitions(cls) -> list[SynthParameterDefinition]:
-        raise NotImplementedError("Subclasses must implement get_parameters_definitions()")
+        raise NotImplementedError(
+            "Subclasses must implement get_parameters_definitions()"
+        )
 
-    def _get_parameter_definition_by_name(self, parameter_name: str) -> SynthParameterDefinition | None:
+    def _get_parameter_definition_by_name(
+        self, parameter_name: str
+    ) -> SynthParameterDefinition | None:
         for param in self.get_parameters_definitions():
             if param.name == parameter_name:
                 return param
@@ -37,14 +41,20 @@ class Synth(Generator):
     def set_parameter_value(self, parameter_name: str, value: float):
         parameter = self._get_parameter_definition_by_name(parameter_name)
         if parameter is None:
-            raise ValueError(f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}")
+            raise ValueError(
+                f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}"
+            )
         if value < parameter.min_value or value > parameter.max_value:
-            raise ValueError(f"Value {value} for parameter {parameter_name} is out of range [{parameter.min_value}, {parameter.max_value}] for synth {self.get_ruby_synth_name()}")
+            raise ValueError(
+                f"Value {value} for parameter {parameter_name} is out of range [{parameter.min_value}, {parameter.max_value}] for synth {self.get_ruby_synth_name()}"
+            )
         self._parameter_values[parameter_name] = value
 
     def get_parameter_value_by_name(self, parameter_name: str) -> float:
         if parameter_name not in self._parameter_values:
-            raise ValueError(f"Parameter {parameter_name} has not been set for synth {self.get_ruby_synth_name()}")
+            raise ValueError(
+                f"Parameter {parameter_name} has not been set for synth {self.get_ruby_synth_name()}"
+            )
         return self._parameter_values[parameter_name]
 
     def get_parameter_names(self) -> list[str]:
@@ -189,6 +199,7 @@ class PatternElement(ABC):
 
     def get_attr(self, attr_name: str) -> float | None:
         return self.attributes.get(attr_name)
+
 
 class Note(PatternElement):
     def __init__(self, note: int):

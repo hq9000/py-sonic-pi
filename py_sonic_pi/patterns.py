@@ -3,6 +3,7 @@ import re
 
 from py_sonic_pi.inventory import Note, Pattern, PatternElement, Sleep, Sync
 
+
 class MatterKeywords(Enum):
     SYNC = "sync"
     RESOLUTION = "resolution"
@@ -14,7 +15,10 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
     try:
         return _construct_pattern_from_matter_inner(matter)
     except Exception as e:
-        raise ValueError(f"Failed to construct pattern from matter. Matter: {matter}") from e
+        raise ValueError(
+            f"Failed to construct pattern from matter. Matter: {matter}"
+        ) from e
+
 
 def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
     matter = matter.replace(" ", "")
@@ -53,8 +57,7 @@ def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
             name = line.split(":")[0].strip()
             values_str = line[len(name) + 1 :].strip()
             generic_values[name] = [
-                float(val_str.strip())
-                for val_str in values_str.split(",")
+                float(val_str.strip()) for val_str in values_str.split(",")
             ]
         else:
             raise ValueError(f"unrecognizable matter line: {line}")
@@ -69,7 +72,9 @@ def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
         if attr_name not in generic_bases:
             generic_bases[attr_name] = 0.0
 
-        if len(generic_values[attr_name]) and len(generic_values[attr_name]) != len(notes):
+        if len(generic_values[attr_name]) and len(generic_values[attr_name]) != len(
+            notes
+        ):
             raise ValueError(
                 f"Length of {attr_name} list must be either 0 or equal to the number of notes"
             )
@@ -79,11 +84,13 @@ def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
         sleep.duration_beats = resolution_beats * sleep.duration_beats
 
     for i in range(len(notes)):
-            for attr_name in generic_bases.keys():
-                if attr_name in generic_values and i < len(generic_values[attr_name]):
-                    notes[i].set_attr(attr_name, generic_bases[attr_name] + generic_values[attr_name][i])
-                else:
-                    notes[i].set_attr(attr_name, generic_bases[attr_name])
+        for attr_name in generic_bases.keys():
+            if attr_name in generic_values and i < len(generic_values[attr_name]):
+                notes[i].set_attr(
+                    attr_name, generic_bases[attr_name] + generic_values[attr_name][i]
+                )
+            else:
+                notes[i].set_attr(attr_name, generic_bases[attr_name])
     elements: list[PatternElement] = []
     elements.append(Sync(n_bars=sync))
     elements.extend(notes_and_sleeps)
@@ -105,7 +112,6 @@ def _generate_blank_notes_from_matter_line(notes_str: str) -> list[Note | Sleep]
 
     for note_block, pause_block in zip(note_blocks, pause_blocks + [""]):
         for note_str in note_block.split(","):
-
             note_str = note_str.strip()
             if note_str != "":
                 res.append(Note(note=int(note_str)))

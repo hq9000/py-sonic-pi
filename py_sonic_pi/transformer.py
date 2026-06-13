@@ -44,6 +44,7 @@ def transform_to_file(project: Project, output_file_path: str) -> None:
     with open(output_file_path, "w") as f:
         f.write("\n".join(lines))
 
+
 def _generate_processing_block(project: Project) -> list[str]:
     lines = []
     for track in project.top_level_tracks:
@@ -129,7 +130,9 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
                 all_params = {}
                 # Get all synth parameters using public methods
                 for param_name in track.generator.get_parameter_names():
-                    all_params[param_name] = track.generator.get_parameter_value_by_name(param_name)
+                    all_params[param_name] = (
+                        track.generator.get_parameter_value_by_name(param_name)
+                    )
                 for name, value in element.attributes.items():
                     if name == MatterKeywords.NOTE.value:
                         continue

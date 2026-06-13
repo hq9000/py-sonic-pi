@@ -7,8 +7,8 @@ AMP = SynthParameterDefinition(
     max_value=10.0,
 )
 
-class Tb303(Synth):
 
+class Tb303(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
             AMP,
@@ -17,7 +17,7 @@ class Tb303(Synth):
                 default_value=100,
                 min_value=0,
                 max_value=130,
-            )
+            ),
         ]
 
     def get_ruby_synth_name(self) -> str:
