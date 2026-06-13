@@ -7,7 +7,7 @@ class Generator(ABC):
     pass
 
 @dataclass
-class SynthParameter:
+class SynthParameterDefinition:
     name: str
     default_value: float
     min_value: float | None = None
@@ -25,17 +25,30 @@ class Synth(Generator):
 
     @classmethod
     @abstractmethod
-    def get_synth_parameters(cls) -> list[SynthParameter]:
-        raise NotImplementedError("Subclasses must implement get_synth_parameters()")
+    def get_parameters_definitions(cls) -> list[SynthParameterDefinition]:
+        raise NotImplementedError("Subclasses must implement get_parameters_definitions()")
 
+    def _get_parameter_definition_by_name(self, parameter_name: str) -> SynthParameterDefinition | None:
+        for param in self.get_parameters_definitions():
+            if param.name == parameter_name:
+                return param
+        return None
 
     def set_parameter_value(self, parameter_name: str, value: float):
-        parameter = self.get_parameter_by_name(parameter_name)
+        parameter = self._get_parameter_definition_by_name(parameter_name)
         if parameter is None:
             raise ValueError(f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}")
         if value < parameter.min_value or value > parameter.max_value:
             raise ValueError(f"Value {value} for parameter {parameter_name} is out of range [{parameter.min_value}, {parameter.max_value}] for synth {self.get_ruby_synth_name()}")
+        self._parameter_values[parameter_name] = value
 
+    def get_parameter_value_by_name(self, parameter_name: str) -> float:
+        if parameter_name not in self._parameter_values:
+            raise ValueError(f"Parameter {parameter_name} has not been set for synth {self.get_ruby_synth_name()}")
+        return self._parameter_values[parameter_name]
+
+    def get_parameter_names(self) -> list[str]:
+        return list(self._parameter_values.keys())
 
 
 class StockSampleName(Enum):

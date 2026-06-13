@@ -125,11 +125,18 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
                 line = f"{indent}sample :{track.generator.sample.name.value}"
             elif track.get_type() == GeneratorTrackType.SYNTH:
                 line = f"{indent}play {element.note}"
+                # Combine synth parameters and note attributes, with note attributes taking precedence
+                all_params = {}
+                # Get all synth parameters using public methods
+                for param_name in track.generator.get_parameter_names():
+                    all_params[param_name] = track.generator.get_parameter_value_by_name(param_name)
+                for name, value in element.attributes.items():
+                    if name == MatterKeywords.NOTE.value:
+                        continue
+                    all_params[name] = value
 
-            for name, value in element.attributes.items():
-                if name == "note":
-                    continue
-                line += f", {name}: {value}"
+                for param, value in all_params.items():
+                    line += f", {param}: {value}"
 
             lines.append(line)
         elif isinstance(element, Sleep):

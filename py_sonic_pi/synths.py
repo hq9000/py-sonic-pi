@@ -1,6 +1,6 @@
-from py_sonic_pi.inventory import Synth, SynthParameter
+from py_sonic_pi.inventory import Synth, SynthParameterDefinition
 
-AMP = SynthParameter(
+AMP = SynthParameterDefinition(
     name="amp",
     default_value=1.0,
     min_value=0.0,
@@ -9,10 +9,10 @@ AMP = SynthParameter(
 
 class Tb303(Synth):
 
-    def get_synth_parameters(self) -> list[SynthParameter]:
+    def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
             AMP,
-            SynthParameter(
+            SynthParameterDefinition(
                 name="cutoff",
                 default_value=100,
                 min_value=0,
