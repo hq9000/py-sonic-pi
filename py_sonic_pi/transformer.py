@@ -122,24 +122,13 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
                 line = f"{indent}sample :{track.generator.sample.name.value}"
             elif track.get_type() == GeneratorTrackType.SYNTH:
-                line = f"{indent}play {element.note}"
+                line = f"{indent}play {element.get_attribute_value('note')}"
 
-            if element.amp != 1.0:
-                line += f", amp: {element.amp}"
-            if element.pan != 0.0:
-                line += f", pan: {element.pan}"
-            if element.attack_beats != 0.0:
-                line += f", attack: {element.attack_beats}"
-            if element.decay_beats != 0.0:
-                line += f", decay: {element.decay_beats}"
-            if element.sustain_beats != 0.5:
-                line += f", sustain: {element.sustain_beats}"
-            if element.release_beats != 0.0:
-                line += f", release: {element.release_beats}"
-            if element.sample is not None:
-                line += f', sample: "{element.sample}"'
-            if element.rate != 1.0:
-                line += f", rate: {element.rate}"
+            for name, value in element.attributes.items():
+                if name == "note":
+                    continue
+                line += f", {name}: {value}"
+
             lines.append(line)
         elif isinstance(element, Sleep):
             lines.append(f"{indent}sleep {element.duration_beats}*get(:beat_length)")

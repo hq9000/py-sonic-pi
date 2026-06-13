@@ -6,11 +6,36 @@ from abc import ABC, abstractmethod
 class Generator(ABC):
     pass
 
+@dataclass
+class SynthParameter:
+    name: str
+    default_value: float
+    min_value: float | None = None
+    max_value: float | None = None
 
 class Synth(Generator):
+
+    def __init__(self):
+        self._parameter_values: dict[str, float] = {}
+
     @abstractmethod
     def get_ruby_synth_name(self) -> str:
         raise NotImplementedError("Subclasses must implement get_ruby_synth_name()")
+
+
+    @classmethod
+    @abstractmethod
+    def get_synth_parameters(cls) -> list[SynthParameter]:
+        raise NotImplementedError("Subclasses must implement get_synth_parameters()")
+
+
+    def set_parameter_value(self, parameter_name: str, value: float):
+        parameter = self.get_parameter_by_name(parameter_name)
+        if parameter is None:
+            raise ValueError(f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}")
+        if value < parameter.min_value or value > parameter.max_value:
+            raise ValueError(f"Value {value} for parameter {parameter_name} is out of range [{parameter.min_value}, {parameter.max_value}] for synth {self.get_ruby_synth_name()}")
+
 
 
 class StockSampleName(Enum):
@@ -125,11 +150,6 @@ class Sampler(Generator):
     sample: Sample | None = None
 
 
-class Tb303(Synth):
-    def get_ruby_synth_name(self) -> str:
-        return "tb303"
-
-
 @dataclass
 class EffectInstance(ABC):
     id: str = ""
@@ -148,21 +168,21 @@ class EffectInstance(ABC):
 
 
 class PatternElement(ABC):
+    def __init__(self):
+        self.attributes: dict[str, float] = {}
+
+    def set_attr(self, attr_name: str, value: float):
+        self.attributes[attr_name] = value
+
+    def get_attr(self, attr_name: str) -> float | None:
+        return self.attributes.get(attr_name)
+
+class Note(PatternElement):
+    def __init__(self, note: int):
+        super().__init__()
+        self.note = note
     pass
 
-
-@dataclass
-class Note(PatternElement):
-    note: float = 0.0
-    amp: float = 1.0
-    pan: float = 0.0
-    attack_beats: float = 0.0
-    decay_beats: float = 0.0
-    sustain_beats: float = 0.5
-    sustain_amp: float = 1.0
-    release_beats: float = 0.0
-    sample: Sample | None = None
-    rate: float = 1.0
 
 
 @dataclass

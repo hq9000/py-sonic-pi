@@ -30,21 +30,7 @@ class MatterKeywords(Enum):
     SYNC = "sync"
     RESOLUTION = "resolution"
     BASE_NOTE = "base_note"
-    BASE_AMP = "base_amp"
-    BASE_PAN = "base_pan"
-    BASE_ATTACK = "base_attack"
-    BASE_DECAY = "base_decay"
-    BASE_SUSTAIN = "base_sustain"
-    BASE_RELEASE = "base_release"
-    BASE_SUSTAIN_AMP = "base_sustain_amp"
-    NOTES = "notes"
-    AMPS = "amps"
-    PANS = "pans"
-    ATTACKS = "attacks"
-    DECAYS = "decays"
-    SUSTAINS = "sustains"
-    RELEASES = "releases"
-    SUSTAIN_AMPS = "sustain_amps"
+    NOTE = "note"
 
 
 def construct_pattern_from_matter(matter: str) -> Pattern:
@@ -56,23 +42,10 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
     sync = 1
     resolution_beats = 1.0
     base_note = None
-    base_amp = None
-    base_pan = None
-    base_attack = None
-    base_decay = None
-    base_sustain = None
-    base_release = None
-    base_sustain_amp = None
-
 
     notes_and_sleeps: list[Note | Sleep] = []
-    amps = []
-    pans = []
-    attacks = []
-    decays = []
-    sustains = []
-    releases = []
-    sustain_amps = []
+    generic_bases: dict[str, float] = {}
+    generic_values: dict[str, list[float]] = {}
 
     for line in lines:
         if line.startswith(MatterKeywords.SYNC.value + ":"):
@@ -81,122 +54,46 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
             base_note = _convert_note_str_to_int(
                 line[len(MatterKeywords.BASE_NOTE.value) + 1 :]
             )
-        elif line.startswith(MatterKeywords.BASE_AMP.value + ":"):
-            base_amp = float(line[len(MatterKeywords.BASE_AMP.value) + 1 :])
-        elif line.startswith(MatterKeywords.BASE_ATTACK.value + ":"):
-            base_attack = float(line[len(MatterKeywords.BASE_ATTACK.value) + 1 :])
-        elif line.startswith(MatterKeywords.BASE_DECAY.value + ":"):
-            base_decay = float(line[len(MatterKeywords.BASE_DECAY.value) + 1 :])
-        elif line.startswith(MatterKeywords.BASE_SUSTAIN.value + ":"):
-            base_sustain = float(line[len(MatterKeywords.BASE_SUSTAIN.value) + 1 :])
-        elif line.startswith(MatterKeywords.BASE_RELEASE.value + ":"):
-            base_release = float(line[len(MatterKeywords.BASE_RELEASE.value) + 1 :])
-        elif line.startswith(MatterKeywords.BASE_SUSTAIN_AMP.value + ":"):
-            base_sustain_amp = float(
-                line[len(MatterKeywords.BASE_SUSTAIN_AMP.value) + 1 :]
-            )
-        elif line.startswith(MatterKeywords.BASE_PAN.value + ":"):
-            base_pan = float(line[len(MatterKeywords.BASE_PAN.value) + 1 :])
-        elif line.startswith(MatterKeywords.NOTES.value + ":"):
+        elif line.startswith(MatterKeywords.NOTE.value + ":"):
             notes_and_sleeps = _generate_blank_notes_from_matter_line(
-                line[len(MatterKeywords.NOTES.value) + 1 :]
+                line[len(MatterKeywords.NOTE.value) + 1 :]
             )
-        elif line.startswith(MatterKeywords.AMPS.value + ":"):
-            amps = [
-                float(amp_str.strip())
-                for amp_str in line[len(MatterKeywords.AMPS.value) + 1 :].split(",")
-            ]
-        elif line.startswith(MatterKeywords.PANS.value + ":"):
-            pans = [
-                float(pan_str.strip())
-                for pan_str in line[len(MatterKeywords.PANS.value) + 1 :].split(",")
-            ]
-        elif line.startswith(MatterKeywords.ATTACKS.value + ":"):
-            attacks = [
-                float(attack_str.strip())
-                for attack_str in line[len(MatterKeywords.ATTACKS.value) + 1 :].split(
-                    ","
-                )
-            ]
-        elif line.startswith(MatterKeywords.DECAYS.value + ":"):
-            decays = [
-                float(decay_str.strip())
-                for decay_str in line[len(MatterKeywords.DECAYS.value) + 1 :].split(",")
-            ]
-        elif line.startswith(MatterKeywords.SUSTAINS.value + ":"):
-            sustains = [
-                float(sustain_str.strip())
-                for sustain_str in line[len(MatterKeywords.SUSTAINS.value) + 1 :].split(
-                    ","
-                )
-            ]
-        elif line.startswith(MatterKeywords.RELEASES.value + ":"):
-            releases = [
-                float(release_str.strip())
-                for release_str in line[len(MatterKeywords.RELEASES.value) + 1 :].split(
-                    ","
-                )
-            ]
-        elif line.startswith(MatterKeywords.SUSTAIN_AMPS.value + ":"):
-            sustain_amps = [
-                float(sustain_amp_str.strip())
-                for sustain_amp_str in line[
-                    len(MatterKeywords.SUSTAIN_AMPS.value) + 1 :
-                ].split(",")
-            ]
         elif line.startswith(MatterKeywords.RESOLUTION.value + ":"):
             resolution_beats = float(line[len(MatterKeywords.RESOLUTION.value) + 1 :])
-            pass
+        # Generic case
+        elif line.startswith("base_"):
+            name = line.split(":")[0].strip()
+            name = name[len("base_") :]
+            value_str = line[len("base_" + name) + 1 :].strip()
+            generic_bases[name] = float(value_str)
+        elif line.count(":") == 1:
+            name = line.split(":")[0].strip()
+            values_str = line[len(name) + 1 :].strip()
+            generic_values[name] = [
+                float(val_str.strip())
+                for val_str in values_str.split(",")
+            ]
         else:
-            raise ValueError(f"Unknown matter keyword in line: {line}")
+            raise ValueError(f"unrecognizable matter line: {line}")
 
     notes = [element for element in notes_and_sleeps if isinstance(element, Note)]
 
     for note in notes:
         if base_note is not None:
             note.note += base_note
-        if base_amp is not None:
-            note.amp = base_amp
-        if base_attack is not None:
-            note.attack_beats = base_attack
-        if base_decay is not None:
-            note.decay_beats = base_decay
-        if base_sustain is not None:
-            note.sustain_beats = base_sustain
-        if base_sustain_amp is not None:
-            note.sustain_amp = base_sustain_amp
-        if base_release is not None:
-            note.release_beats = base_release
-        if base_pan is not None:
-            note.pan = base_pan
 
-    if len(amps) and len(amps) != len(notes):
+    for attr_name in generic_values.keys():
+        if attr_name not in generic_bases:
+            generic_bases[attr_name] = 0.0
+
+        if len(generic_values[attr_name]) and len(generic_values[attr_name]) != len(notes):
+            raise ValueError(
+                f"Length of {attr_name} list must be either 0 or equal to the number of notes"
+            )
+
+    if sorted(generic_bases.keys()) != sorted(generic_values.keys()):
         raise ValueError(
-            "Length of amps list must be either 0 or equal to the number of notes"
-        )
-    if len(pans) and len(pans) != len(notes):
-        raise ValueError(
-            "Length of pans list must be either 0 or equal to the number of notes"
-        )
-    if len(attacks) and len(attacks) != len(notes):
-        raise ValueError(
-            "Length of attacks list must be either 0 or equal to the number of notes"
-        )
-    if len(decays) and len(decays) != len(notes):
-        raise ValueError(
-            "Length of decays list must be either 0 or equal to the number of notes"
-        )
-    if len(sustains) and len(sustains) != len(notes):
-        raise ValueError(
-            "Length of sustains list must be either 0 or equal to the number of notes"
-        )
-    if len(releases) and len(releases) != len(notes):
-        raise ValueError(
-            "Length of releases list must be either 0 or equal to the number of notes"
-        )
-    if len(sustain_amps) and len(sustain_amps) != len(notes):
-        raise ValueError(
-            "Length of sustain_amps list must be either 0 or equal to the number of notes"
+            f"Generic base keys must match generic value keys. Got bases: {generic_bases.keys()}, values: {generic_values.keys()}"
         )
 
     sleeps = [element for element in notes_and_sleeps if isinstance(element, Sleep)]
@@ -204,20 +101,9 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
         sleep.duration_beats = resolution_beats * sleep.duration_beats
 
     for i in range(len(notes)):
-        if i < len(amps):
-            notes[i].amp = amps[i]
-        if i < len(pans):
-            notes[i].pan = pans[i]
-        if i < len(attacks):
-            notes[i].attack_beats = attacks[i]
-        if i < len(decays):
-            notes[i].decay_beats = decays[i]
-        if i < len(sustains):
-            notes[i].sustain_beats = sustains[i]
-        if i < len(releases):
-            notes[i].release_beats = releases[i]
-        if i < len(sustain_amps):
-            notes[i].sustain_amp = sustain_amps[i]
+            for attr_name in generic_bases.keys():
+                if i < len(generic_values[attr_name]):
+                    notes[i].set_attr(attr_name, generic_bases[attr_name] + generic_values[attr_name][i])
 
     elements: list[PatternElement] = []
     elements.append(Sync(n_bars=sync))
@@ -240,8 +126,10 @@ def _generate_blank_notes_from_matter_line(notes_str: str) -> list[Note | Sleep]
 
     for note_block, pause_block in zip(note_blocks, pause_blocks + [""]):
         for note_str in note_block.split(","):
-            if note_str.strip() != "":
-                res.append(Note(note=int(note_str.strip())))
+
+            note_str = note_str.strip()
+            if note_str != "":
+                res.append(Note(note=int(note_str)))
         if pause_block != "":
             res.append(Sleep(duration_beats=len(pause_block)))
 
