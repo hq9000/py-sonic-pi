@@ -181,8 +181,7 @@ class Note(PatternElement):
     def __init__(self, note: int):
         super().__init__()
         self.note = note
-    pass
-
+        self.sample: Sample | None = None
 
 
 @dataclass

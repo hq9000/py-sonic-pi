@@ -15,7 +15,7 @@ bd_pattern = construct_pattern_from_matter(
     """
         sync: 1
         resolution: 0.25
-        notes: 0____0____0____0
+        note: 0____0____0____0
     """
 )
 
@@ -25,7 +25,7 @@ bass_pattern = construct_pattern_from_matter(
         resolution: 0.5
         base_note: C3
         base_release: 0.1
-        notes: _0__12__1__0_
+        note: _0__12__1__0_
     """
 )
 
@@ -41,7 +41,7 @@ crash_track = GeneratorTrack(
     pattern=construct_pattern_from_matter(
         """
         sync: 2
-        notes: 0
+        note: 0
         """
     ),
 )
@@ -52,7 +52,7 @@ snare_track = GeneratorTrack(
     pattern=construct_pattern_from_matter(
         """
         sync: 1
-        notes: _0__0
+        note: _0__0
         """
     ),
 )

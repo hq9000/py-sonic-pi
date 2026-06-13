@@ -1,6 +1,8 @@
 from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 
+from py_sonic_pi.patterns import MatterKeywords
+
 _INDENT_STEP = 2
 
 from py_sonic_pi.inventory import (
@@ -122,7 +124,7 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
                 line = f"{indent}sample :{track.generator.sample.name.value}"
             elif track.get_type() == GeneratorTrackType.SYNTH:
-                line = f"{indent}play {element.get_attribute_value('note')}"
+                line = f"{indent}play {element.note}"
 
             for name, value in element.attributes.items():
                 if name == "note":

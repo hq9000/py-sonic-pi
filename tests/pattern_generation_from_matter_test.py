@@ -18,14 +18,14 @@ def test_pattern_generation_from_matter():
         base_release: 0.1 # this is a comment
         base_sustain_amp: 1
 
-        notes:    1___0____0___0___0
-        amps:     0.77,  0.77,  0.77,  0.77,  0.77
-        pans:     0.33,  0.33,  0.33,  0.33,  0.33
-        attacks:  0.2,  0.2,  0.2,  0.2,  0.2
-        decays:   0.1,  0.1,  0.1,  0.1,  0.1
-        sustains: 0.9,  0.9,  0.9,  0.9,  0.9
-        sustain_amps: 0.8, 0.8, 0.8, 0.8, 0.8
-        releases: 0.1,0.1,0.1,0.1,0.1
+        note:    1___0____0___0___0
+        amp:     0.77,  0.77,  0.77,  0.77,  0.77
+        pan:     0.33,  0.33,  0.33,  0.33,  0.33
+        attack:  0.2,  0.2,  0.2,  0.2,  0.2
+        decay:   0.1,  0.1,  0.1,  0.1,  0.1
+        sustain: 0.9,  0.9,  0.9,  0.9,  0.9
+        sustain_amp: 0.8, 0.8, 0.8, 0.8, 0.8
+        release: 0.1,0.1,0.1,0.1,0.1
     """
     pattern = construct_pattern_from_matter(matter)
 
@@ -34,13 +34,13 @@ def test_pattern_generation_from_matter():
     assert pattern.elements[0].n_bars == 1
     assert isinstance(pattern.elements[1], Note)
     assert pattern.elements[1].note == 37
-    assert pattern.elements[1].amp == 0.77
-    assert pattern.elements[1].pan == 0.33
-    assert pattern.elements[1].attack_beats == 0.2
-    assert pattern.elements[1].decay_beats == 0.1
-    assert pattern.elements[1].sustain_beats == 0.9
-    assert pattern.elements[1].sustain_amp == 0.8
-    assert pattern.elements[1].release_beats == 0.1
+    assert pattern.elements[1].get_attr("amp") == 1.77
+    assert pattern.elements[1].get_attr("pan") == 0.33
+    assert pattern.elements[1].get_attr("attack") == 0.2
+    assert pattern.elements[1].get_attr("decay") == 0.1
+    assert pattern.elements[1].get_attr("sustain") == 1.9
+    assert pattern.elements[1].get_attr("sustain_amp") == 1.8
+    assert pattern.elements[1].get_attr("release") == 0.2
     assert isinstance(pattern.elements[2], Sleep)
     assert pattern.elements[2].duration_beats == 0.75
     assert isinstance(pattern.elements[3], Note)

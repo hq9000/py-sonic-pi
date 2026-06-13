@@ -3,29 +3,6 @@ import re
 
 from py_sonic_pi.inventory import Note, Pattern, PatternElement, Sleep, Sync
 
-matter = """
-        sync: 1
-        resolution: 0.25
-        base_note: C2
-        base_pan: 0
-        base_amp: 1
-        base_attack: 0
-        base_decay: 0
-        base_sustain: 1.0
-        base_release: 0.1 # this is a comment
-        base_sustain_amp: 1
-
-        notes:    0___0___0___0___0
-        amps:     1,  1,  1,  1,  1
-        pans:     0,  0,  0,  0,  0
-        attacks:  0,  0,  0,  0,  0
-        decays:   0,  0,  0,  0,  0
-        sustains: 1,  1,  1,  1,  1
-        sustain_amps: 1, 1, 1, 1, 1
-        releases: 0.1,0.1,0.1,0.1,0.1
-    """
-
-
 class MatterKeywords(Enum):
     SYNC = "sync"
     RESOLUTION = "resolution"
@@ -34,6 +11,12 @@ class MatterKeywords(Enum):
 
 
 def construct_pattern_from_matter(matter: str) -> Pattern:
+    try:
+        return _construct_pattern_from_matter_inner(matter)
+    except Exception as e:
+        raise ValueError(f"Failed to construct pattern from matter. Matter: {matter}") from e
+
+def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
     matter = matter.replace(" ", "")
     lines = [
         re.sub(r"#.*", "", line) for line in matter.split("\n") if line.strip() != ""
@@ -91,20 +74,16 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
                 f"Length of {attr_name} list must be either 0 or equal to the number of notes"
             )
 
-    if sorted(generic_bases.keys()) != sorted(generic_values.keys()):
-        raise ValueError(
-            f"Generic base keys must match generic value keys. Got bases: {generic_bases.keys()}, values: {generic_values.keys()}"
-        )
-
     sleeps = [element for element in notes_and_sleeps if isinstance(element, Sleep)]
     for sleep in sleeps:
         sleep.duration_beats = resolution_beats * sleep.duration_beats
 
     for i in range(len(notes)):
             for attr_name in generic_bases.keys():
-                if i < len(generic_values[attr_name]):
+                if attr_name in generic_values and i < len(generic_values[attr_name]):
                     notes[i].set_attr(attr_name, generic_bases[attr_name] + generic_values[attr_name][i])
-
+                else:
+                    notes[i].set_attr(attr_name, generic_bases[attr_name])
     elements: list[PatternElement] = []
     elements.append(Sync(n_bars=sync))
     elements.extend(notes_and_sleeps)
