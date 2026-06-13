@@ -2,22 +2,19 @@ from jinja2 import Environment, FileSystemLoader
 from pathlib import Path
 
 from py_sonic_pi.patterns import MatterKeywords
-
-_INDENT_STEP = 2
-
 from py_sonic_pi.inventory import (
     GeneratorTrack,
     GroupTrack,
     Note,
     Project,
     Sleep,
-    Sleep,
-    Sync,
     Sync,
     Track,
     GeneratorTrackType,
     EffectInstance,
 )
+
+_INDENT_STEP = 2
 
 
 def transform(project: Project) -> list[str]:
@@ -75,9 +72,9 @@ def _generate_track_processing_block(
             f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)} if run_count == 1"
         )
 
-    if type(track) == GeneratorTrack:
+    if isinstance(track, GeneratorTrack):
         lines.append(f"{' ' * indent}{track.id}_loop()")
-    elif type(track) == GroupTrack:
+    elif isinstance(track, GroupTrack):
         for child_track in track.children:
             _generate_track_processing_block(child_track, lines, indent + _INDENT_STEP)
 

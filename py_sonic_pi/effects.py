@@ -75,7 +75,6 @@ class Panner(EffectInstance):
             "amp": self.amp,
             "amp_slide": self.amp_slide,
             "amp_slide_shape": self.amp_slide_shape.value,
-            "pan": self.pan,
             "pan_slide": self.pan_slide,
             "pan_slide_shape": self.pan_slide_shape.value,
         }

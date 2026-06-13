@@ -1,4 +1,4 @@
-from py_sonic_pi.inventory import Note, Pattern, Sleep, Sync
+from py_sonic_pi.inventory import Note, Sleep, Sync
 from py_sonic_pi.patterns import (
     _generate_blank_notes_from_matter_line,
     construct_pattern_from_matter,
