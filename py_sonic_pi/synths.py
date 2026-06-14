@@ -41,52 +41,52 @@ class DullBell(Synth):
     def get_ruby_synth_name(self) -> str:
         return "dull_bell"
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "DullBell":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "DullBell":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "DullBell":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "DullBell":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "DullBell":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "DullBell":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "DullBell":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "DullBell":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "DullBell":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "DullBell":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
@@ -111,52 +111,52 @@ class PrettyBell(Synth):
         return "pretty_bell"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "PrettyBell":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "PrettyBell":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "PrettyBell":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "PrettyBell":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "PrettyBell":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "PrettyBell":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "PrettyBell":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "PrettyBell":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "PrettyBell":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "PrettyBell":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -181,52 +181,52 @@ class Beep(Synth):
         return "beep"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Beep":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Beep":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Beep":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Beep":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Beep":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Beep":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Beep":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Beep":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Beep":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Beep":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -251,52 +251,52 @@ class Sine(Synth):
         return "sine"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Sine":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Sine":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Sine":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Sine":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Sine":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Sine":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Sine":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Sine":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Sine":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Sine":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -324,57 +324,57 @@ class Saw(Synth):
         return "saw"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Saw":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Saw":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Saw":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Saw":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Saw":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Saw":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Saw":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Saw":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Saw":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Saw":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Saw":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -405,62 +405,62 @@ class Pulse(Synth):
         return "pulse"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Pulse":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Pulse":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Pulse":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Pulse":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Pulse":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Pulse":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Pulse":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Pulse":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Pulse":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Pulse":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Pulse":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Pulse":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -493,72 +493,72 @@ class Subpulse(Synth):
         return "subpulse"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Subpulse":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Subpulse":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Subpulse":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Subpulse":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Subpulse":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Subpulse":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Subpulse":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Subpulse":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Subpulse":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Subpulse":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sub_amp(self, value: float) -> "Synth":
+    def set_sub_amp(self, value: float) -> "Subpulse":
         self.set_parameter_value("sub_amp", value)
         return self
 
 
-    def set_sub_detune(self, value: float) -> "Synth":
+    def set_sub_detune(self, value: float) -> "Subpulse":
         self.set_parameter_value("sub_detune", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Subpulse":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Subpulse":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -586,57 +586,57 @@ class Square(Synth):
         return "square"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Square":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Square":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Square":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Square":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Square":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Square":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Square":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Square":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Square":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Square":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Square":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -667,62 +667,62 @@ class Tri(Synth):
         return "tri"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Tri":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Tri":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Tri":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Tri":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Tri":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Tri":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Tri":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Tri":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Tri":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Tri":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Tri":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Tri":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -751,62 +751,62 @@ class Dsaw(Synth):
         return "dsaw"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Dsaw":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Dsaw":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Dsaw":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Dsaw":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Dsaw":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Dsaw":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_detune(self, value: float) -> "Synth":
+    def set_detune(self, value: float) -> "Dsaw":
         self.set_parameter_value("detune", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Dsaw":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Dsaw":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Dsaw":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Dsaw":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Dsaw":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -841,72 +841,72 @@ class Dpulse(Synth):
         return "dpulse"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Dpulse":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Dpulse":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Dpulse":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Dpulse":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Dpulse":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Dpulse":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_detune(self, value: float) -> "Synth":
+    def set_detune(self, value: float) -> "Dpulse":
         self.set_parameter_value("detune", value)
         return self
 
 
-    def set_dpulse_width(self, value: float) -> "Synth":
+    def set_dpulse_width(self, value: float) -> "Dpulse":
         self.set_parameter_value("dpulse_width", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Dpulse":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Dpulse":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Dpulse":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Dpulse":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Dpulse":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Dpulse":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -935,62 +935,62 @@ class Dtri(Synth):
         return "dtri"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Dtri":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Dtri":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Dtri":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Dtri":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Dtri":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Dtri":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_detune(self, value: float) -> "Synth":
+    def set_detune(self, value: float) -> "Dtri":
         self.set_parameter_value("detune", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Dtri":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Dtri":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Dtri":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Dtri":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Dtri":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1020,67 +1020,67 @@ class Fm(Synth):
         return "fm"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Fm":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Fm":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Fm":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Fm":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Fm":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Fm":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_depth(self, value: float) -> "Synth":
+    def set_depth(self, value: float) -> "Fm":
         self.set_parameter_value("depth", value)
         return self
 
 
-    def set_divisor(self, value: float) -> "Synth":
+    def set_divisor(self, value: float) -> "Fm":
         self.set_parameter_value("divisor", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Fm":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Fm":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Fm":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Fm":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Fm":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1126,97 +1126,97 @@ class ModFm(Synth):
         return "mod_fm"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModFm":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModFm":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModFm":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModFm":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModFm":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModFm":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_depth(self, value: float) -> "Synth":
+    def set_depth(self, value: float) -> "ModFm":
         self.set_parameter_value("depth", value)
         return self
 
 
-    def set_divisor(self, value: float) -> "Synth":
+    def set_divisor(self, value: float) -> "ModFm":
         self.set_parameter_value("divisor", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModFm":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModFm":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModFm":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModFm":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModFm":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModFm":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1260,87 +1260,87 @@ class ModSaw(Synth):
         return "mod_saw"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModSaw":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModSaw":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModSaw":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModSaw":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModSaw":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModSaw":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModSaw":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModSaw":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModSaw":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModSaw":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModSaw":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModSaw":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1385,92 +1385,92 @@ class ModDsaw(Synth):
         return "mod_dsaw"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModDsaw":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModDsaw":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModDsaw":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModDsaw":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModDsaw":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModDsaw":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_detune(self, value: float) -> "Synth":
+    def set_detune(self, value: float) -> "ModDsaw":
         self.set_parameter_value("detune", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModDsaw":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModDsaw":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModDsaw":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModDsaw":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModDsaw":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModDsaw":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1514,87 +1514,87 @@ class ModSine(Synth):
         return "mod_sine"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModSine":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModSine":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModSine":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModSine":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModSine":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModSine":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModSine":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModSine":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModSine":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModSine":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModSine":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModSine":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1638,87 +1638,87 @@ class ModBeep(Synth):
         return "mod_beep"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModBeep":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModBeep":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModBeep":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModBeep":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModBeep":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModBeep":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModBeep":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModBeep":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModBeep":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModBeep":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModBeep":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModBeep":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1762,87 +1762,87 @@ class ModTri(Synth):
         return "mod_tri"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModTri":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModTri":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModTri":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModTri":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModTri":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModTri":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModTri":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModTri":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModTri":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModTri":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModTri":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModTri":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -1889,92 +1889,92 @@ class ModPulse(Synth):
         return "mod_pulse"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "ModPulse":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "ModPulse":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "ModPulse":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "ModPulse":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "ModPulse":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "ModPulse":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "ModPulse":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_mod_invert_wave(self, value: float) -> "Synth":
+    def set_mod_invert_wave(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_invert_wave", value)
         return self
 
 
-    def set_mod_phase(self, value: float) -> "Synth":
+    def set_mod_phase(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_phase", value)
         return self
 
 
-    def set_mod_phase_offset(self, value: float) -> "Synth":
+    def set_mod_phase_offset(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_phase_offset", value)
         return self
 
 
-    def set_mod_pulse_width(self, value: float) -> "Synth":
+    def set_mod_pulse_width(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_pulse_width", value)
         return self
 
 
-    def set_mod_range(self, value: float) -> "Synth":
+    def set_mod_range(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_range", value)
         return self
 
 
-    def set_mod_wave(self, value: float) -> "Synth":
+    def set_mod_wave(self, value: float) -> "ModPulse":
         self.set_parameter_value("mod_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "ModPulse":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "ModPulse":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "ModPulse":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "ModPulse":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "ModPulse":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2044,112 +2044,112 @@ class Tb303(Synth):
         return "tb303"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Tb303":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Tb303":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Tb303":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_cutoff_attack(self, value: float) -> "Synth":
+    def set_cutoff_attack(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_attack", value)
         return self
 
 
-    def set_cutoff_attack_level(self, value: float) -> "Synth":
+    def set_cutoff_attack_level(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_attack_level", value)
         return self
 
 
-    def set_cutoff_decay(self, value: float) -> "Synth":
+    def set_cutoff_decay(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_decay", value)
         return self
 
 
-    def set_cutoff_decay_level(self, value: float) -> "Synth":
+    def set_cutoff_decay_level(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_decay_level", value)
         return self
 
 
-    def set_cutoff_min(self, value: float) -> "Synth":
+    def set_cutoff_min(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_min", value)
         return self
 
 
-    def set_cutoff_release(self, value: float) -> "Synth":
+    def set_cutoff_release(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_release", value)
         return self
 
 
-    def set_cutoff_sustain(self, value: float) -> "Synth":
+    def set_cutoff_sustain(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_sustain", value)
         return self
 
 
-    def set_cutoff_sustain_level(self, value: float) -> "Synth":
+    def set_cutoff_sustain_level(self, value: float) -> "Tb303":
         self.set_parameter_value("cutoff_sustain_level", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Tb303":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Tb303":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Tb303":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Tb303":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Tb303":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Tb303":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Tb303":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Tb303":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Tb303":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_wave(self, value: float) -> "Synth":
+    def set_wave(self, value: float) -> "Tb303":
         self.set_parameter_value("wave", value)
         return self
 
@@ -2180,62 +2180,62 @@ class Supersaw(Synth):
         return "supersaw"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Supersaw":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Supersaw":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Supersaw":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Supersaw":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Supersaw":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Supersaw":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Supersaw":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Supersaw":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Supersaw":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Supersaw":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Supersaw":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Supersaw":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2266,62 +2266,62 @@ class Hoover(Synth):
         return "hoover"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Hoover":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Hoover":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Hoover":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Hoover":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Hoover":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Hoover":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Hoover":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Hoover":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Hoover":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Hoover":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Hoover":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Hoover":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2352,62 +2352,62 @@ class Prophet(Synth):
         return "prophet"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Prophet":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Prophet":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Prophet":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Prophet":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Prophet":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Prophet":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Prophet":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Prophet":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Prophet":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Prophet":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Prophet":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Prophet":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2457,97 +2457,97 @@ class Zawa(Synth):
         return "zawa"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Zawa":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Zawa":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Zawa":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Zawa":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Zawa":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Zawa":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_disable_wave(self, value: float) -> "Synth":
+    def set_disable_wave(self, value: float) -> "Zawa":
         self.set_parameter_value("disable_wave", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Zawa":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_invert_wave(self, value: float) -> "Synth":
+    def set_invert_wave(self, value: float) -> "Zawa":
         self.set_parameter_value("invert_wave", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Zawa":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_phase(self, value: float) -> "Synth":
+    def set_phase(self, value: float) -> "Zawa":
         self.set_parameter_value("phase", value)
         return self
 
 
-    def set_phase_offset(self, value: float) -> "Synth":
+    def set_phase_offset(self, value: float) -> "Zawa":
         self.set_parameter_value("phase_offset", value)
         return self
 
 
-    def set_pulse_width(self, value: float) -> "Synth":
+    def set_pulse_width(self, value: float) -> "Zawa":
         self.set_parameter_value("pulse_width", value)
         return self
 
 
-    def set_range(self, value: float) -> "Synth":
+    def set_range(self, value: float) -> "Zawa":
         self.set_parameter_value("range", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Zawa":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Zawa":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Zawa":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Zawa":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_wave(self, value: float) -> "Synth":
+    def set_wave(self, value: float) -> "Zawa":
         self.set_parameter_value("wave", value)
         return self
 
@@ -2592,92 +2592,92 @@ class DarkAmbience(Synth):
         return "dark_ambience"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_detune1(self, value: float) -> "Synth":
+    def set_detune1(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("detune1", value)
         return self
 
 
-    def set_detune2(self, value: float) -> "Synth":
+    def set_detune2(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("detune2", value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_noise(self, value: float) -> "Synth":
+    def set_noise(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("noise", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_reverb_time(self, value: float) -> "Synth":
+    def set_reverb_time(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("reverb_time", value)
         return self
 
 
-    def set_ring(self, value: float) -> "Synth":
+    def set_ring(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("ring", value)
         return self
 
 
-    def set_room(self, value: float) -> "Synth":
+    def set_room(self, value: float) -> "DarkAmbience":
         self.set_parameter_value("room", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "DarkAmbience":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2708,62 +2708,62 @@ class Growl(Synth):
         return "growl"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Growl":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Growl":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Growl":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Growl":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Growl":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Growl":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Growl":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Growl":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Growl":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Growl":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Growl":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Growl":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2800,72 +2800,72 @@ class Hollow(Synth):
         return "hollow"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Hollow":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Hollow":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Hollow":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Hollow":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Hollow":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Hollow":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Hollow":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_noise(self, value: float) -> "Synth":
+    def set_noise(self, value: float) -> "Hollow":
         self.set_parameter_value("noise", value)
         return self
 
 
-    def set_norm(self, value: float) -> "Synth":
+    def set_norm(self, value: float) -> "Hollow":
         self.set_parameter_value("norm", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Hollow":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Hollow":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Hollow":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Hollow":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Hollow":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -2963,182 +2963,182 @@ class MonoPlayer(Synth):
         return "mono_player"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_clamp_time(self, value: float) -> "Synth":
+    def set_clamp_time(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("clamp_time", value)
         return self
 
 
-    def set_compress(self, value: float) -> "Synth":
+    def set_compress(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("compress", value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_cutoff_attack(self, value: float) -> "Synth":
+    def set_cutoff_attack(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_attack", value)
         return self
 
 
-    def set_cutoff_attack_level(self, value: float) -> "Synth":
+    def set_cutoff_attack_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_attack_level", value)
         return self
 
 
-    def set_cutoff_decay(self, value: float) -> "Synth":
+    def set_cutoff_decay(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_decay", value)
         return self
 
 
-    def set_cutoff_decay_level(self, value: float) -> "Synth":
+    def set_cutoff_decay_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_decay_level", value)
         return self
 
 
-    def set_cutoff_env_curve(self, value: float) -> "Synth":
+    def set_cutoff_env_curve(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_env_curve", value)
         return self
 
 
-    def set_cutoff_min(self, value: float) -> "Synth":
+    def set_cutoff_min(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_min", value)
         return self
 
 
-    def set_cutoff_release(self, value: float) -> "Synth":
+    def set_cutoff_release(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_release", value)
         return self
 
 
-    def set_cutoff_sustain(self, value: float) -> "Synth":
+    def set_cutoff_sustain(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_sustain", value)
         return self
 
 
-    def set_cutoff_sustain_level(self, value: float) -> "Synth":
+    def set_cutoff_sustain_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("cutoff_sustain_level", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_finish(self, value: float) -> "Synth":
+    def set_finish(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("finish", value)
         return self
 
 
-    def set_norm(self, value: float) -> "Synth":
+    def set_norm(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("norm", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pitch(self, value: float) -> "Synth":
+    def set_pitch(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("pitch", value)
         return self
 
 
-    def set_pitch_dis(self, value: float) -> "Synth":
+    def set_pitch_dis(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("pitch_dis", value)
         return self
 
 
-    def set_pre_amp(self, value: float) -> "Synth":
+    def set_pre_amp(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("pre_amp", value)
         return self
 
 
-    def set_rate(self, value: float) -> "Synth":
+    def set_rate(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("rate", value)
         return self
 
 
-    def set_relax_time(self, value: float) -> "Synth":
+    def set_relax_time(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("relax_time", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_slope_above(self, value: float) -> "Synth":
+    def set_slope_above(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("slope_above", value)
         return self
 
 
-    def set_slope_below(self, value: float) -> "Synth":
+    def set_slope_below(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("slope_below", value)
         return self
 
 
-    def set_start(self, value: float) -> "Synth":
+    def set_start(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("start", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "MonoPlayer":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_threshold(self, value: float) -> "Synth":
+    def set_threshold(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("threshold", value)
         return self
 
 
-    def set_time_dis(self, value: float) -> "Synth":
+    def set_time_dis(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("time_dis", value)
         return self
 
 
-    def set_window_size(self, value: float) -> "Synth":
+    def set_window_size(self, value: float) -> "MonoPlayer":
         self.set_parameter_value("window_size", value)
         return self
 
@@ -3186,77 +3186,77 @@ class Blade(Synth):
         return "blade"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Blade":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Blade":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Blade":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Blade":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Blade":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Blade":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Blade":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Blade":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Blade":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Blade":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Blade":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_vibrato_delay(self, value: float) -> "Synth":
+    def set_vibrato_delay(self, value: float) -> "Blade":
         self.set_parameter_value("vibrato_delay", value)
         return self
 
 
-    def set_vibrato_depth(self, value: float) -> "Synth":
+    def set_vibrato_depth(self, value: float) -> "Blade":
         self.set_parameter_value("vibrato_depth", value)
         return self
 
 
-    def set_vibrato_onset(self, value: float) -> "Synth":
+    def set_vibrato_onset(self, value: float) -> "Blade":
         self.set_parameter_value("vibrato_onset", value)
         return self
 
 
-    def set_vibrato_rate(self, value: float) -> "Synth":
+    def set_vibrato_rate(self, value: float) -> "Blade":
         self.set_parameter_value("vibrato_rate", value)
         return self
 
@@ -3289,62 +3289,62 @@ class Piano(Synth):
         return "piano"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Piano":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Piano":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Piano":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Piano":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Piano":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_hard(self, value: float) -> "Synth":
+    def set_hard(self, value: float) -> "Piano":
         self.set_parameter_value("hard", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Piano":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Piano":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_stereo_width(self, value: float) -> "Synth":
+    def set_stereo_width(self, value: float) -> "Piano":
         self.set_parameter_value("stereo_width", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Piano":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Piano":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
 
-    def set_vel(self, value: float) -> "Synth":
+    def set_vel(self, value: float) -> "Piano":
         self.set_parameter_value("vel", value)
         return self
 
@@ -3383,67 +3383,67 @@ class Pluck(Synth):
         return "pluck"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Pluck":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Pluck":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Pluck":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_coef(self, value: float) -> "Synth":
+    def set_coef(self, value: float) -> "Pluck":
         self.set_parameter_value("coef", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Pluck":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Pluck":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_max_delay_time(self, value: float) -> "Synth":
+    def set_max_delay_time(self, value: float) -> "Pluck":
         self.set_parameter_value("max_delay_time", value)
         return self
 
 
-    def set_noise_amp(self, value: float) -> "Synth":
+    def set_noise_amp(self, value: float) -> "Pluck":
         self.set_parameter_value("noise_amp", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Pluck":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_pluck_decay(self, value: float) -> "Synth":
+    def set_pluck_decay(self, value: float) -> "Pluck":
         self.set_parameter_value("pluck_decay", value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Pluck":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Pluck":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Pluck":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3457,17 +3457,17 @@ class SoundIn(Synth):
         return "sound_in"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "SoundIn":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_input(self, value: float) -> "Synth":
+    def set_input(self, value: float) -> "SoundIn":
         self.set_parameter_value("input", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "SoundIn":
         self.set_parameter_value(PAN.name, value)
         return self
 
@@ -3498,62 +3498,62 @@ class Noise(Synth):
         return "noise"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Noise":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Noise":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Noise":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Noise":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Noise":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Noise":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Noise":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Noise":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Noise":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Noise":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Noise":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Noise":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3584,62 +3584,62 @@ class Pnoise(Synth):
         return "pnoise"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Pnoise":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Pnoise":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Pnoise":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Pnoise":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Pnoise":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Pnoise":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Pnoise":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Pnoise":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Pnoise":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Pnoise":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Pnoise":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Pnoise":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3670,62 +3670,62 @@ class Bnoise(Synth):
         return "bnoise"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Bnoise":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Bnoise":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Bnoise":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Bnoise":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Bnoise":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Bnoise":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Bnoise":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Bnoise":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Bnoise":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Bnoise":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Bnoise":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Bnoise":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3756,62 +3756,62 @@ class Gnoise(Synth):
         return "gnoise"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Gnoise":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Gnoise":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Gnoise":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Gnoise":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Gnoise":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Gnoise":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Gnoise":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Gnoise":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Gnoise":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Gnoise":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Gnoise":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Gnoise":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3842,62 +3842,62 @@ class Cnoise(Synth):
         return "cnoise"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "Cnoise":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_attack(self, value: float) -> "Synth":
+    def set_attack(self, value: float) -> "Cnoise":
         self.set_parameter_value(ATTACK.name, value)
         return self
 
 
-    def set_attack_level(self, value: float) -> "Synth":
+    def set_attack_level(self, value: float) -> "Cnoise":
         self.set_parameter_value(ATTACK_LEVEL.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "Cnoise":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_decay(self, value: float) -> "Synth":
+    def set_decay(self, value: float) -> "Cnoise":
         self.set_parameter_value(DECAY.name, value)
         return self
 
 
-    def set_decay_level(self, value: float) -> "Synth":
+    def set_decay_level(self, value: float) -> "Cnoise":
         self.set_parameter_value(DECAY_LEVEL.name, value)
         return self
 
 
-    def set_env_curve(self, value: float) -> "Synth":
+    def set_env_curve(self, value: float) -> "Cnoise":
         self.set_parameter_value(ENV_CURVE.name, value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "Cnoise":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_release(self, value: float) -> "Synth":
+    def set_release(self, value: float) -> "Cnoise":
         self.set_parameter_value(RELEASE.name, value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "Cnoise":
         self.set_parameter_value("res", value)
         return self
 
 
-    def set_sustain(self, value: float) -> "Synth":
+    def set_sustain(self, value: float) -> "Cnoise":
         self.set_parameter_value(SUSTAIN.name, value)
         return self
 
 
-    def set_sustain_level(self, value: float) -> "Synth":
+    def set_sustain_level(self, value: float) -> "Cnoise":
         self.set_parameter_value(SUSTAIN_LEVEL.name, value)
         return self
 
@@ -3921,27 +3921,27 @@ class BasicMonoPlayer(Synth):
         return "basic_mono_player"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "BasicMonoPlayer":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "BasicMonoPlayer":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "BasicMonoPlayer":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_rate(self, value: float) -> "Synth":
+    def set_rate(self, value: float) -> "BasicMonoPlayer":
         self.set_parameter_value("rate", value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "BasicMonoPlayer":
         self.set_parameter_value("res", value)
         return self
 
@@ -3965,27 +3965,27 @@ class BasicStereoPlayer(Synth):
         return "basic_stereo_player"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "BasicStereoPlayer":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_cutoff(self, value: float) -> "Synth":
+    def set_cutoff(self, value: float) -> "BasicStereoPlayer":
         self.set_parameter_value("cutoff", value)
         return self
 
 
-    def set_pan(self, value: float) -> "Synth":
+    def set_pan(self, value: float) -> "BasicStereoPlayer":
         self.set_parameter_value(PAN.name, value)
         return self
 
 
-    def set_rate(self, value: float) -> "Synth":
+    def set_rate(self, value: float) -> "BasicStereoPlayer":
         self.set_parameter_value("rate", value)
         return self
 
 
-    def set_res(self, value: float) -> "Synth":
+    def set_res(self, value: float) -> "BasicStereoPlayer":
         self.set_parameter_value("res", value)
         return self
 
@@ -3999,7 +3999,7 @@ class BasicMixer(Synth):
         return "basic_mixer"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "BasicMixer":
         self.set_parameter_value(AMP.name, value)
         return self
 
@@ -4024,52 +4024,52 @@ class MainMixer(Synth):
         return "main_mixer"
 
 
-    def set_amp(self, value: float) -> "Synth":
+    def set_amp(self, value: float) -> "MainMixer":
         self.set_parameter_value(AMP.name, value)
         return self
 
 
-    def set_force_mono(self, value: float) -> "Synth":
+    def set_force_mono(self, value: float) -> "MainMixer":
         self.set_parameter_value("force_mono", value)
         return self
 
 
-    def set_hpf(self, value: float) -> "Synth":
+    def set_hpf(self, value: float) -> "MainMixer":
         self.set_parameter_value("hpf", value)
         return self
 
 
-    def set_hpf_bypass(self, value: float) -> "Synth":
+    def set_hpf_bypass(self, value: float) -> "MainMixer":
         self.set_parameter_value("hpf_bypass", value)
         return self
 
 
-    def set_invert_stereo(self, value: float) -> "Synth":
+    def set_invert_stereo(self, value: float) -> "MainMixer":
         self.set_parameter_value("invert_stereo", value)
         return self
 
 
-    def set_leak_dc_bypass(self, value: float) -> "Synth":
+    def set_leak_dc_bypass(self, value: float) -> "MainMixer":
         self.set_parameter_value("leak_dc_bypass", value)
         return self
 
 
-    def set_limiter_bypass(self, value: float) -> "Synth":
+    def set_limiter_bypass(self, value: float) -> "MainMixer":
         self.set_parameter_value("limiter_bypass", value)
         return self
 
 
-    def set_lpf(self, value: float) -> "Synth":
+    def set_lpf(self, value: float) -> "MainMixer":
         self.set_parameter_value("lpf", value)
         return self
 
 
-    def set_lpf_bypass(self, value: float) -> "Synth":
+    def set_lpf_bypass(self, value: float) -> "MainMixer":
         self.set_parameter_value("lpf_bypass", value)
         return self
 
 
-    def set_pre_amp(self, value: float) -> "Synth":
+    def set_pre_amp(self, value: float) -> "MainMixer":
         self.set_parameter_value("pre_amp", value)
         return self
 
