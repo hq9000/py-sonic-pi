@@ -232,7 +232,7 @@ class GeneratorTrackType(Enum):
 class Track(ABC):
     id: str
     custom_effects: list[EffectInstance] = field(default_factory=list)
-    gain: float = 1.0
+    amp: float = 1.0
     pan: float = 0.0
     muted: bool = False
     solo: bool = False
@@ -245,7 +245,7 @@ class Track(ABC):
         all.append(
             Panner(
                 id=f"track_{self.id}_gain_and_pan",
-                amp=self.gain,
+                amp=self.amp,
                 amp_slide=self.slide,
                 amp_slide_shape=SlideShape.LINEAR,
                 pan=self.pan,
@@ -264,13 +264,13 @@ class GeneratorTrack(Track):
         generator: Generator,
         pattern: Pattern,
         effects: list[EffectInstance] = [],
-        gain: float = 1.0,
+        amp: float = 1.0,
         pan: float = 0.0,
         mute: bool = False,
         solo: bool = False,
     ):
         super().__init__(
-            id=id, custom_effects=effects, gain=gain, pan=pan, muted=mute, solo=solo
+            id=id, custom_effects=effects, amp=amp, pan=pan, muted=mute, solo=solo
         )
         self.generator = generator
         self.pattern = pattern
@@ -289,13 +289,13 @@ class GroupTrack(Track):
         id: str,
         children: list[Track],
         effects: list[EffectInstance] = [],
-        gain: float = 1.0,
+        amp: float = 1.0,
         pan: float = 0.0,
         muted: bool = False,
         solo: bool = False,
     ):
         super().__init__(
-            id=id, custom_effects=effects, gain=gain, pan=pan, muted=muted, solo=solo
+            id=id, custom_effects=effects, amp=amp, pan=pan, muted=muted, solo=solo
         )
         self.children = children
 

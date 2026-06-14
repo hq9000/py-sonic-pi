@@ -37,7 +37,7 @@ bd_track = GeneratorTrack(
 crash_track = GeneratorTrack(
     id="crash",
     generator=Sampler(Sample(stock_sample_name=StockSampleName.RIDE_TRI)),
-    gain=0.5,
+    amp=0.5,
     pattern=construct_pattern_from_matter(
         """
         sync: 2
@@ -48,7 +48,7 @@ crash_track = GeneratorTrack(
 snare_track = GeneratorTrack(
     id="snare",
     generator=Sampler(Sample(stock_sample_name=StockSampleName.ELEC_TICK)),
-    gain=1.5,
+    amp=1.5,
     pattern=construct_pattern_from_matter(
         """
         sync: 1
@@ -69,7 +69,7 @@ bass_bd = GroupTrack(
 )
 
 
-bass_track.gain = 0.3
+bass_track.amp = 0.3
 bass_track.pan = 0.5
 bass_track.muted = False
 
