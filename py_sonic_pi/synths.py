@@ -41,6 +41,36 @@ class DullBell(Synth):
     def get_ruby_synth_name(self) -> str:
         return "dull_bell"
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
 
 class PrettyBell(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
@@ -59,6 +89,37 @@ class PrettyBell(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "pretty_bell"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Beep(Synth):
@@ -80,6 +141,37 @@ class Beep(Synth):
         return "beep"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Sine(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -97,6 +189,37 @@ class Sine(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "sine"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Saw(Synth):
@@ -119,6 +242,40 @@ class Saw(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "saw"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Pulse(Synth):
@@ -144,6 +301,43 @@ class Pulse(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "pulse"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Subpulse(Synth):
@@ -173,6 +367,49 @@ class Subpulse(Synth):
         return "subpulse"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sub_amp(self, value: float):
+        self.set_parameter_value("sub_amp", value)
+
+    def set_sub_detune(self, value: float):
+        self.set_parameter_value("sub_detune", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Square(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -193,6 +430,40 @@ class Square(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "square"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Tri(Synth):
@@ -220,6 +491,43 @@ class Tri(Synth):
         return "tri"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Dsaw(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -241,6 +549,43 @@ class Dsaw(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "dsaw"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_detune(self, value: float):
+        self.set_parameter_value("detune", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Dpulse(Synth):
@@ -272,6 +617,49 @@ class Dpulse(Synth):
         return "dpulse"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_detune(self, value: float):
+        self.set_parameter_value("detune", value)
+
+    def set_dpulse_width(self, value: float):
+        self.set_parameter_value("dpulse_width", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Dtri(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -293,6 +681,43 @@ class Dtri(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "dtri"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_detune(self, value: float):
+        self.set_parameter_value("detune", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Fm(Synth):
@@ -317,6 +742,46 @@ class Fm(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "fm"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_depth(self, value: float):
+        self.set_parameter_value("depth", value)
+
+    def set_divisor(self, value: float):
+        self.set_parameter_value("divisor", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class ModFm(Synth):
@@ -359,6 +824,64 @@ class ModFm(Synth):
         return "mod_fm"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_depth(self, value: float):
+        self.set_parameter_value("depth", value)
+
+    def set_divisor(self, value: float):
+        self.set_parameter_value("divisor", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class ModSaw(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -395,6 +918,58 @@ class ModSaw(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "mod_saw"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class ModDsaw(Synth):
@@ -436,6 +1011,61 @@ class ModDsaw(Synth):
         return "mod_dsaw"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_detune(self, value: float):
+        self.set_parameter_value("detune", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class ModSine(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -472,6 +1102,58 @@ class ModSine(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "mod_sine"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class ModBeep(Synth):
@@ -512,6 +1194,58 @@ class ModBeep(Synth):
         return "mod_beep"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class ModTri(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -548,6 +1282,58 @@ class ModTri(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "mod_tri"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class ModPulse(Synth):
@@ -589,6 +1375,61 @@ class ModPulse(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "mod_pulse"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_mod_invert_wave(self, value: float):
+        self.set_parameter_value("mod_invert_wave", value)
+
+    def set_mod_phase(self, value: float):
+        self.set_parameter_value("mod_phase", value)
+
+    def set_mod_phase_offset(self, value: float):
+        self.set_parameter_value("mod_phase_offset", value)
+
+    def set_mod_pulse_width(self, value: float):
+        self.set_parameter_value("mod_pulse_width", value)
+
+    def set_mod_range(self, value: float):
+        self.set_parameter_value("mod_range", value)
+
+    def set_mod_wave(self, value: float):
+        self.set_parameter_value("mod_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Tb303(Synth):
@@ -655,6 +1496,73 @@ class Tb303(Synth):
         return "tb303"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_cutoff_attack(self, value: float):
+        self.set_parameter_value("cutoff_attack", value)
+
+    def set_cutoff_attack_level(self, value: float):
+        self.set_parameter_value("cutoff_attack_level", value)
+
+    def set_cutoff_decay(self, value: float):
+        self.set_parameter_value("cutoff_decay", value)
+
+    def set_cutoff_decay_level(self, value: float):
+        self.set_parameter_value("cutoff_decay_level", value)
+
+    def set_cutoff_min(self, value: float):
+        self.set_parameter_value("cutoff_min", value)
+
+    def set_cutoff_release(self, value: float):
+        self.set_parameter_value("cutoff_release", value)
+
+    def set_cutoff_sustain(self, value: float):
+        self.set_parameter_value("cutoff_sustain", value)
+
+    def set_cutoff_sustain_level(self, value: float):
+        self.set_parameter_value("cutoff_sustain_level", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_wave(self, value: float):
+        self.set_parameter_value("wave", value)
+
+
 class Supersaw(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -678,6 +1586,43 @@ class Supersaw(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "supersaw"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Hoover(Synth):
@@ -705,6 +1650,43 @@ class Hoover(Synth):
         return "hoover"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Prophet(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -728,6 +1710,43 @@ class Prophet(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "prophet"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Zawa(Synth):
@@ -774,6 +1793,64 @@ class Zawa(Synth):
         return "zawa"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_disable_wave(self, value: float):
+        self.set_parameter_value("disable_wave", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_invert_wave(self, value: float):
+        self.set_parameter_value("invert_wave", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_phase(self, value: float):
+        self.set_parameter_value("phase", value)
+
+    def set_phase_offset(self, value: float):
+        self.set_parameter_value("phase_offset", value)
+
+    def set_pulse_width(self, value: float):
+        self.set_parameter_value("pulse_width", value)
+
+    def set_range(self, value: float):
+        self.set_parameter_value("range", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_wave(self, value: float):
+        self.set_parameter_value("wave", value)
+
+
 class DarkAmbience(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -813,6 +1890,61 @@ class DarkAmbience(Synth):
         return "dark_ambience"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_detune1(self, value: float):
+        self.set_parameter_value("detune1", value)
+
+    def set_detune2(self, value: float):
+        self.set_parameter_value("detune2", value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_noise(self, value: float):
+        self.set_parameter_value("noise", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_reverb_time(self, value: float):
+        self.set_parameter_value("reverb_time", value)
+
+    def set_ring(self, value: float):
+        self.set_parameter_value("ring", value)
+
+    def set_room(self, value: float):
+        self.set_parameter_value("room", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Growl(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -836,6 +1968,43 @@ class Growl(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "growl"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Hollow(Synth):
@@ -867,6 +2036,49 @@ class Hollow(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "hollow"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_noise(self, value: float):
+        self.set_parameter_value("noise", value)
+
+    def set_norm(self, value: float):
+        self.set_parameter_value("norm", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class MonoPlayer(Synth):
@@ -961,6 +2173,115 @@ class MonoPlayer(Synth):
         return "mono_player"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_clamp_time(self, value: float):
+        self.set_parameter_value("clamp_time", value)
+
+    def set_compress(self, value: float):
+        self.set_parameter_value("compress", value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_cutoff_attack(self, value: float):
+        self.set_parameter_value("cutoff_attack", value)
+
+    def set_cutoff_attack_level(self, value: float):
+        self.set_parameter_value("cutoff_attack_level", value)
+
+    def set_cutoff_decay(self, value: float):
+        self.set_parameter_value("cutoff_decay", value)
+
+    def set_cutoff_decay_level(self, value: float):
+        self.set_parameter_value("cutoff_decay_level", value)
+
+    def set_cutoff_env_curve(self, value: float):
+        self.set_parameter_value("cutoff_env_curve", value)
+
+    def set_cutoff_min(self, value: float):
+        self.set_parameter_value("cutoff_min", value)
+
+    def set_cutoff_release(self, value: float):
+        self.set_parameter_value("cutoff_release", value)
+
+    def set_cutoff_sustain(self, value: float):
+        self.set_parameter_value("cutoff_sustain", value)
+
+    def set_cutoff_sustain_level(self, value: float):
+        self.set_parameter_value("cutoff_sustain_level", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_finish(self, value: float):
+        self.set_parameter_value("finish", value)
+
+    def set_norm(self, value: float):
+        self.set_parameter_value("norm", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pitch(self, value: float):
+        self.set_parameter_value("pitch", value)
+
+    def set_pitch_dis(self, value: float):
+        self.set_parameter_value("pitch_dis", value)
+
+    def set_pre_amp(self, value: float):
+        self.set_parameter_value("pre_amp", value)
+
+    def set_rate(self, value: float):
+        self.set_parameter_value("rate", value)
+
+    def set_relax_time(self, value: float):
+        self.set_parameter_value("relax_time", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_slope_above(self, value: float):
+        self.set_parameter_value("slope_above", value)
+
+    def set_slope_below(self, value: float):
+        self.set_parameter_value("slope_below", value)
+
+    def set_start(self, value: float):
+        self.set_parameter_value("start", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_threshold(self, value: float):
+        self.set_parameter_value("threshold", value)
+
+    def set_time_dis(self, value: float):
+        self.set_parameter_value("time_dis", value)
+
+    def set_window_size(self, value: float):
+        self.set_parameter_value("window_size", value)
+
+
 class StereoPlayer(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return MonoPlayer().get_parameters_definitions()
@@ -1003,6 +2324,52 @@ class Blade(Synth):
         return "blade"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_vibrato_delay(self, value: float):
+        self.set_parameter_value("vibrato_delay", value)
+
+    def set_vibrato_depth(self, value: float):
+        self.set_parameter_value("vibrato_depth", value)
+
+    def set_vibrato_onset(self, value: float):
+        self.set_parameter_value("vibrato_onset", value)
+
+    def set_vibrato_rate(self, value: float):
+        self.set_parameter_value("vibrato_rate", value)
+
+
 class Piano(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -1028,6 +2395,43 @@ class Piano(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "piano"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_hard(self, value: float):
+        self.set_parameter_value("hard", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_stereo_width(self, value: float):
+        self.set_parameter_value("stereo_width", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+    def set_vel(self, value: float):
+        self.set_parameter_value("vel", value)
 
 
 class Pluck(Synth):
@@ -1063,12 +2467,62 @@ class Pluck(Synth):
         return "pluck"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_coef(self, value: float):
+        self.set_parameter_value("coef", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_max_delay_time(self, value: float):
+        self.set_parameter_value("max_delay_time", value)
+
+    def set_noise_amp(self, value: float):
+        self.set_parameter_value("noise_amp", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_pluck_decay(self, value: float):
+        self.set_parameter_value("pluck_decay", value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class SoundIn(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [AMP, PAN, SynthParameterDefinition(name="input", default_value=0.0)]
 
     def get_ruby_synth_name(self) -> str:
         return "sound_in"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_input(self, value: float):
+        self.set_parameter_value("input", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
 
 
 class Noise(Synth):
@@ -1096,6 +2550,43 @@ class Noise(Synth):
         return "noise"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Pnoise(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -1119,6 +2610,43 @@ class Pnoise(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "pnoise"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Bnoise(Synth):
@@ -1146,6 +2674,43 @@ class Bnoise(Synth):
         return "bnoise"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class Gnoise(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -1169,6 +2734,43 @@ class Gnoise(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "gnoise"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
 
 
 class Cnoise(Synth):
@@ -1196,6 +2798,43 @@ class Cnoise(Synth):
         return "cnoise"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_attack(self, value: float):
+        self.set_parameter_value(ATTACK.name, value)
+
+    def set_attack_level(self, value: float):
+        self.set_parameter_value(ATTACK_LEVEL.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_decay(self, value: float):
+        self.set_parameter_value(DECAY.name, value)
+
+    def set_decay_level(self, value: float):
+        self.set_parameter_value(DECAY_LEVEL.name, value)
+
+    def set_env_curve(self, value: float):
+        self.set_parameter_value(ENV_CURVE.name, value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_release(self, value: float):
+        self.set_parameter_value(RELEASE.name, value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+    def set_sustain(self, value: float):
+        self.set_parameter_value(SUSTAIN.name, value)
+
+    def set_sustain_level(self, value: float):
+        self.set_parameter_value(SUSTAIN_LEVEL.name, value)
+
+
 class BasicMonoPlayer(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [
@@ -1212,6 +2851,22 @@ class BasicMonoPlayer(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "basic_mono_player"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_rate(self, value: float):
+        self.set_parameter_value("rate", value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
 
 
 class BasicStereoPlayer(Synth):
@@ -1232,12 +2887,32 @@ class BasicStereoPlayer(Synth):
         return "basic_stereo_player"
 
 
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_cutoff(self, value: float):
+        self.set_parameter_value("cutoff", value)
+
+    def set_pan(self, value: float):
+        self.set_parameter_value(PAN.name, value)
+
+    def set_rate(self, value: float):
+        self.set_parameter_value("rate", value)
+
+    def set_res(self, value: float):
+        self.set_parameter_value("res", value)
+
+
 class BasicMixer(Synth):
     def get_parameters_definitions(self) -> list[SynthParameterDefinition]:
         return [AMP]
 
     def get_ruby_synth_name(self) -> str:
         return "basic_mixer"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
 
 
 class MainMixer(Synth):
@@ -1257,3 +2932,34 @@ class MainMixer(Synth):
 
     def get_ruby_synth_name(self) -> str:
         return "main_mixer"
+
+
+    def set_amp(self, value: float):
+        self.set_parameter_value(AMP.name, value)
+
+    def set_force_mono(self, value: float):
+        self.set_parameter_value("force_mono", value)
+
+    def set_hpf(self, value: float):
+        self.set_parameter_value("hpf", value)
+
+    def set_hpf_bypass(self, value: float):
+        self.set_parameter_value("hpf_bypass", value)
+
+    def set_invert_stereo(self, value: float):
+        self.set_parameter_value("invert_stereo", value)
+
+    def set_leak_dc_bypass(self, value: float):
+        self.set_parameter_value("leak_dc_bypass", value)
+
+    def set_limiter_bypass(self, value: float):
+        self.set_parameter_value("limiter_bypass", value)
+
+    def set_lpf(self, value: float):
+        self.set_parameter_value("lpf", value)
+
+    def set_lpf_bypass(self, value: float):
+        self.set_parameter_value("lpf_bypass", value)
+
+    def set_pre_amp(self, value: float):
+        self.set_parameter_value("pre_amp", value)
