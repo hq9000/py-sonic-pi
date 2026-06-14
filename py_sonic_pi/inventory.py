@@ -39,15 +39,21 @@ class Synth(Generator):
         return None
 
     def set_parameter_value(self, parameter_name: str, value: float):
-        parameter = self._get_parameter_definition_by_name(parameter_name)
-        if parameter is None:
+        parameter_definition = self._get_parameter_definition_by_name(parameter_name)
+        if parameter_definition is None:
             raise ValueError(
                 f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}"
             )
-        if value < parameter.min_value or value > parameter.max_value:
+
+        if parameter_definition.min_value is not None and value < parameter_definition.min_value:
             raise ValueError(
-                f"Value {value} for parameter {parameter_name} is out of range [{parameter.min_value}, {parameter.max_value}] for synth {self.get_ruby_synth_name()}"
+                f"Value {value} for parameter {parameter_name} is below the minimum value {parameter_definition.min_value} for synth {self.get_ruby_synth_name()}"
             )
+        if parameter_definition.max_value is not None and value > parameter_definition.max_value:
+            raise ValueError(
+                f"Value {value} for parameter {parameter_name} is above the maximum value {parameter_definition.max_value} for synth {self.get_ruby_synth_name()}"
+            )
+        
         self._parameter_values[parameter_name] = value
 
     def get_parameter_value_by_name(self, parameter_name: str) -> float:
