@@ -101,14 +101,21 @@ def _generate_state_control_block_lines(project: Project) -> list[str]:
 
     for state_value in project.state_values:
         if state_value.transition_change_per_bar > 0:
-            if state_value.target_value >= state_value.initial_value:
-                lines.append(
-                    f"set :{state_value.name}, [get(:{state_value.name}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min"
-                )
-            else:
-                lines.append(
-                    f"set :{state_value.name}, [get(:{state_value.name}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max"
-                )
+            # if get(:state_value.name) < state_value.target_value, then increase it by transition_change_per_bar, but do not exceed target_value
+            # conversely, if target_value < initial_value, then decrease it by transition_change_per_bar, but do not go below target_value
+            # in sonic-pi, it should look like this:
+            # set :state_value.name, [get(:state_value.name) + transition_change_per_bar, state_value.target_value].min
+            # if target_value < get(:state_value.name)
+            #   set :state_value.name, [get(:state_value.name) - transition_change_per_bar, state_value.target_value].max
+            # elseif target_value > get(:state_value.name)
+            #  set :state_value.name, [get(:state_value.name) + transition_change_per_bar, state_value.target_value].min
+
+            lines.append(f"if get(:{state_value.name}) < {state_value.target_value}")
+            lines.append(f"  set :{state_value.name}, [get(:{state_value.name}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min")
+            lines.append(f"elsif get(:{state_value.name}) > {state_value.target_value}")
+            lines.append(f"  set :{state_value.name}, [get(:{state_value.name}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max")
+            lines.append("end")
+
         else:
             lines.append(
                 f"set :{state_value.name}, {state_value.target_value}"
