@@ -153,17 +153,29 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
     lines = [f"def {track.id}_loop()"]
     lines.append(f"{' ' * _INDENT_STEP}live_loop :{track.id}_loop do")
 
-    indent = " " * (_INDENT_STEP * 2)
+    indent = " " * (_INDENT_STEP * 3)
 
     if track.get_type() == GeneratorTrackType.SYNTH:
         lines.append(f"{indent}use_synth :{track.generator.get_ruby_synth_name()}")
 
     elements = track.pattern.elements if not track.muted else []
 
+    if not elements:
+        raise ValueError(f"Track {track.id} has no elements in its pattern.")
+
+    if not isinstance(elements[0], Sync):
+        raise ValueError(
+            f"Track {track.id} pattern must start with a Sync element."
+        )
+
+
+    lines.append(f"{indent}sync :start_{elements[0].n_bars}_bars")
+    lines.append(f"{' ' * (_INDENT_STEP * 3)}if get(:internal_master_gain) >= 0.01")
+    indent = " " * (_INDENT_STEP * 4)
     for element in elements:
         if isinstance(element, Note):
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
-                line = f"{indent}sample :{track.generator.sample.name.value}"
+                line = f"{' ' * (_INDENT_STEP * 4)}sample :{track.generator.sample.name.value}"
             elif track.get_type() == GeneratorTrackType.SYNTH:
                 line = f"{indent}play {element.note}"
                 # Combine synth parameters and note attributes, with note attributes taking precedence
@@ -190,8 +202,9 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
             lines.append(line)
         elif isinstance(element, Sleep):
             lines.append(f"{indent}sleep {element.duration_beats}*get(:beat_length)")
-        elif isinstance(element, Sync):
-            lines.append(f"{indent}sync :start_{element.n_bars}_bars")
+    lines.append(f"{' ' * (_INDENT_STEP * 3)}else")
+    lines.append(f"{' ' * (_INDENT_STEP * 4)}sleep 0.25")
+    lines.append(f"{' ' * (_INDENT_STEP * 3)}end")
     lines.append(f"{' ' * (_INDENT_STEP * 2)}end")
     lines.append("end")
     return lines
