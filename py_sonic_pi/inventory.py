@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
 
+MASTER_GAIN_STATE_VALUE_NAME = "master_gain"
 
 class Generator(ABC):
     pass
@@ -314,44 +315,6 @@ class GroupTrack(Track):
             id=id, custom_effects=effects, amp=amp, pan=pan, muted=muted, solo=solo
         )
         self.children = children
-
-
-class Project:
-    def __init__(self, top_level_tracks: list[Track], beat_length_seconds: float = 0.5, state_values: list[StateValue] = []):
-        self.top_level_tracks = top_level_tracks
-        self.beat_length_seconds = beat_length_seconds
-        self.state_values = state_values
-
-    def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
-        generator_tracks = []
-
-        def _traverse(track: Track):
-            if isinstance(track, GeneratorTrack):
-                generator_tracks.append(track)
-            elif isinstance(track, GroupTrack):
-                for child in track.children:
-                    _traverse(child)
-
-        for top_level_track in self.top_level_tracks:
-            _traverse(top_level_track)
-
-        return generator_tracks
-
-    def get_all_controllable_fxs(self) -> list[EffectInstance]:
-        controllable_fxs = []
-
-        def _traverse(track: Track):
-            for fx in track.get_effects():
-                if fx.controllable:
-                    controllable_fxs.append(fx)
-            if isinstance(track, GroupTrack):
-                for child in track.children:
-                    _traverse(child)
-
-        for top_level_track in self.top_level_tracks:
-            _traverse(top_level_track)
-
-        return controllable_fxs
 
 
 class SlideShape(Enum):
