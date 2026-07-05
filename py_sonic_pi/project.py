@@ -1,3 +1,5 @@
+import random
+import string
 from py_sonic_pi.effects import Gain
 from py_sonic_pi.inventory import (
     EffectInstance,
@@ -43,6 +45,8 @@ class Project:
             muted=False,
             solo=False,
         )
+
+        self.project_id = ''.join(random.choices(string.ascii_lowercase, k=5))
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []
