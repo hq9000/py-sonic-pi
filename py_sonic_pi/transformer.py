@@ -125,9 +125,9 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
 
     lines = ["live_loop :control_loop do"]
     lines.append("sync :start_1_bars")
-
+    lines.append(f"{' ' * _INDENT_STEP}if run_count != 1")
     for fx in project.get_all_controllable_fxs():
-        lines.append(f"{' ' * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
+        lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
         for param in fx.get_fx_params_dict():
             val = fx.get_fx_params_dict()[param]
             if isinstance(val, StateValue):
@@ -135,10 +135,11 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
             else:
                 val = f"{val}"
             lines.append(
-                f"{' ' * _INDENT_STEP}control fx, {param}: {val}"
+                f"{' ' * 2 * _INDENT_STEP}control fx, {param}: {val}"
             )
 
     lines.append(f"{' ' * _INDENT_STEP}sleep 1 * get(:beat_length)")
+    lines.append(f"{' ' * _INDENT_STEP}end")
     lines.append("end")
     return lines
 
