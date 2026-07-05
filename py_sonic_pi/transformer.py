@@ -6,7 +6,6 @@ from py_sonic_pi.inventory import (
     GeneratorTrack,
     GroupTrack,
     Note,
-    Project,
     Sleep,
     StateValue,
     Sync,
@@ -14,6 +13,7 @@ from py_sonic_pi.inventory import (
     GeneratorTrackType,
     EffectInstance,
 )
+from py_sonic_pi.project import Project
 
 _INDENT_STEP = 2
 

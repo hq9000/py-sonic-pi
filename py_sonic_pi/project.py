@@ -35,7 +35,7 @@ class Project:
                 Gain(
                     id="master_gain",
                     controllable=True,
-                    amp=master_gain_state_value,
+                    gain=master_gain_state_value,
                 )
             ],
             amp=1.0,
