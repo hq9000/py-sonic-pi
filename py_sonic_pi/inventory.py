@@ -6,6 +6,13 @@ from abc import ABC, abstractmethod
 class Generator(ABC):
     pass
 
+@dataclass
+class StateValue:
+    name: str
+    initial_value: float
+    target_value: float
+    transition_time_bars: int
+
 
 @dataclass
 class SynthParameterDefinition:
@@ -17,7 +24,7 @@ class SynthParameterDefinition:
 
 class Synth(Generator):
     def __init__(self):
-        self._parameter_values: dict[str, float] = {}
+        self._parameter_values: dict[str, float|StateValue] = {}
 
     @abstractmethod
     def get_ruby_synth_name(self) -> str:
@@ -38,22 +45,25 @@ class Synth(Generator):
                 return param
         return None
 
-    def set_parameter_value(self, parameter_name: str, value: float):
+    def set_parameter_value(self, parameter_name: str, value: float|StateValue):
         parameter_definition = self._get_parameter_definition_by_name(parameter_name)
+
+        value_to_check = value.target_value if isinstance(value, StateValue) else value
+
         if parameter_definition is None:
             raise ValueError(
                 f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}"
             )
 
-        if parameter_definition.min_value is not None and value < parameter_definition.min_value:
+        if parameter_definition.min_value is not None and value_to_check < parameter_definition.min_value:
             raise ValueError(
                 f"Value {value} for parameter {parameter_name} is below the minimum value {parameter_definition.min_value} for synth {self.get_ruby_synth_name()}"
             )
-        if parameter_definition.max_value is not None and value > parameter_definition.max_value:
+        if parameter_definition.max_value is not None and value_to_check > parameter_definition.max_value:
             raise ValueError(
                 f"Value {value} for parameter {parameter_name} is above the maximum value {parameter_definition.max_value} for synth {self.get_ruby_synth_name()}"
             )
-        
+
         self._parameter_values[parameter_name] = value
 
     def get_parameter_value_by_name(self, parameter_name: str) -> float:
@@ -307,9 +317,10 @@ class GroupTrack(Track):
 
 
 class Project:
-    def __init__(self, top_level_tracks: list[Track], beat_length_seconds: float = 0.5):
+    def __init__(self, top_level_tracks: list[Track], beat_length_seconds: float = 0.5, state_values: list[StateValue] = []):
         self.top_level_tracks = top_level_tracks
         self.beat_length_seconds = beat_length_seconds
+        self.state_values = state_values
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []

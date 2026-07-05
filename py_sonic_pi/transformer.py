@@ -8,6 +8,7 @@ from py_sonic_pi.inventory import (
     Note,
     Project,
     Sleep,
+    StateValue,
     Sync,
     Track,
     GeneratorTrackType,
@@ -28,9 +29,11 @@ def transform(project: Project) -> list[str]:
     data = {
         "project": project,
         "TrackType": GeneratorTrackType,
+        "state_declaration_block_lines": _generate_state_declaration_lines(project),
         "source_block_lines": _generate_source_block_lines(project),
         "processing_block_lines": _generate_processing_block(project),
-        "control_block_lines": _generate_control_block_lines(project),
+        "fx_control_block_lines": _generate_fx_control_block_lines(project),
+        "state_control_block_lines": _generate_state_control_block_lines(project),
     }
     rendered_content = template.render(**data)
     return rendered_content.splitlines()
@@ -82,6 +85,33 @@ def _generate_track_processing_block(
         lines.append(f"{' ' * indent}end")
 
 
+def _generate_state_declaration_lines(project: Project) -> list[str]:
+    lines = []
+    for state_value in project.state_values:
+        lines.append(
+            f"set :{state_value.name}, {state_value.initial_value} if run_count == 1"
+        )
+    return lines
+
+def _generate_state_control_block_lines(project: Project) -> list[str]:
+    lines = ["live_loop :state_management_loop do"]
+    lines.append("sync :start_1_bars")
+
+    for state_value in project.state_values:
+        if state_value.transition_time_bars > 0:
+            lines.append(
+                f"set :{state_value.name}, get(:{state_value.name}) + (({state_value.target_value} - get(:{state_value.name})) / ({state_value.transition_time_bars}))"
+            )
+        else:
+            lines.append(
+                f"set :{state_value.name}, {state_value.target_value}"
+            )
+
+    lines.append("sleep 0.25")
+    lines.append("end")
+    return lines
+
+
 def _generate_source_block_lines(project: Project) -> list[str]:
     lines = []
     for track in project.get_flat_list_of_generator_tracks():
@@ -89,7 +119,7 @@ def _generate_source_block_lines(project: Project) -> list[str]:
     return lines
 
 
-def _generate_control_block_lines(project: Project) -> list[str]:
+def _generate_fx_control_block_lines(project: Project) -> list[str]:
 
     lines = ["live_loop :control_loop do"]
     lines.append("sync :start_1_bars")
@@ -136,7 +166,13 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
                     all_params[name] = value
 
                 for param, value in all_params.items():
-                    line += f", {param}: {value}"
+                    if isinstance(value, float) or isinstance(value, int):
+                        value_str = f"{value}"
+                    elif isinstance(value, StateValue):
+                        value_str = f"get(:{value.name})"
+                    else:
+                        raise ValueError(f"Unsupported parameter value type: {type(value)}")
+                    line += f", {param}: {value_str}"
 
             lines.append(line)
         elif isinstance(element, Sleep):
