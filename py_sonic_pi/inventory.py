@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
 
-MASTER_GAIN_STATE_VALUE_NAME = "master_gain"
+INTERNAL_MASTER_GAIN_STATE_VALUE_NAME = "internal_master_gain"
 
 class Generator(ABC):
     pass

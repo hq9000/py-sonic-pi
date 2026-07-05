@@ -47,8 +47,7 @@ def transform_to_file(project: Project, output_file_path: str) -> None:
 
 def _generate_processing_block(project: Project) -> list[str]:
     lines = []
-    for track in project.top_level_tracks:
-        _generate_track_processing_block(track, lines, 0)
+    _generate_track_processing_block(project.master_track, lines, 0)
     return lines
 
 
@@ -66,7 +65,10 @@ def _generate_track_processing_block(
         ]
 
         for param, value in fx.get_fx_params_dict().items():
-            comma_separated_parts.append(f"{param}: {value}")
+            if isinstance(value, StateValue):
+                comma_separated_parts.append(f"{param}: get(:{value.name})")
+            else:
+                comma_separated_parts.append(f"{param}: {value}")
 
         lines.append(
             f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(fx)}|"
@@ -127,8 +129,13 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
     for fx in project.get_all_controllable_fxs():
         lines.append(f"{' ' * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
         for param in fx.get_fx_params_dict():
+            val = fx.get_fx_params_dict()[param]
+            if isinstance(val, StateValue):
+                val = f"get(:{val.name})"
+            else:
+                val = f"{val}"
             lines.append(
-                f"{' ' * _INDENT_STEP}control fx, {param}: {fx.get_fx_params_dict()[param]}"
+                f"{' ' * _INDENT_STEP}control fx, {param}: {val}"
             )
 
     lines.append(f"{' ' * _INDENT_STEP}sleep 1 * get(:beat_length)")

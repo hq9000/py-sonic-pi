@@ -3,7 +3,7 @@ from py_sonic_pi.inventory import (
     EffectInstance,
     GeneratorTrack,
     GroupTrack,
-    MASTER_GAIN_STATE_VALUE_NAME,
+    INTERNAL_MASTER_GAIN_STATE_VALUE_NAME,
     StateValue,
     Track,
 )
@@ -24,16 +24,16 @@ class Project:
             initial_value=1.0,
             target_value=1.0,
             transition_time_bars=0,
-            name=MASTER_GAIN_STATE_VALUE_NAME,
+            name=INTERNAL_MASTER_GAIN_STATE_VALUE_NAME,
         )
         self.state_values.append(master_gain_state_value)
 
         self.master_track = GroupTrack(
-            id="master",
+            id="internal_master",
             children=self.top_level_tracks,
             effects=[
                 Gain(
-                    id="master_gain",
+                    id="internal_master_gain",
                     controllable=True,
                     gain=master_gain_state_value,
                 )
@@ -54,8 +54,7 @@ class Project:
                 for child in track.children:
                     _traverse(child)
 
-        for top_level_track in self.top_level_tracks:
-            _traverse(top_level_track)
+        _traverse(self.master_track)
 
         return generator_tracks
 
@@ -70,7 +69,12 @@ class Project:
                 for child in track.children:
                     _traverse(child)
 
-        for top_level_track in self.top_level_tracks:
-            _traverse(top_level_track)
+        _traverse(self.master_track)
 
         return controllable_fxs
+
+    def fade_out(self, fade_time_bars: float):
+        for state_value in self.state_values:
+            if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
+                state_value.target_value = 0.0
+                state_value.transition_time_bars = fade_time_bars
