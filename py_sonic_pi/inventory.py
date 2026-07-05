@@ -12,7 +12,7 @@ class StateValue:
     name: str
     initial_value: float
     target_value: float
-    transition_time_bars: int
+    transition_change_per_bar: int
 
 
 @dataclass

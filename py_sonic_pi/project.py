@@ -23,7 +23,7 @@ class Project:
         master_gain_state_value = StateValue(
             initial_value=1.0,
             target_value=1.0,
-            transition_time_bars=0,
+            transition_change_per_bar=0,
             name=INTERNAL_MASTER_GAIN_STATE_VALUE_NAME,
         )
         self.state_values.append(master_gain_state_value)
@@ -77,4 +77,4 @@ class Project:
         for state_value in self.state_values:
             if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
                 state_value.target_value = 0.0
-                state_value.transition_time_bars = fade_time_bars
+                state_value.transition_change_per_bar = 1/fade_time_bars
