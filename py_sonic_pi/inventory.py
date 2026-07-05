@@ -1,7 +1,10 @@
 from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
+import random
+import string
 
+MASTER_TRACK_ID = "master"
 
 class Generator(ABC):
     pass
@@ -317,10 +320,15 @@ class GroupTrack(Track):
 
 
 class Project:
-    def __init__(self, top_level_tracks: list[Track], beat_length_seconds: float = 0.5, state_values: list[StateValue] = []):
+    def __init__(self, top_level_tracks: list[Track],  beat_length_seconds: float = 0.5, state_values: list[StateValue] = []):
         self.top_level_tracks = top_level_tracks
+        self.master_track_amp_state_value = StateValue(initial_value=1.0, target_value=1.0, transition_time_bars=10)
+        self.master_track = GroupTrack(
+            id=MASTER_TRACK_ID, children=top_level_tracks, effects=[], amp=self.master_track_amp_state_value, pan=0.0
+        )
         self.beat_length_seconds = beat_length_seconds
         self.state_values = state_values
+        self.project_id = ''.join(random.choices(string.ascii_lowercase, k=5))
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []
@@ -332,8 +340,7 @@ class Project:
                 for child in track.children:
                     _traverse(child)
 
-        for top_level_track in self.top_level_tracks:
-            _traverse(top_level_track)
+        _traverse(self.master_track)
 
         return generator_tracks
 
@@ -361,3 +368,7 @@ class SlideShape(Enum):
     WELCH = 3
     SQUARED = 6
     CUBED = 7
+
+@dataclass
+class Transition:
+    bars: int = 0
