@@ -12,8 +12,8 @@ from py_sonic_pi.inventory import (
     Track,
     GeneratorTrackType,
     EffectInstance,
+    Project,
 )
-from py_sonic_pi.project import Project
 
 _INDENT_STEP = 2
 
