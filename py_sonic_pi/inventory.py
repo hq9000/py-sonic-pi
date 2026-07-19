@@ -8,8 +8,10 @@ INTERNAL_MASTER_GAIN_STATE_VALUE_NAME = "internal_master_gain"
 INTERNAL_MASTER_GAIN_EFFECT_ID = "internal_master_gain"
 INTERNAL_MASTER_TRACK_ID = "internal_master"
 
+
 class Generator(ABC):
     pass
+
 
 @dataclass
 class StateValue:
@@ -17,9 +19,9 @@ class StateValue:
     initial_value: float
     target_value: float
     transition_change_per_bar: int
+
     def get_ruby_state_value_name(self) -> str:
         return f"state_value_{self.name}"
-
 
 
 @dataclass
@@ -32,7 +34,7 @@ class SynthParameterDefinition:
 
 class Synth(Generator):
     def __init__(self):
-        self._parameter_values: dict[str, float|StateValue] = {}
+        self._parameter_values: dict[str, float | StateValue] = {}
 
     @abstractmethod
     def get_ruby_synth_name(self) -> str:
@@ -53,7 +55,7 @@ class Synth(Generator):
                 return param
         return None
 
-    def set_parameter_value(self, parameter_name: str, value: float|StateValue):
+    def set_parameter_value(self, parameter_name: str, value: float | StateValue):
         parameter_definition = self._get_parameter_definition_by_name(parameter_name)
 
         value_to_check = value.target_value if isinstance(value, StateValue) else value
@@ -63,11 +65,17 @@ class Synth(Generator):
                 f"Unknown parameter name: {parameter_name} for synth {self.get_ruby_synth_name()}"
             )
 
-        if parameter_definition.min_value is not None and value_to_check < parameter_definition.min_value:
+        if (
+            parameter_definition.min_value is not None
+            and value_to_check < parameter_definition.min_value
+        ):
             raise ValueError(
                 f"Value {value} for parameter {parameter_name} is below the minimum value {parameter_definition.min_value} for synth {self.get_ruby_synth_name()}"
             )
-        if parameter_definition.max_value is not None and value_to_check > parameter_definition.max_value:
+        if (
+            parameter_definition.max_value is not None
+            and value_to_check > parameter_definition.max_value
+        ):
             raise ValueError(
                 f"Value {value} for parameter {parameter_name} is above the maximum value {parameter_definition.max_value} for synth {self.get_ruby_synth_name()}"
             )
@@ -370,7 +378,7 @@ class Project:
             solo=False,
         )
 
-        self.project_id = ''.join(random.choices(string.ascii_lowercase, k=5))
+        self.project_id = "".join(random.choices(string.ascii_lowercase, k=5))
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []
@@ -405,7 +413,7 @@ class Project:
         for state_value in self.state_values:
             if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
                 state_value.target_value = 0.0
-                state_value.transition_change_per_bar = 1/fade_time_bars
+                state_value.transition_change_per_bar = 1 / fade_time_bars
 
     def get_master_gain_state_value(self) -> StateValue:
         for state_value in self.state_values:
