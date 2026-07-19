@@ -2,6 +2,8 @@ import random
 import string
 from py_sonic_pi.effects import Gain
 from py_sonic_pi.inventory import (
+    INTERNAL_MASTER_GAIN_EFFECT_ID,
+    INTERNAL_MASTER_TRACK_ID,
     EffectInstance,
     GeneratorTrack,
     GroupTrack,
@@ -31,11 +33,11 @@ class Project:
         self.state_values.append(master_gain_state_value)
 
         self.master_track = GroupTrack(
-            id="internal_master",
+            id=INTERNAL_MASTER_TRACK_ID,
             children=self.top_level_tracks,
             effects=[
                 Gain(
-                    id="internal_master_gain",
+                    id=INTERNAL_MASTER_GAIN_EFFECT_ID,
                     controllable=True,
                     gain=master_gain_state_value,
                 )

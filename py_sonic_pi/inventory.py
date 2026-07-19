@@ -3,6 +3,8 @@ from enum import Enum
 from abc import ABC, abstractmethod
 
 INTERNAL_MASTER_GAIN_STATE_VALUE_NAME = "internal_master_gain"
+INTERNAL_MASTER_GAIN_EFFECT_ID = "internal_master_gain"
+INTERNAL_MASTER_TRACK_ID = "internal_master"
 
 class Generator(ABC):
     pass
