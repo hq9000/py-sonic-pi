@@ -16,7 +16,7 @@ from py_sonic_pi.inventory import (
 )
 
 _INDENT_STEP = 2
-
+_GLOBAL_GAIN_ACTIVATION_THRESHOLD = 0.01
 
 def transform(project: Project) -> list[str]:
     # Get the directory of the current file
@@ -43,6 +43,13 @@ def transform_to_file(project: Project, output_file_path: str) -> None:
     lines = transform(project)
     with open(output_file_path, "w") as f:
         f.write("\n".join(lines))
+
+def _generate_guard_lines(project) -> list[str]:
+    return [
+        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name()}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
+        f"{' ' * (_INDENT_STEP * 4)}stop",
+        f"{' ' * (_INDENT_STEP * 3)}end"
+    ]
 
 
 def _generate_processing_block(project: Project) -> list[str]:
@@ -101,6 +108,9 @@ def _generate_state_declaration_lines(project: Project) -> list[str]:
 def _generate_state_control_block_lines(project: Project) -> list[str]:
     lines = ["live_loop :state_management_loop do"]
     lines.append("sync :start_1_bars")
+    lines.extend(
+        _generate_guard_lines(project)
+    )
 
     for state_value in project.state_values:
         if state_value.transition_change_per_bar > 0:
@@ -148,6 +158,9 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
 
     lines = ["live_loop :control_loop do"]
     lines.append("sync :start_1_bars")
+    lines.extend(
+        _generate_guard_lines(project)
+    )
     lines.append(f"{' ' * _INDENT_STEP}if run_count != 1")
     for fx in project.get_all_controllable_fxs():
         lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
@@ -185,8 +198,8 @@ def _generate_source_block_lines_for_one_track(
         raise ValueError(f"Track {track.id} pattern must start with a Sync element.")
 
     lines.append(f"{indent}sync :start_{elements[0].n_bars}_bars")
-    lines.append(
-        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name()}) >= 0.01"
+    lines.extend(
+        _generate_guard_lines(project)
     )
     indent = " " * (_INDENT_STEP * 4)
     for element in elements:
@@ -221,9 +234,6 @@ def _generate_source_block_lines_for_one_track(
             lines.append(line)
         elif isinstance(element, Sleep):
             lines.append(f"{indent}sleep {element.duration_beats}*get(:beat_length)")
-    lines.append(f"{' ' * (_INDENT_STEP * 3)}else")
-    lines.append(f"{' ' * (_INDENT_STEP * 4)}sleep 0.25")
-    lines.append(f"{' ' * (_INDENT_STEP * 3)}end")
     lines.append(f"{' ' * (_INDENT_STEP * 2)}end")
     lines.append("end")
     return lines
