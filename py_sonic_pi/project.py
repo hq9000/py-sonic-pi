@@ -84,3 +84,9 @@ class Project:
             if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
                 state_value.target_value = 0.0
                 state_value.transition_change_per_bar = 1/fade_time_bars
+
+    def get_master_gain_state_value(self) -> StateValue:
+        for state_value in self.state_values:
+            if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
+                return state_value
+        raise ValueError("Global gain state value not found in project.")

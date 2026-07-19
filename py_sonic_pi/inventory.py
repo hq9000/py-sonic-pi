@@ -15,6 +15,9 @@ class StateValue:
     initial_value: float
     target_value: float
     transition_change_per_bar: int
+    def get_ruby_state_value_name(self) -> str:
+        return f"state_value_{self.name}"
+
 
 
 @dataclass
