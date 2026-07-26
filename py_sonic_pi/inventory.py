@@ -20,8 +20,8 @@ class StateValue:
     target_value: float
     transition_change_per_bar: int
 
-    def get_ruby_state_value_name(self) -> str:
-        return f"state_value_{self.name}"
+    def get_ruby_state_value_name(self, project: "Project") -> str:
+        return f"state_value_{project.id}_{self.name}"
 
 
 @dataclass

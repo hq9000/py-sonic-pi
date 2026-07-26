@@ -44,9 +44,9 @@ def transform_to_file(project: Project, output_file_path: str) -> None:
     with open(output_file_path, "w") as f:
         f.write("\n".join(lines))
 
-def _generate_guard_lines(project) -> list[str]:
+def _generate_guard_lines(project: Project) -> list[str]:
     return [
-        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name()}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
+        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name(project)}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
         f"{' ' * (_INDENT_STEP * 4)}stop",
         f"{' ' * (_INDENT_STEP * 3)}end"
     ]
@@ -58,8 +58,8 @@ def _generate_processing_block(project: Project) -> list[str]:
     return lines
 
 
-def get_internal_fx_name(fx: EffectInstance) -> str:
-    return f"fxname_{fx.get_ruby_effect_name()}_{fx.id}"
+def get_internal_fx_name(project: Project, fx: EffectInstance) -> str:
+    return f"fxname_{fx.get_ruby_effect_name()}_{project.id}_{fx.id}"
 
 
 def _generate_track_processing_block(
@@ -74,16 +74,16 @@ def _generate_track_processing_block(
         for param, value in fx.get_fx_params_dict().items():
             if isinstance(value, StateValue):
                 comma_separated_parts.append(
-                    f"{param}: get(:{value.get_ruby_state_value_name()})"
+                    f"{param}: get(:{value.get_ruby_state_value_name(project)})"
                 )
             else:
                 comma_separated_parts.append(f"{param}: {value}")
 
         lines.append(
-            f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(fx)}|"
+            f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(project, fx)}|"
         )
         lines.append(
-            f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)} if run_count == 1"
+            f"{' ' * indent}set :{get_internal_fx_name(project, fx)},{get_internal_fx_name(project, fx)} if run_count == 1"
         )
 
     if isinstance(track, GeneratorTrack):
@@ -100,13 +100,13 @@ def _generate_state_declaration_lines(project: Project) -> list[str]:
     lines = []
     for state_value in project.state_values:
         lines.append(
-            f"set :{state_value.get_ruby_state_value_name()}, {state_value.initial_value} if run_count == 1"
+            f"set :{state_value.get_ruby_state_value_name(project)}, {state_value.initial_value} if run_count == 1"
         )
     return lines
 
 
 def _generate_state_control_block_lines(project: Project) -> list[str]:
-    lines = ["live_loop :state_management_loop do"]
+    lines = [f"live_loop :state_management_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
     lines.extend(
         _generate_guard_lines(project)
@@ -124,22 +124,22 @@ def _generate_state_control_block_lines(project: Project) -> list[str]:
             #  set :state_value.name, [get(:state_value.name) + transition_change_per_bar, state_value.target_value].min
 
             lines.append(
-                f"if get(:{state_value.get_ruby_state_value_name()}) < {state_value.target_value}"
+                f"if get(:{state_value.get_ruby_state_value_name(project)}) < {state_value.target_value}"
             )
             lines.append(
-                f"  set :{state_value.get_ruby_state_value_name()}, [get(:{state_value.get_ruby_state_value_name()}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min"
+                f"  set :{state_value.get_ruby_state_value_name(project)}, [get(:{state_value.get_ruby_state_value_name(project)}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min"
             )
             lines.append(
-                f"elsif get(:{state_value.get_ruby_state_value_name()}) > {state_value.target_value}"
+                f"elsif get(:{state_value.get_ruby_state_value_name(project)}) > {state_value.target_value}"
             )
             lines.append(
-                f"  set :{state_value.get_ruby_state_value_name()}, [get(:{state_value.get_ruby_state_value_name()}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max"
+                f"  set :{state_value.get_ruby_state_value_name(project)}, [get(:{state_value.get_ruby_state_value_name(project)}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max"
             )
             lines.append("end")
 
         else:
             lines.append(
-                f"set :{state_value.get_ruby_state_value_name()}, {state_value.target_value}"
+                f"set :{state_value.get_ruby_state_value_name(project)}, {state_value.target_value}"
             )
 
     lines.append("sleep 0.25")
@@ -156,18 +156,18 @@ def _generate_source_block_lines(project: Project) -> list[str]:
 
 def _generate_fx_control_block_lines(project: Project) -> list[str]:
 
-    lines = ["live_loop :control_loop do"]
+    lines = [f"live_loop :control_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
     lines.extend(
         _generate_guard_lines(project)
     )
     lines.append(f"{' ' * _INDENT_STEP}if run_count != 1")
     for fx in project.get_all_controllable_fxs():
-        lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
+        lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(project, fx)})")
         for param in fx.get_fx_params_dict():
             val = fx.get_fx_params_dict()[param]
             if isinstance(val, StateValue):
-                val = f"get(:{val.get_ruby_state_value_name()})"
+                val = f"get(:{val.get_ruby_state_value_name(project)})"
             else:
                 val = f"{val}"
             lines.append(f"{' ' * 2 * _INDENT_STEP}control fx, {param}: {val}")
@@ -227,7 +227,7 @@ def _generate_source_block_lines_for_one_track(
                     if isinstance(value, float) or isinstance(value, int):
                         value_str = f"{value}"
                     elif isinstance(value, StateValue):
-                        value_str = f"get(:{value.get_ruby_state_value_name()})"
+                        value_str = f"get(:{value.get_ruby_state_value_name(project)})"
                     else:
                         raise ValueError(
                             f"Unsupported parameter value type: {type(value)}"
