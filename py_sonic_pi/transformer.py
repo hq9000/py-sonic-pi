@@ -54,7 +54,7 @@ def _generate_guard_lines(project) -> list[str]:
 
 def _generate_processing_block(project: Project) -> list[str]:
     lines = []
-    _generate_track_processing_block(project.master_track, lines, 0)
+    _generate_track_processing_block(project=project, track=project.master_track, lines=lines, indent=0)
     return lines
 
 
@@ -63,7 +63,7 @@ def get_internal_fx_name(fx: EffectInstance) -> str:
 
 
 def _generate_track_processing_block(
-    track: Track, lines: list[str], indent: int
+    project: Project, track: Track, lines: list[str], indent: int
 ) -> None:
     lines.append(f"{' ' * indent}# Track: {track.id}")
     for fx in track.get_effects():
@@ -87,10 +87,10 @@ def _generate_track_processing_block(
         )
 
     if isinstance(track, GeneratorTrack):
-        lines.append(f"{' ' * indent}{track.id}_loop()")
+        lines.append(f"{' ' * indent}{_get_live_loop_name_for_track(project, track)}()")
     elif isinstance(track, GroupTrack):
         for child_track in track.children:
-            _generate_track_processing_block(child_track, lines, indent + _INDENT_STEP)
+            _generate_track_processing_block(project=project, track=child_track, lines=lines, indent=indent + _INDENT_STEP)
 
     for fx in track.get_effects():
         lines.append(f"{' ' * indent}end")
@@ -177,12 +177,15 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
     lines.append("end")
     return lines
 
+def _get_live_loop_name_for_track(project: Project, track: GeneratorTrack) -> str:
+    return f"{project.id}_{track.id}_loop"
 
 def _generate_source_block_lines_for_one_track(
     project: Project, track: GeneratorTrack
 ) -> list[str]:
-    lines = [f"def {track.id}_loop()"]
-    lines.append(f"{' ' * _INDENT_STEP}live_loop :{track.id}_loop do")
+    live_loop_name = _get_live_loop_name_for_track(project, track)
+    lines = [f"def {live_loop_name}()"]
+    lines.append(f"{' ' * _INDENT_STEP}live_loop :{live_loop_name} do")
 
     indent = " " * (_INDENT_STEP * 3)
 

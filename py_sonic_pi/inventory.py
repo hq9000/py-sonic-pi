@@ -378,7 +378,7 @@ class Project:
             solo=False,
         )
 
-        self.project_id = "".join(random.choices(string.ascii_lowercase, k=5))
+        self.id = "".join(random.choices(string.ascii_lowercase, k=5))
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []
