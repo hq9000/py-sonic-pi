@@ -128,6 +128,6 @@ def create_fixture_project():
         effects=[HPFilter(id="masterhpf", cutoff=0.0, controllable=True)],
     )
 
-    p = Project(top_level_tracks=[master_track], beat_length_seconds=0.45, state_values=[bass_cutoff])
+    p = Project(top_level_tracks=[master_track], beat_length_seconds=0.45, state_values=[bass_cutoff], id="test_project")
     p.fade_out(6)
     return p

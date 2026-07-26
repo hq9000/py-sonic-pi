@@ -1,6 +1,7 @@
 from py_sonic_pi.inventory import EffectInstance, SlideShape
 
 
+
 class HPFilter(EffectInstance):
     cutoff: float = 0.0
     cutoff_slide: float = 0.0
@@ -4012,3 +4013,11 @@ class PingPong(EffectInstance):
             "decay_slide_shape": self.decay_slide_shape.value,
             "max_phase": self.max_phase,
         }
+
+ALL_EFFECT_CLASSES = EffectInstance.__subclasses__()
+
+def get_effect_class_by_ruby_name(effect_ruby_name) -> type[EffectInstance]:
+    for effect_class in ALL_EFFECT_CLASSES:
+        if effect_class.get_ruby_effect_name(effect_class) == effect_ruby_name:
+            return effect_class
+    raise ValueError(f"Effect class with ruby name '{effect_ruby_name}' not found.")

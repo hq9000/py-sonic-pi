@@ -1,3 +1,4 @@
+import json
 import random
 import string
 from dataclasses import dataclass, field
@@ -22,6 +23,22 @@ class StateValue:
 
     def get_ruby_state_value_name(self, project: "Project") -> str:
         return f"state_value_{project.id}_{self.name}"
+
+    def to_dict(self) -> dict:
+        return {
+            "name": self.name,
+            "initial_value": self.initial_value,
+            "target_value": self.target_value,
+            "transition_change_per_bar": self.transition_change_per_bar,
+        }
+    @classmethod
+    def from_dict(cls, data: dict) -> "StateValue":
+        return cls(
+            name=data["name"],
+            initial_value=data["initial_value"],
+            target_value=data["target_value"],
+            transition_change_per_bar=data["transition_change_per_bar"],
+        )
 
 
 @dataclass
@@ -91,6 +108,18 @@ class Synth(Generator):
 
     def get_parameter_names(self) -> list[str]:
         return list(self._parameter_values.keys())
+
+    def to_dict(self) -> dict:
+        parameter_values = {}
+        for name, value in self._parameter_values.items():
+            if isinstance(value, StateValue):
+                parameter_values[name] = {"type": "state_value_ref", "name": value.name}
+            else:
+                parameter_values[name] = value
+        return {
+            "ruby_synth_name": self.get_ruby_synth_name(),
+            "parameter_values": parameter_values,
+        }
 
 
 class StockSampleName(Enum):
@@ -199,10 +228,37 @@ class Sample:
         if self.name is None and self.sample_path is None:
             raise ValueError("Either stock_sample_name or sample_path must be provided")
 
+    def to_dict(self) -> dict:
+        return {
+            "stock_sample_name": self.name.value if self.name else None,
+            "sample_path": self.sample_path,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Sample":
+        stock_name = None
+        if data.get("stock_sample_name"):
+            stock_name = StockSampleName(data["stock_sample_name"])
+        return cls(
+            stock_sample_name=stock_name,
+            sample_path=data.get("sample_path"),
+        )
+
 
 @dataclass
 class Sampler(Generator):
     sample: Sample | None = None
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "sampler",
+            "sample": self.sample.to_dict() if self.sample else None,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Sampler":
+        sample = Sample.from_dict(data["sample"]) if data.get("sample") else None
+        return cls(sample=sample)
 
 
 @dataclass
@@ -220,6 +276,30 @@ class EffectInstance(ABC):
 
     def get_param_names(self) -> list[str]:
         return list(self.get_fx_params_dict().keys())
+
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "controllable": self.controllable,
+            "effect_ruby_name": self.get_ruby_effect_name(),
+            "params": self.get_fx_params_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "EffectInstance":
+        from py_sonic_pi.effects import get_effect_class_by_ruby_name
+
+        effect_ruby_name = data["effect_ruby_name"]
+        effect_class = get_effect_class_by_ruby_name(effect_ruby_name)
+        if effect_class is None:
+            raise ValueError(f"Unknown effect name: {effect_ruby_name}")
+        effect_instance = effect_class(id=data["id"], controllable=data["controllable"])
+        for param_name, param_value in data["params"].items():
+            # Convert integer values back to SlideShape enum for shape fields
+            if param_name.endswith("_slide_shape") and isinstance(param_value, int):
+                param_value = SlideShape(param_value)
+            setattr(effect_instance, param_name, param_value)
+        return effect_instance
 
 
 class PatternElement(ABC):
@@ -239,20 +319,74 @@ class Note(PatternElement):
         self.note = note
         self.sample: Sample | None = None
 
+    def to_dict(self) -> dict:
+        return {
+            "type": "note",
+            "note": self.note,
+            "sample": self.sample.to_dict() if self.sample else None,
+            "attributes": dict(self.attributes),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Note":
+        note = cls(note=data["note"])
+        note.sample = Sample.from_dict(data["sample"]) if data.get("sample") else None
+        for attr_name, attr_value in data.get("attributes", {}).items():
+            note.set_attr(attr_name, attr_value)
+        return note
+
 
 @dataclass
 class Sync(PatternElement):
     n_bars: int
+
+    def to_dict(self) -> dict:
+        return {
+            "type": "sync",
+            "n_bars": self.n_bars,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Sync":
+        return cls(n_bars=data["n_bars"])
 
 
 class Sleep(PatternElement):
     def __init__(self, duration_beats: float):
         self.duration_beats = duration_beats
 
+    def to_dict(self) -> dict:
+        return {
+            "type": "sleep",
+            "duration_beats": self.duration_beats,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Sleep":
+        return cls(duration_beats=data["duration_beats"])
+
 
 @dataclass
 class Pattern:
     elements: list[PatternElement] = field(default_factory=list)
+
+    def to_dict(self) -> dict:
+        return {
+            "elements": [el.to_dict() for el in self.elements],
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Pattern":
+        elements = []
+        for el_data in data["elements"]:
+            el_type = el_data["type"]
+            if el_type == "note":
+                elements.append(Note.from_dict(el_data))
+            elif el_type == "sync":
+                elements.append(Sync.from_dict(el_data))
+            elif el_type == "sleep":
+                elements.append(Sleep.from_dict(el_data))
+        return cls(elements=elements)
 
 
 class GeneratorTrackType(Enum):
@@ -288,6 +422,73 @@ class Track(ABC):
         )
         return all
 
+    def to_dict(self) -> dict:
+        return {
+            "id": self.id,
+            "custom_effects": [fx.to_dict() for fx in self.custom_effects],
+            "amp": self.amp,
+            "pan": self.pan,
+            "muted": self.muted,
+            "solo": self.solo,
+            "slide": self.slide,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "Track":
+        track_type = data.get("track_type")
+        if track_type == "generator":
+            from py_sonic_pi.synths import get_synth_class_by_ruby_name
+
+            generator_data = data.get("generator", {})
+            generator_type = generator_data.get("generator_type")
+
+            if generator_type == "synth":
+                ruby_synth_name = generator_data.get("ruby_synth_name", "")
+                synth_class = get_synth_class_by_ruby_name(ruby_synth_name)
+                generator = synth_class()
+                for param_name, param_value in generator_data.get("parameter_values", {}).items():
+                    if isinstance(param_value, dict) and param_value.get("type") == "state_value_ref":
+                        generator.set_parameter_value(param_name, StateValue(
+                            name=param_value["name"],
+                            initial_value=0,
+                            target_value=0,
+                            transition_change_per_bar=0,
+                        ))
+                    else:
+                        generator.set_parameter_value(param_name, param_value)
+            elif generator_type == "sampler":
+                generator = Sampler.from_dict(generator_data)
+            else:
+                raise ValueError(f"Unknown generator_type: {generator_type}")
+
+            pattern = Pattern.from_dict(data.get("pattern", {"elements": []}))
+            effects = [EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])]
+
+            return GeneratorTrack(
+                id=data["id"],
+                generator=generator,
+                pattern=pattern,
+                effects=effects,
+                amp=data.get("amp", 1.0),
+                pan=data.get("pan", 0.0),
+                mute=data.get("muted", False),
+                solo=data.get("solo", False),
+            )
+        elif track_type == "group":
+            children = [cls.from_dict(child) for child in data.get("children", [])]
+            effects = [EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])]
+            return GroupTrack(
+                id=data["id"],
+                children=children,
+                effects=effects,
+                amp=data.get("amp", 1.0),
+                pan=data.get("pan", 0.0),
+                muted=data.get("muted", False),
+                solo=data.get("solo", False),
+            )
+        else:
+            raise ValueError(f"Unknown track_type: {track_type}")
+
 
 class GeneratorTrack(Track):
     def __init__(
@@ -314,6 +515,18 @@ class GeneratorTrack(Track):
             else GeneratorTrackType.SAMPLE
         )
 
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        generator_dict = (
+            self.generator.to_dict() if hasattr(self.generator, "to_dict") else {}
+        )
+        if generator_dict:
+            generator_dict["generator_type"] = "synth" if isinstance(self.generator, Synth) else "sampler"
+        data["track_type"] = "generator"
+        data["generator"] = generator_dict
+        data["pattern"] = self.pattern.to_dict()
+        return data
+
 
 class GroupTrack(Track):
     def __init__(
@@ -331,6 +544,12 @@ class GroupTrack(Track):
         )
         self.children = children
 
+    def to_dict(self) -> dict:
+        data = super().to_dict()
+        data["track_type"] = "group"
+        data["children"] = [child.to_dict() for child in self.children]
+        return data
+
 
 class SlideShape(Enum):
     STEP = 0
@@ -347,6 +566,7 @@ class Project:
         top_level_tracks: list[Track],
         beat_length_seconds: float = 0.5,
         state_values: list[StateValue] = [],
+        id: str | None = None,
     ):
         from py_sonic_pi.effects import Gain
 
@@ -378,7 +598,54 @@ class Project:
             solo=False,
         )
 
-        self.id = "".join(random.choices(string.ascii_lowercase, k=5))
+        self.id = id if id is not None else "".join(random.choices(string.ascii_lowercase, k=5))
+
+
+    def serialize(self) -> str:
+        data = {
+            "project_id": self.id,
+            "beat_length_seconds": self.beat_length_seconds,
+            "state_values": [sv.to_dict() for sv in self.state_values],
+            "top_level_tracks": [t.to_dict() for t in self.top_level_tracks],
+        }
+        return json.dumps(data, indent=2)
+
+    def deserialize(self, serialized_project: str)-> "Project":
+        data = json.loads(serialized_project)
+        beat_length_seconds = data["beat_length_seconds"]
+
+        # Separate internal vs user state values
+        user_state_values = []
+        internal_state_values = []
+        for sv_data in data["state_values"]:
+            if sv_data.get("name") == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
+                internal_state_values.append(sv_data)
+            else:
+                user_state_values.append(StateValue.from_dict(sv_data))
+
+        top_level_tracks = [self._deserialize_track(t) for t in data["top_level_tracks"]]
+        project = Project(
+            top_level_tracks=top_level_tracks,
+            beat_length_seconds=beat_length_seconds,
+            state_values=user_state_values,
+        )
+
+        # Preserve the original project id so state value references remain valid
+        if "project_id" in data:
+            project.id = data["project_id"]
+
+        # Restore internal state values (e.g. if fade_out was called before serialization)
+        for sv_data in internal_state_values:
+            for sv in project.state_values:
+                if sv.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
+                    sv.target_value = sv_data["target_value"]
+                    sv.transition_change_per_bar = sv_data["transition_change_per_bar"]
+
+        return project
+
+    def _deserialize_track(self, data: dict) -> Track:
+        return Track.from_dict(data)
+
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []

@@ -3486,3 +3486,11 @@ class MainMixer(Synth):
     def set_pre_amp(self, value: float | StateValue) -> "MainMixer":
         self.set_parameter_value("pre_amp", value)
         return self
+
+
+def get_synth_class_by_ruby_name(ruby_synth_name: str) -> type[Synth]:
+    """Look up a Synth subclass by its Ruby synth name."""
+    for synth_class in Synth.__subclasses__():
+        if synth_class.get_ruby_synth_name(synth_class) == ruby_synth_name:
+            return synth_class
+    raise ValueError(f"Synth class with ruby name '{ruby_synth_name}' not found.")
