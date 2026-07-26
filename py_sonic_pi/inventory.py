@@ -623,7 +623,7 @@ class Project:
             else:
                 user_state_values.append(StateValue.from_dict(sv_data))
 
-        top_level_tracks = [self._deserialize_track(t) for t in data["top_level_tracks"]]
+        top_level_tracks = [Track.from_dict(t) for t in data["top_level_tracks"]]
         project = Project(
             top_level_tracks=top_level_tracks,
             beat_length_seconds=beat_length_seconds,
@@ -642,9 +642,6 @@ class Project:
                     sv.transition_change_per_bar = sv_data["transition_change_per_bar"]
 
         return project
-
-    def _deserialize_track(self, data: dict) -> Track:
-        return Track.from_dict(data)
 
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
