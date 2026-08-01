@@ -11,7 +11,8 @@ INTERNAL_MASTER_TRACK_ID = "internal_master"
 
 
 class Generator(ABC):
-    pass
+    def __init__(self):
+        self.project: "Project" = None  # type: ignore
 
 
 @dataclass
@@ -20,6 +21,7 @@ class StateValue:
     initial_value: float
     target_value: float
     transition_change_per_bar: int
+    project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
 
     def get_ruby_state_value_name(self, project: "Project") -> str:
         return f"state_value_{project.id}_{self.name}"
@@ -51,6 +53,7 @@ class SynthParameterDefinition:
 
 class Synth(Generator):
     def __init__(self):
+        super().__init__()
         self._parameter_values: dict[str, float | StateValue] = {}
 
     @abstractmethod
@@ -265,6 +268,7 @@ class Sampler(Generator):
 class EffectInstance(ABC):
     id: str = ""
     controllable: bool = False
+    project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
 
     @abstractmethod
     def get_ruby_effect_name(self) -> str:
@@ -600,6 +604,35 @@ class Project:
 
         self.id = id if id is not None else "".join(random.choices(string.ascii_lowercase, k=5))
 
+        self._set_project_references()
+
+    def _set_project_references(self):
+        """Set the project reference on all Generators, StateValues, and EffectInstances."""
+        # Set project reference on all state values
+        for state_value in self.state_values:
+            state_value.project = self
+
+        # Traverse all tracks and set project references
+        def _traverse_track(track: Track):
+            # Set project reference on all effects in this track
+            for fx in track.custom_effects:
+                fx.project = self
+
+            if isinstance(track, GeneratorTrack):
+                # Set project reference on the generator
+                track.generator.project = self
+
+                # Set project reference on StateValues used as synth parameters
+                if isinstance(track.generator, Synth):
+                    for param_value in track.generator._parameter_values.values():
+                        if isinstance(param_value, StateValue):
+                            param_value.project = self
+            elif isinstance(track, GroupTrack):
+                # Recursively traverse child tracks
+                for child in track.children:
+                    _traverse_track(child)
+
+        _traverse_track(self.master_track)
 
     def serialize(self) -> str:
         data = {
