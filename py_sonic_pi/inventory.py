@@ -643,6 +643,9 @@ class Project:
 
         return project
 
+    def create_copy(self) -> "Project":
+        serialized = self.serialize()
+        return self.deserialize(serialized)
 
     def get_flat_list_of_generator_tracks(self) -> list[GeneratorTrack]:
         generator_tracks = []
