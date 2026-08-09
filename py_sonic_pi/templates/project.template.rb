@@ -1,4 +1,4 @@
-set :beat_length, {{ project.beat_length_seconds }}
+set :beat_length, {{ beat_length_seconds }}
 # =========================================
 # state declaration
 # =========================================

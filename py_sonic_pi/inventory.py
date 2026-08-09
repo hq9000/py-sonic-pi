@@ -23,8 +23,8 @@ class StateValue:
     transition_change_per_bar: int
     project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
 
-    def get_ruby_state_value_name(self, project: "Project") -> str:
-        return f"state_value_{project.id}_{self.name}"
+    def get_ruby_state_value_name(self) -> str:
+        return f"state_value_{self.project.id}_{self.name}"
 
     def to_dict(self) -> dict:
         return {
@@ -407,24 +407,30 @@ class Track(ABC):
     muted: bool = False
     solo: bool = False
     slide: float = 0.0
+    project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
+    def __init__(self, id: str, custom_effects: list[EffectInstance] = [], amp: float = 1.0, pan: float = 0.0, muted: bool = False, solo: bool = False, slide: float = 0.0):
+        self.id = id
+        self.custom_effects = custom_effects
+        self.amp = amp
+        self.pan = pan
+        self.muted = muted
+        self.solo = solo
+        self.slide = slide
+        from py_sonic_pi.effects import Panner
+        self.gain_and_pan_fx = Panner(
+                        id=f"track_{self.id}_gain_and_pan",
+                        amp=self.amp,
+                        amp_slide=self.slide,
+                        amp_slide_shape=SlideShape.LINEAR,
+                        pan=self.pan,
+                        pan_slide=self.slide,
+                        pan_slide_shape=SlideShape.LINEAR,
+                        controllable=True,
+                    )
 
     def get_effects(self):
-        from py_sonic_pi.effects import Panner
+        return self.custom_effects + [self.gain_and_pan_fx]
 
-        all = list(self.custom_effects)
-        all.append(
-            Panner(
-                id=f"track_{self.id}_gain_and_pan",
-                amp=self.amp,
-                amp_slide=self.slide,
-                amp_slide_shape=SlideShape.LINEAR,
-                pan=self.pan,
-                pan_slide=self.slide,
-                pan_slide_shape=SlideShape.LINEAR,
-                controllable=True,
-            )
-        )
-        return all
 
     def to_dict(self) -> dict:
         return {
@@ -614,8 +620,11 @@ class Project:
 
         # Traverse all tracks and set project references
         def _traverse_track(track: Track):
+            # Set project reference on the track itself
+            track.project = self
+
             # Set project reference on all effects in this track
-            for fx in track.custom_effects:
+            for fx in track.get_effects():
                 fx.project = self
 
             if isinstance(track, GeneratorTrack):
@@ -643,7 +652,8 @@ class Project:
         }
         return json.dumps(data, indent=2)
 
-    def deserialize(self, serialized_project: str)-> "Project":
+    @classmethod
+    def deserialize(cls, serialized_project: str) -> "Project":
         data = json.loads(serialized_project)
         beat_length_seconds = data["beat_length_seconds"]
 
@@ -713,6 +723,13 @@ class Project:
         for state_value in self.state_values:
             if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
                 state_value.target_value = 0.0
+                state_value.transition_change_per_bar = 1 / fade_time_bars
+
+    def fade_in(self, fade_time_bars: float):
+        for state_value in self.state_values:
+            if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
+                state_value.initial_value = 0.0
+                state_value.target_value = 1.0
                 state_value.transition_change_per_bar = 1 / fade_time_bars
 
     def get_master_gain_state_value(self) -> StateValue:

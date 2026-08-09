@@ -18,7 +18,7 @@ from py_sonic_pi.inventory import (
 _INDENT_STEP = 2
 _GLOBAL_GAIN_ACTIVATION_THRESHOLD = 0.01
 
-def transform(project: Project) -> list[str]:
+def transform(projects: list[Project]) -> list[str]:
     # Get the directory of the current file
     current_dir = Path(__file__).parent
     # Templates are in the 'templates' subfolder relative to this file's dir
@@ -27,39 +27,40 @@ def transform(project: Project) -> list[str]:
     template = env.get_template("project.template.rb")
 
     data = {
-        "project": project,
+        "beat_length_seconds": projects[-1].beat_length_seconds,
         "TrackType": GeneratorTrackType,
-        "state_declaration_block_lines": _generate_state_declaration_lines(project),
-        "source_block_lines": _generate_source_block_lines(project),
-        "processing_block_lines": _generate_processing_block(project),
-        "fx_control_block_lines": _generate_fx_control_block_lines(project),
-        "state_control_block_lines": _generate_state_control_block_lines(project),
+        "state_declaration_block_lines": _generate_state_declaration_lines(projects),
+        "source_block_lines": _generate_source_block_lines(projects),
+        "processing_block_lines": _generate_processing_block(projects),
+        "fx_control_block_lines": _generate_fx_control_block_lines(projects),
+        "state_control_block_lines": _generate_state_control_block_lines(projects),
     }
     rendered_content = template.render(**data)
     return rendered_content.splitlines()
 
 
-def transform_to_file(project: Project, output_file_path: str) -> None:
-    lines = transform(project)
+def transform_to_file(projects: list[Project], output_file_path: str) -> None:
+    lines = transform(projects)
     with open(output_file_path, "w") as f:
         f.write("\n".join(lines))
 
 def _generate_guard_lines(project: Project) -> list[str]:
     return [
-        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name(project)}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
+        f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name()}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
         f"{' ' * (_INDENT_STEP * 4)}stop",
         f"{' ' * (_INDENT_STEP * 3)}end"
     ]
 
 
-def _generate_processing_block(project: Project) -> list[str]:
+def _generate_processing_block(projects: list[Project]) -> list[str]:
     lines = []
-    _generate_track_processing_block(project=project, track=project.master_track, lines=lines, indent=0)
+    for project in projects:
+        _generate_track_processing_block(project=project, track=project.master_track, lines=lines, indent=0)
     return lines
 
 
-def get_internal_fx_name(project: Project, fx: EffectInstance) -> str:
-    return f"fxname_{fx.get_ruby_effect_name()}_{project.id}_{fx.id}"
+def get_internal_fx_name(fx: EffectInstance) -> str:
+    return f"fxname_{fx.get_ruby_effect_name()}_{fx.project.id}_{fx.id}"
 
 
 def _generate_track_processing_block(
@@ -74,20 +75,22 @@ def _generate_track_processing_block(
         for param, value in fx.get_fx_params_dict().items():
             if isinstance(value, StateValue):
                 comma_separated_parts.append(
-                    f"{param}: get(:{value.get_ruby_state_value_name(project)})"
+                    f"{param}: get(:{value.get_ruby_state_value_name()})"
                 )
             else:
                 comma_separated_parts.append(f"{param}: {value}")
 
         lines.append(
-            f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(project, fx)}|"
+            f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(fx)}|"
         )
+
+
         lines.append(
-            f"{' ' * indent}set :{get_internal_fx_name(project, fx)},{get_internal_fx_name(project, fx)} if run_count == 1"
+            f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)} if run_count == 1"
         )
 
     if isinstance(track, GeneratorTrack):
-        lines.append(f"{' ' * indent}{_get_live_loop_name_for_track(project, track)}()")
+        lines.append(f"{' ' * indent}{_get_live_loop_name_for_track(track)}()")
     elif isinstance(track, GroupTrack):
         for child_track in track.children:
             _generate_track_processing_block(project=project, track=child_track, lines=lines, indent=indent + _INDENT_STEP)
@@ -96,16 +99,23 @@ def _generate_track_processing_block(
         lines.append(f"{' ' * indent}end")
 
 
-def _generate_state_declaration_lines(project: Project) -> list[str]:
+def _generate_state_declaration_lines(projects: list[Project]) -> list[str]:
     lines = []
-    for state_value in project.state_values:
-        lines.append(
-            f"set :{state_value.get_ruby_state_value_name(project)}, {state_value.initial_value} if run_count == 1"
-        )
+
+    for project in projects:
+        for state_value in project.state_values:
+            lines.append(
+                f"set :{state_value.get_ruby_state_value_name()}, {state_value.initial_value} if run_count == 1"
+            )
     return lines
 
+def _generate_state_control_block_lines(projects: list[Project]) -> list[str]:
+    lines = []
+    for project in projects:
+        lines += _generate_state_control_block_lines_for_one_project(project)
+    return lines
 
-def _generate_state_control_block_lines(project: Project) -> list[str]:
+def _generate_state_control_block_lines_for_one_project(project: Project) -> list[str]:
     lines = [f"live_loop :state_management_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
     lines.extend(
@@ -124,22 +134,22 @@ def _generate_state_control_block_lines(project: Project) -> list[str]:
             #  set :state_value.name, [get(:state_value.name) + transition_change_per_bar, state_value.target_value].min
 
             lines.append(
-                f"if get(:{state_value.get_ruby_state_value_name(project)}) < {state_value.target_value}"
+                f"if get(:{state_value.get_ruby_state_value_name()}) < {state_value.target_value}"
             )
             lines.append(
-                f"  set :{state_value.get_ruby_state_value_name(project)}, [get(:{state_value.get_ruby_state_value_name(project)}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min"
+                f"  set :{state_value.get_ruby_state_value_name()}, [get(:{state_value.get_ruby_state_value_name()}) + {state_value.transition_change_per_bar}, {state_value.target_value}].min"
             )
             lines.append(
-                f"elsif get(:{state_value.get_ruby_state_value_name(project)}) > {state_value.target_value}"
+                f"elsif get(:{state_value.get_ruby_state_value_name()}) > {state_value.target_value}"
             )
             lines.append(
-                f"  set :{state_value.get_ruby_state_value_name(project)}, [get(:{state_value.get_ruby_state_value_name(project)}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max"
+                f"  set :{state_value.get_ruby_state_value_name()}, [get(:{state_value.get_ruby_state_value_name()}) - {state_value.transition_change_per_bar}, {state_value.target_value}].max"
             )
             lines.append("end")
 
         else:
             lines.append(
-                f"set :{state_value.get_ruby_state_value_name(project)}, {state_value.target_value}"
+                f"set :{state_value.get_ruby_state_value_name()}, {state_value.target_value}"
             )
 
     lines.append("sleep 0.25")
@@ -147,14 +157,20 @@ def _generate_state_control_block_lines(project: Project) -> list[str]:
     return lines
 
 
-def _generate_source_block_lines(project: Project) -> list[str]:
+def _generate_source_block_lines(projects: list[Project]) -> list[str]:
     lines = []
-    for track in project.get_flat_list_of_generator_tracks():
-        lines += _generate_source_block_lines_for_one_track(project, track)
+    for project in projects:
+        for track in project.get_flat_list_of_generator_tracks():
+            lines += _generate_source_block_lines_for_one_track(track)
     return lines
 
+def _generate_fx_control_block_lines(projects: list[Project]) -> list[str]:
+    lines = []
+    for project in projects:
+        lines += _generate_fx_control_block_lines_for_one_project(project)
+    return lines
 
-def _generate_fx_control_block_lines(project: Project) -> list[str]:
+def _generate_fx_control_block_lines_for_one_project(project: Project) -> list[str]:
 
     lines = [f"live_loop :control_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
@@ -163,11 +179,11 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
     )
     lines.append(f"{' ' * _INDENT_STEP}if run_count != 1")
     for fx in project.get_all_controllable_fxs():
-        lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(project, fx)})")
+        lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
         for param in fx.get_fx_params_dict():
             val = fx.get_fx_params_dict()[param]
             if isinstance(val, StateValue):
-                val = f"get(:{val.get_ruby_state_value_name(project)})"
+                val = f"get(:{val.get_ruby_state_value_name()})"
             else:
                 val = f"{val}"
             lines.append(f"{' ' * 2 * _INDENT_STEP}control fx, {param}: {val}")
@@ -177,13 +193,13 @@ def _generate_fx_control_block_lines(project: Project) -> list[str]:
     lines.append("end")
     return lines
 
-def _get_live_loop_name_for_track(project: Project, track: GeneratorTrack) -> str:
-    return f"{project.id}_{track.id}_loop"
+def _get_live_loop_name_for_track(track: GeneratorTrack) -> str:
+    return f"{track.project.id}_{track.id}_loop"
 
 def _generate_source_block_lines_for_one_track(
-    project: Project, track: GeneratorTrack
+    track: GeneratorTrack
 ) -> list[str]:
-    live_loop_name = _get_live_loop_name_for_track(project, track)
+    live_loop_name = _get_live_loop_name_for_track(track)
     lines = [f"def {live_loop_name}()"]
     lines.append(f"{' ' * _INDENT_STEP}live_loop :{live_loop_name} do")
 
@@ -202,7 +218,7 @@ def _generate_source_block_lines_for_one_track(
 
     lines.append(f"{indent}sync :start_{elements[0].n_bars}_bars")
     lines.extend(
-        _generate_guard_lines(project)
+        _generate_guard_lines(track.project)
     )
     indent = " " * (_INDENT_STEP * 4)
     for element in elements:
@@ -227,7 +243,7 @@ def _generate_source_block_lines_for_one_track(
                     if isinstance(value, float) or isinstance(value, int):
                         value_str = f"{value}"
                     elif isinstance(value, StateValue):
-                        value_str = f"get(:{value.get_ruby_state_value_name(project)})"
+                        value_str = f"get(:{value.get_ruby_state_value_name()})"
                     else:
                         raise ValueError(
                             f"Unsupported parameter value type: {type(value)}"
