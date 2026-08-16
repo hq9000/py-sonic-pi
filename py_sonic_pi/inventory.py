@@ -33,6 +33,7 @@ class StateValue:
             "target_value": self.target_value,
             "transition_change_per_bar": self.transition_change_per_bar,
         }
+
     @classmethod
     def from_dict(cls, data: dict) -> "StateValue":
         return cls(
@@ -408,7 +409,17 @@ class Track(ABC):
     solo: bool = False
     slide: float = 0.0
     project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
-    def __init__(self, id: str, custom_effects: list[EffectInstance] = [], amp: float = 1.0, pan: float = 0.0, muted: bool = False, solo: bool = False, slide: float = 0.0):
+
+    def __init__(
+        self,
+        id: str,
+        custom_effects: list[EffectInstance] = [],
+        amp: float = 1.0,
+        pan: float = 0.0,
+        muted: bool = False,
+        solo: bool = False,
+        slide: float = 0.0,
+    ):
         self.id = id
         self.custom_effects = custom_effects
         self.amp = amp
@@ -417,20 +428,20 @@ class Track(ABC):
         self.solo = solo
         self.slide = slide
         from py_sonic_pi.effects import Panner
+
         self.gain_and_pan_fx = Panner(
-                        id=f"track_{self.id}_gain_and_pan",
-                        amp=self.amp,
-                        amp_slide=self.slide,
-                        amp_slide_shape=SlideShape.LINEAR,
-                        pan=self.pan,
-                        pan_slide=self.slide,
-                        pan_slide_shape=SlideShape.LINEAR,
-                        controllable=True,
-                    )
+            id=f"track_{self.id}_gain_and_pan",
+            amp=self.amp,
+            amp_slide=self.slide,
+            amp_slide_shape=SlideShape.LINEAR,
+            pan=self.pan,
+            pan_slide=self.slide,
+            pan_slide_shape=SlideShape.LINEAR,
+            controllable=True,
+        )
 
     def get_effects(self):
         return self.custom_effects + [self.gain_and_pan_fx]
-
 
     def to_dict(self) -> dict:
         return {
@@ -456,14 +467,22 @@ class Track(ABC):
                 ruby_synth_name = generator_data.get("ruby_synth_name", "")
                 synth_class = get_synth_class_by_ruby_name(ruby_synth_name)
                 generator = synth_class()
-                for param_name, param_value in generator_data.get("parameter_values", {}).items():
-                    if isinstance(param_value, dict) and param_value.get("type") == "state_value_ref":
-                        generator.set_parameter_value(param_name, StateValue(
-                            name=param_value["name"],
-                            initial_value=0,
-                            target_value=0,
-                            transition_change_per_bar=0,
-                        ))
+                for param_name, param_value in generator_data.get(
+                    "parameter_values", {}
+                ).items():
+                    if (
+                        isinstance(param_value, dict)
+                        and param_value.get("type") == "state_value_ref"
+                    ):
+                        generator.set_parameter_value(
+                            param_name,
+                            StateValue(
+                                name=param_value["name"],
+                                initial_value=0,
+                                target_value=0,
+                                transition_change_per_bar=0,
+                            ),
+                        )
                     else:
                         generator.set_parameter_value(param_name, param_value)
             elif generator_type == "sampler":
@@ -472,7 +491,9 @@ class Track(ABC):
                 raise ValueError(f"Unknown generator_type: {generator_type}")
 
             pattern = Pattern.from_dict(data.get("pattern", {"elements": []}))
-            effects = [EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])]
+            effects = [
+                EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])
+            ]
 
             return GeneratorTrack(
                 id=data["id"],
@@ -486,7 +507,9 @@ class Track(ABC):
             )
         elif track_type == "group":
             children = [cls.from_dict(child) for child in data.get("children", [])]
-            effects = [EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])]
+            effects = [
+                EffectInstance.from_dict(fx) for fx in data.get("custom_effects", [])
+            ]
             return GroupTrack(
                 id=data["id"],
                 children=children,
@@ -531,7 +554,9 @@ class GeneratorTrack(Track):
             self.generator.to_dict() if hasattr(self.generator, "to_dict") else {}
         )
         if generator_dict:
-            generator_dict["generator_type"] = "synth" if isinstance(self.generator, Synth) else "sampler"
+            generator_dict["generator_type"] = (
+                "synth" if isinstance(self.generator, Synth) else "sampler"
+            )
         data["track_type"] = "generator"
         data["generator"] = generator_dict
         data["pattern"] = self.pattern.to_dict()
@@ -610,7 +635,11 @@ class Project:
             solo=False,
         )
 
-        self.id = id if id is not None else "".join(random.choices(string.ascii_lowercase, k=5))
+        self.id = (
+            id
+            if id is not None
+            else "".join(random.choices(string.ascii_lowercase, k=5))
+        )
 
         self._set_project_references()
 

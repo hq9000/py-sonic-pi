@@ -2,8 +2,8 @@ set :beat_length, 0.45
 # =========================================
 # state declaration
 # =========================================
-set :state_value_test_project_bass_cutoff, 50 if run_count == 1
-set :state_value_test_project_internal_master_gain, 1.0 if run_count == 1
+set :state_value_test_project_bass_cutoff, 50
+set :state_value_test_project_internal_master_gain, 1.0
 # =========================================
 # source block
 # =========================================
@@ -99,49 +99,49 @@ end
 # =========================================
 # Track: internal_master
 with_fx :level, amp: get(:state_value_test_project_internal_master_gain) do |fxname_level_test_project_internal_master_gain|
-set :fxname_level_test_project_internal_master_gain,fxname_level_test_project_internal_master_gain if run_count == 1
+set :fxname_level_test_project_internal_master_gain,fxname_level_test_project_internal_master_gain
 with_fx :pan, pan: 0.0, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_internal_master_gain_and_pan|
-set :fxname_pan_test_project_track_internal_master_gain_and_pan,fxname_pan_test_project_track_internal_master_gain_and_pan if run_count == 1
+set :fxname_pan_test_project_track_internal_master_gain_and_pan,fxname_pan_test_project_track_internal_master_gain_and_pan
   # Track: master
   with_fx :rhpf, cutoff: 0.0, cutoff_slide: 0.0 do |fxname_rhpf_test_project_masterhpf|
-  set :fxname_rhpf_test_project_masterhpf,fxname_rhpf_test_project_masterhpf if run_count == 1
+  set :fxname_rhpf_test_project_masterhpf,fxname_rhpf_test_project_masterhpf
   with_fx :pan, pan: 0.0, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_master_gain_and_pan|
-  set :fxname_pan_test_project_track_master_gain_and_pan,fxname_pan_test_project_track_master_gain_and_pan if run_count == 1
+  set :fxname_pan_test_project_track_master_gain_and_pan,fxname_pan_test_project_track_master_gain_and_pan
     # Track: bass_bd
     with_fx :pan, pan: 0.0, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_bass_bd_gain_and_pan|
-    set :fxname_pan_test_project_track_bass_bd_gain_and_pan,fxname_pan_test_project_track_bass_bd_gain_and_pan if run_count == 1
+    set :fxname_pan_test_project_track_bass_bd_gain_and_pan,fxname_pan_test_project_track_bass_bd_gain_and_pan
       # Track: bd
       with_fx :pan, pan: 0.0, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_bd_gain_and_pan|
-      set :fxname_pan_test_project_track_bd_gain_and_pan,fxname_pan_test_project_track_bd_gain_and_pan if run_count == 1
+      set :fxname_pan_test_project_track_bd_gain_and_pan,fxname_pan_test_project_track_bd_gain_and_pan
       test_project_bd_loop()
       end
       # Track: bass
       with_fx :reverb, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, mix: 0.5, mix_slide: 0.0, mix_slide_shape: 1, pre_mix: 0.5, pre_mix_slide: 0.0, pre_mix_slide_shape: 1, pre_amp: 1.0, pre_amp_slide: 0.0, pre_amp_slide_shape: 1, room: 0.5, room_slide: 0.0, room_slide_shape: 1, damp: 0.5, damp_slide: 0.0, damp_slide_shape: 1 do |fxname_reverb_test_project_bass_reverb|
-      set :fxname_reverb_test_project_bass_reverb,fxname_reverb_test_project_bass_reverb if run_count == 1
-      with_fx :pan, pan: -0.47, amp: 0.3, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_bass_gain_and_pan|
-      set :fxname_pan_test_project_track_bass_gain_and_pan,fxname_pan_test_project_track_bass_gain_and_pan if run_count == 1
+      set :fxname_reverb_test_project_bass_reverb,fxname_reverb_test_project_bass_reverb
+      with_fx :pan, pan: 0.0, amp: 1.0, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_bass_gain_and_pan|
+      set :fxname_pan_test_project_track_bass_gain_and_pan,fxname_pan_test_project_track_bass_gain_and_pan
       test_project_bass_loop()
       end
       end
       # Track: sub_bass
       with_fx :pan, pan: 0.0, amp: 1, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_sub_bass_gain_and_pan|
-      set :fxname_pan_test_project_track_sub_bass_gain_and_pan,fxname_pan_test_project_track_sub_bass_gain_and_pan if run_count == 1
+      set :fxname_pan_test_project_track_sub_bass_gain_and_pan,fxname_pan_test_project_track_sub_bass_gain_and_pan
       test_project_sub_bass_loop()
       end
     end
     # Track: crash
     with_fx :pan, pan: 0.0, amp: 0.5, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_crash_gain_and_pan|
-    set :fxname_pan_test_project_track_crash_gain_and_pan,fxname_pan_test_project_track_crash_gain_and_pan if run_count == 1
+    set :fxname_pan_test_project_track_crash_gain_and_pan,fxname_pan_test_project_track_crash_gain_and_pan
     test_project_crash_loop()
     end
     # Track: snare
     with_fx :pan, pan: 0.0, amp: 0.4, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_snare_gain_and_pan|
-    set :fxname_pan_test_project_track_snare_gain_and_pan,fxname_pan_test_project_track_snare_gain_and_pan if run_count == 1
+    set :fxname_pan_test_project_track_snare_gain_and_pan,fxname_pan_test_project_track_snare_gain_and_pan
     test_project_snare_loop()
     end
     # Track: oh
     with_fx :pan, pan: 0.0, amp: 0.2, amp_slide: 0.0, amp_slide_shape: 1, pan_slide: 0.0, pan_slide_shape: 1 do |fxname_pan_test_project_track_oh_gain_and_pan|
-    set :fxname_pan_test_project_track_oh_gain_and_pan,fxname_pan_test_project_track_oh_gain_and_pan if run_count == 1
+    set :fxname_pan_test_project_track_oh_gain_and_pan,fxname_pan_test_project_track_oh_gain_and_pan
     test_project_oh_loop()
     end
   end
@@ -193,8 +193,8 @@ sync :start_1_bars
     control fx, pan_slide: 0.0
     control fx, pan_slide_shape: 1
     fx = get(:fxname_pan_test_project_track_bass_gain_and_pan)
-    control fx, pan: -0.47
-    control fx, amp: 0.3
+    control fx, pan: 0.0
+    control fx, amp: 1.0
     control fx, amp_slide: 0.0
     control fx, amp_slide_shape: 1
     control fx, pan_slide: 0.0

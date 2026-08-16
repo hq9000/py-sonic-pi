@@ -5,6 +5,7 @@ from py_sonic_pi.transformer import transform
 
 HERE = Path(__file__).parent
 
+
 def test_something():
     p = create_fixture_project()
 

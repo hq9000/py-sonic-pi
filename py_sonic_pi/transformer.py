@@ -18,6 +18,7 @@ from py_sonic_pi.inventory import (
 _INDENT_STEP = 2
 _GLOBAL_GAIN_ACTIVATION_THRESHOLD = 0.01
 
+
 def transform(projects: list[Project]) -> list[str]:
     # Get the directory of the current file
     current_dir = Path(__file__).parent
@@ -44,18 +45,21 @@ def transform_to_file(projects: list[Project], output_file_path: str) -> None:
     with open(output_file_path, "w") as f:
         f.write("\n".join(lines))
 
+
 def _generate_guard_lines(project: Project) -> list[str]:
     return [
         f"{' ' * (_INDENT_STEP * 3)}if get(:{project.get_master_gain_state_value().get_ruby_state_value_name()}) <= {_GLOBAL_GAIN_ACTIVATION_THRESHOLD}",
         f"{' ' * (_INDENT_STEP * 4)}stop",
-        f"{' ' * (_INDENT_STEP * 3)}end"
+        f"{' ' * (_INDENT_STEP * 3)}end",
     ]
 
 
 def _generate_processing_block(projects: list[Project]) -> list[str]:
     lines = []
     for project in projects:
-        _generate_track_processing_block(project=project, track=project.master_track, lines=lines, indent=0)
+        _generate_track_processing_block(
+            project=project, track=project.master_track, lines=lines, indent=0
+        )
     return lines
 
 
@@ -84,7 +88,6 @@ def _generate_track_processing_block(
             f"{' ' * indent}{', '.join(comma_separated_parts)} do |{get_internal_fx_name(fx)}|"
         )
 
-
         if project.save_references:
             lines.append(
                 f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)}"
@@ -94,7 +97,12 @@ def _generate_track_processing_block(
         lines.append(f"{' ' * indent}{_get_live_loop_name_for_track(track)}()")
     elif isinstance(track, GroupTrack):
         for child_track in track.children:
-            _generate_track_processing_block(project=project, track=child_track, lines=lines, indent=indent + _INDENT_STEP)
+            _generate_track_processing_block(
+                project=project,
+                track=child_track,
+                lines=lines,
+                indent=indent + _INDENT_STEP,
+            )
 
     for fx in track.get_effects():
         lines.append(f"{' ' * indent}end")
@@ -111,18 +119,18 @@ def _generate_state_declaration_lines(projects: list[Project]) -> list[str]:
                 )
     return lines
 
+
 def _generate_state_control_block_lines(projects: list[Project]) -> list[str]:
     lines = []
     for project in projects:
         lines += _generate_state_control_block_lines_for_one_project(project)
     return lines
 
+
 def _generate_state_control_block_lines_for_one_project(project: Project) -> list[str]:
     lines = [f"live_loop :state_management_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
-    lines.extend(
-        _generate_guard_lines(project)
-    )
+    lines.extend(_generate_guard_lines(project))
 
     for state_value in project.state_values:
         if state_value.transition_change_per_bar > 0:
@@ -166,19 +174,19 @@ def _generate_source_block_lines(projects: list[Project]) -> list[str]:
             lines += _generate_source_block_lines_for_one_track(track)
     return lines
 
+
 def _generate_fx_control_block_lines(projects: list[Project]) -> list[str]:
     lines = []
     for project in projects:
         lines += _generate_fx_control_block_lines_for_one_project(project)
     return lines
 
+
 def _generate_fx_control_block_lines_for_one_project(project: Project) -> list[str]:
 
     lines = [f"live_loop :control_loop_{project.id} do"]
     lines.append("sync :start_1_bars")
-    lines.extend(
-        _generate_guard_lines(project)
-    )
+    lines.extend(_generate_guard_lines(project))
     lines.append(f"{' ' * _INDENT_STEP}if run_count != 1")
     for fx in project.get_all_controllable_fxs():
         lines.append(f"{' ' * 2 * _INDENT_STEP}fx = get(:{get_internal_fx_name(fx)})")
@@ -195,12 +203,12 @@ def _generate_fx_control_block_lines_for_one_project(project: Project) -> list[s
     lines.append("end")
     return lines
 
+
 def _get_live_loop_name_for_track(track: GeneratorTrack) -> str:
     return f"{track.project.id}_{track.id}_loop"
 
-def _generate_source_block_lines_for_one_track(
-    track: GeneratorTrack
-) -> list[str]:
+
+def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[str]:
     live_loop_name = _get_live_loop_name_for_track(track)
     lines = [f"def {live_loop_name}()"]
     lines.append(f"{' ' * _INDENT_STEP}live_loop :{live_loop_name} do")
@@ -219,9 +227,7 @@ def _generate_source_block_lines_for_one_track(
         raise ValueError(f"Track {track.id} pattern must start with a Sync element.")
 
     lines.append(f"{indent}sync :start_{elements[0].n_bars}_bars")
-    lines.extend(
-        _generate_guard_lines(track.project)
-    )
+    lines.extend(_generate_guard_lines(track.project))
     indent = " " * (_INDENT_STEP * 4)
     for element in elements:
         if isinstance(element, Note):

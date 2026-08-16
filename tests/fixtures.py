@@ -12,9 +12,15 @@ from py_sonic_pi.inventory import (
 from py_sonic_pi.patterns import construct_pattern_from_matter
 from py_sonic_pi.synths import Saw, Tb303
 
+
 def create_fixture_project():
 
-    bass_cutoff = StateValue(name="bass_cutoff", initial_value=50, target_value=100, transition_change_per_bar=5)
+    bass_cutoff = StateValue(
+        name="bass_cutoff",
+        initial_value=50,
+        target_value=100,
+        transition_change_per_bar=5,
+    )
 
     bd_pattern = construct_pattern_from_matter(
         """
@@ -96,7 +102,6 @@ def create_fixture_project():
     sub_bass_synth = Saw()
     sub_bass_synth.set_pan(-1)
 
-
     bass_track = GeneratorTrack(
         id="bass",
         generator=bass_synth,
@@ -122,6 +127,11 @@ def create_fixture_project():
         effects=[HPFilter(id="masterhpf", cutoff=0.0, controllable=True)],
     )
 
-    p = Project(top_level_tracks=[master_track], beat_length_seconds=0.45, state_values=[bass_cutoff], id="test_project")
+    p = Project(
+        top_level_tracks=[master_track],
+        beat_length_seconds=0.45,
+        state_values=[bass_cutoff],
+        id="test_project",
+    )
     p.fade_out(6)
     return p
