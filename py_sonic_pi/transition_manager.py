@@ -16,7 +16,11 @@ class TransitionManager:
         self._save_serialized_project_to_file(new_project, _SERIALIZED_PLAYING_PROJECT_FILE_NAME)
         if not old_project:
             new_project.save_references = True
-        if not old_project or old_project.id == new_project.id:
+            self._render_projects_to_rb_file([new_project], _OUTPUT_RB_FILE_NAME)
+            return
+
+        if old_project.id == new_project.id:
+            new_project.save_references = False
             self._render_projects_to_rb_file([new_project], _OUTPUT_RB_FILE_NAME)
             return
 
