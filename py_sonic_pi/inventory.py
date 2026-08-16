@@ -730,7 +730,7 @@ class Project:
     def fade_in(self, fade_time_bars: float):
         for state_value in self.state_values:
             if state_value.name == INTERNAL_MASTER_GAIN_STATE_VALUE_NAME:
-                state_value.initial_value = 0.0
+                state_value.initial_value = 0.1
                 state_value.target_value = 1.0
                 state_value.transition_change_per_bar = 1 / fade_time_bars
 

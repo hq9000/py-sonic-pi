@@ -25,6 +25,7 @@ class TransitionManager:
             return
 
         old_project.fade_out(transition_time_bars)
+        old_project.save_references = False
         new_project.fade_in(transition_time_bars)
         new_project.save_references = True
         self._render_projects_to_rb_file([old_project, new_project], _OUTPUT_RB_FILE_NAME)

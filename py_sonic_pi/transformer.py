@@ -104,10 +104,11 @@ def _generate_state_declaration_lines(projects: list[Project]) -> list[str]:
     lines = []
 
     for project in projects:
-        for state_value in project.state_values:
-            lines.append(
-                f"set :{state_value.get_ruby_state_value_name()}, {state_value.initial_value} if run_count == 1"
-            )
+        if project.save_references:
+            for state_value in project.state_values:
+                lines.append(
+                    f"set :{state_value.get_ruby_state_value_name()}, {state_value.initial_value}"
+                )
     return lines
 
 def _generate_state_control_block_lines(projects: list[Project]) -> list[str]:
