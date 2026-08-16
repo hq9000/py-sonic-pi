@@ -116,12 +116,6 @@ def create_fixture_project():
         effects=[],
     )
 
-
-    bass_track.amp = 0.3
-    bass_track.pan = -0.47
-    bass_track.muted = False
-
-
     master_track = GroupTrack(
         id="master",
         children=[bass_bd, crash_track, snare_track, oh_track],

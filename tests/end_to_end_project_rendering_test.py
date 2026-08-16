@@ -11,8 +11,8 @@ def test_something():
     p_serialized = p.serialize()
     p_deserialized = p.deserialize(p_serialized)
 
-    lines_orig = transform(p)
-    lines_deserialized = transform(p_deserialized)
+    lines_orig = transform([p])
+    lines_deserialized = transform([p_deserialized])
 
     actual = HERE / "generated_project.actual.rb"
     expected = HERE / "generated_project.expected.rb"
