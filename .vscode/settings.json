@@ -4,5 +4,8 @@
         "HAUS",
         "pycache",
         "venv"
-    ]
+    ],
+    "chat.tools.terminal.autoApprove": {
+        "ruff": true
+    }
 }

@@ -2,11 +2,11 @@ from py_sonic_pi.effects import HPFilter, Reverb
 from py_sonic_pi.inventory import (
     GroupTrack,
     GeneratorTrack,
-    Project,
     Sample,
     Sampler,
     StockSampleName,
     Tb303,
+    Project,
 )
 from py_sonic_pi.patterns import construct_pattern_from_matter
 from py_sonic_pi.transformer import transform
