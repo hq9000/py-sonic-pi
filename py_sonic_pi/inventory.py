@@ -577,12 +577,14 @@ class Project:
         beat_length_seconds: float = 0.5,
         state_values: list[StateValue] = [],
         id: str | None = None,
+        save_references: bool = True,
     ):
         from py_sonic_pi.effects import Gain
 
         self.top_level_tracks = top_level_tracks
         self.beat_length_seconds = beat_length_seconds
         self.state_values = state_values
+        self.save_references = save_references
 
         master_gain_state_value = StateValue(
             initial_value=1.0,

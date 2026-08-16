@@ -85,9 +85,10 @@ def _generate_track_processing_block(
         )
 
 
-        lines.append(
-            f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)} if run_count == 1"
-        )
+        if project.save_references:
+            lines.append(
+                f"{' ' * indent}set :{get_internal_fx_name(fx)},{get_internal_fx_name(fx)}"
+            )
 
     if isinstance(track, GeneratorTrack):
         lines.append(f"{' ' * indent}{_get_live_loop_name_for_track(track)}()")

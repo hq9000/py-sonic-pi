@@ -15,14 +15,14 @@ class TransitionManager:
         old_project = self._load_project_from_serialized_file(_SERIALIZED_PLAYING_PROJECT_FILE_NAME)
         self._save_serialized_project_to_file(new_project, _SERIALIZED_PLAYING_PROJECT_FILE_NAME)
         if not old_project:
-            self._render_projects_to_rb_file([new_project], _OUTPUT_RB_FILE_NAME)
-            return
-        if old_project.id == new_project.id:
+            new_project.save_references = True
+        if not old_project or old_project.id == new_project.id:
             self._render_projects_to_rb_file([new_project], _OUTPUT_RB_FILE_NAME)
             return
 
         old_project.fade_out(transition_time_bars)
         new_project.fade_in(transition_time_bars)
+        new_project.save_references = True
         self._render_projects_to_rb_file([old_project, new_project], _OUTPUT_RB_FILE_NAME)
 
     def _render_projects_to_rb_file(self, projects: list[Project], file_path: str) -> None:
