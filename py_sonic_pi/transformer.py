@@ -6,6 +6,7 @@ from py_sonic_pi.inventory import (
     GeneratorTrack,
     GroupTrack,
     Note,
+    Sampler,
     Sleep,
     StateValue,
     Sync,
@@ -232,7 +233,15 @@ def _generate_source_block_lines_for_one_track(track: GeneratorTrack) -> list[st
     for element in elements:
         if isinstance(element, Note):
             if track.get_type() == GeneratorTrackType.SAMPLE and element.sample is None:
-                line = f"{' ' * (_INDENT_STEP * 4)}sample :{track.generator.sample.name.value}"
+                assert type(track.generator) == Sampler, "Expected track.generator to be a Sampler instance."
+                if track.generator.sample.name:
+                    line = f"{' ' * (_INDENT_STEP * 4)}sample :{track.generator.sample.name.value}"
+                elif track.generator.sample.sample_path:
+                    line = f"{' ' * (_INDENT_STEP * 4)}sample \"{track.generator.sample.sample_path}\""
+                else:
+                    raise ValueError(
+                        f"Sample for track {track.id} must have either a name or a sample path."
+                    )
             elif track.get_type() == GeneratorTrackType.SYNTH:
                 line = f"{indent}play {element.note}"
                 # Combine synth parameters and note attributes, with note attributes taking precedence
