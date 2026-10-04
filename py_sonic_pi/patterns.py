@@ -23,7 +23,7 @@ def construct_pattern_from_matter(matter: str) -> Pattern:
 def _construct_pattern_from_matter_inner(matter: str) -> Pattern:
     matter = matter.replace(" ", "")
     lines = [
-        re.sub(r"#.*", "", line) for line in matter.split("\n") if line.strip() != ""
+        re.sub(r"\/\/.*", "", line) for line in matter.split("\n") if line.strip() != ""
     ]
 
     sync = 1
