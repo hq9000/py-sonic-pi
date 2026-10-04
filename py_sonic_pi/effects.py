@@ -3842,6 +3842,14 @@ class Tremolo(EffectInstance):
     amp_max: float = 1.0
     amp_max_slide: float = 0.0
     amp_max_slide_shape: SlideShape = SlideShape.LINEAR
+    # Wave type - 0 saw, 1 pulse, 2 triangle, 3 sine, 4 cubic. Different waves will produce different tremolo modulation effects.
+    # Default: 2
+    # Must be one of the following values: [0, 1, 2, 3, 4]
+    # May be changed whilst playing
+    wave: float = 3.0
+    phase_offset: float = 0.0
+    invert_wave: float = 0.0
+    depth: float = 1.0
 
     def __init__(
         self,
@@ -3868,6 +3876,10 @@ class Tremolo(EffectInstance):
         amp_max_slide: float = 0.0,
         amp_max_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
+        wave: float = 3.0,
+        phase_offset: float = 0.0,
+        invert_wave: bool = False,
+        depth: float = 1.0,
     ):
         super().__init__(id=id, controllable=controllable)
         self.amp = amp
@@ -3891,6 +3903,10 @@ class Tremolo(EffectInstance):
         self.amp_max = amp_max
         self.amp_max_slide = amp_max_slide
         self.amp_max_slide_shape = amp_max_slide_shape
+        self.depth = depth
+        self.wave = wave
+        self.phase_offset = phase_offset
+        self.invert_wave = invert_wave
 
     def get_ruby_effect_name(self) -> str:
         return "tremolo"
@@ -3918,6 +3934,10 @@ class Tremolo(EffectInstance):
             "amp_max": self.amp_max,
             "amp_max_slide": self.amp_max_slide,
             "amp_max_slide_shape": self.amp_max_slide_shape.value,
+            "depth": self.depth,
+            "wave": self.wave,
+            "phase_offset": self.phase_offset,
+            "invert_wave": self.invert_wave,
         }
 
 
@@ -3941,6 +3961,7 @@ class PingPong(EffectInstance):
     decay_slide: float = 0.0
     decay_slide_shape: SlideShape = SlideShape.LINEAR
     max_phase: float = 2.0
+    feedback: float = 0.5
 
     def __init__(
         self,
@@ -3964,6 +3985,7 @@ class PingPong(EffectInstance):
         decay_slide: float = 0.0,
         decay_slide_shape: SlideShape = SlideShape.LINEAR,
         max_phase: float = 2.0,
+        feedback: float = 0.5,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -3986,6 +4008,7 @@ class PingPong(EffectInstance):
         self.decay_slide = decay_slide
         self.decay_slide_shape = decay_slide_shape
         self.max_phase = max_phase
+        self.feedback = feedback
 
     def get_ruby_effect_name(self) -> str:
         return "ping_pong"
@@ -4011,6 +4034,7 @@ class PingPong(EffectInstance):
             "decay_slide": self.decay_slide,
             "decay_slide_shape": self.decay_slide_shape.value,
             "max_phase": self.max_phase,
+            "feedback": self.feedback,
         }
 
 
