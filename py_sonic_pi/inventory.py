@@ -4,6 +4,7 @@ import string
 from dataclasses import dataclass, field
 from enum import Enum
 from abc import ABC, abstractmethod
+from typing import ClassVar
 
 INTERNAL_MASTER_GAIN_STATE_VALUE_NAME = "internal_master_gain"
 INTERNAL_MASTER_GAIN_EFFECT_ID = "internal_master_gain"
@@ -17,11 +18,19 @@ class Generator(ABC):
 
 @dataclass
 class StateValue:
+    _instances: ClassVar[list["StateValue"]] = []
+
     name: str
     initial_value: float
     target_value: float
     transition_change_per_bar: int
-    project: "Project" = field(default=None, repr=False, init=False)  # type: ignore
+
+    def __post_init__(self):
+        StateValue._instances.append(self)
+
+    @classmethod
+    def get_instances(cls) -> list["StateValue"]:
+        return cls._instances
 
     def get_ruby_state_value_name(self) -> str:
         return f"state_value_{self.project.id}_{self.name}"
