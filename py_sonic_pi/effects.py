@@ -1,15 +1,17 @@
-from py_sonic_pi.inventory import EffectInstance, SlideShape
+from py_sonic_pi.inventory import EffectInstance, SlideShape, StateValue
+
+EffectParameterValue = float | int | StateValue
 
 
 class HPFilter(EffectInstance):
-    cutoff: float = 0.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 0.0
+    cutoff_slide: EffectParameterValue = 0.0
 
     def __init__(
         self,
         id: str,
-        cutoff: float = 0.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 0.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -19,41 +21,41 @@ class HPFilter(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "rhpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {"cutoff": self.cutoff, "cutoff_slide": self.cutoff_slide}
 
 
 class Gain(EffectInstance):
-    gain: float = 1.0
+    gain: EffectParameterValue = 1.0
 
-    def __init__(self, id: str, gain: float = 1.0, controllable: bool = False):
+    def __init__(self, id: str, gain: EffectParameterValue = 1.0, controllable: bool = False):
         super().__init__(id=id, controllable=controllable)
         self.gain = gain
 
     def get_ruby_effect_name(self) -> str:
         return "level"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {"amp": self.gain}
 
 
 class Panner(EffectInstance):
-    pan: float = 0.0
-    pan_slide: float = 0.0
+    pan: EffectParameterValue = 0.0
+    pan_slide: EffectParameterValue = 0.0
     pan_slide_shape: SlideShape = SlideShape.LINEAR
 
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        pan: float,
-        pan_slide: float,
+        pan: EffectParameterValue,
+        pan_slide: EffectParameterValue,
         pan_slide_shape: SlideShape,
-        amp: float,
-        amp_slide: float,
+        amp: EffectParameterValue,
+        amp_slide: EffectParameterValue,
         amp_slide_shape: SlideShape,
         controllable: bool,
     ):
@@ -69,7 +71,7 @@ class Panner(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "pan"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "pan": self.pan,
             "amp": self.amp,
@@ -81,45 +83,45 @@ class Panner(EffectInstance):
 
 
 class Reverb(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 0.5
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 0.5
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 0.5
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 0.5
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    room: float = 0.5
-    room_slide: float = 0.0
+    room: EffectParameterValue = 0.5
+    room_slide: EffectParameterValue = 0.0
     room_slide_shape: SlideShape = SlideShape.LINEAR
-    damp: float = 0.5
-    damp_slide: float = 0.0
+    damp: EffectParameterValue = 0.5
+    damp_slide: EffectParameterValue = 0.0
     damp_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 0.5,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 0.5,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 0.5,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 0.5,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        room: float = 0.5,
-        room_slide: float = 0.0,
+        room: EffectParameterValue = 0.5,
+        room_slide: EffectParameterValue = 0.0,
         room_slide_shape: SlideShape = SlideShape.LINEAR,
-        damp: float = 0.5,
-        damp_slide: float = 0.0,
+        damp: EffectParameterValue = 0.5,
+        damp_slide: EffectParameterValue = 0.0,
         damp_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -146,7 +148,7 @@ class Reverb(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "reverb"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -170,123 +172,123 @@ class Reverb(EffectInstance):
 
 
 class EQ(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    low_shelf: float = 0.0
-    low_shelf_slide: float = 0.0
+    low_shelf: EffectParameterValue = 0.0
+    low_shelf_slide: EffectParameterValue = 0.0
     low_shelf_slide_shape: SlideShape = SlideShape.LINEAR
-    low_shelf_note: float = 43.349957
-    low_shelf_note_slide: float = 0.0
+    low_shelf_note: EffectParameterValue = 43.349957
+    low_shelf_note_slide: EffectParameterValue = 0.0
     low_shelf_note_slide_shape: SlideShape = SlideShape.LINEAR
-    low_shelf_slope: float = 1.0
-    low_shelf_slope_slide: float = 0.0
+    low_shelf_slope: EffectParameterValue = 1.0
+    low_shelf_slope_slide: EffectParameterValue = 0.0
     low_shelf_slope_slide_shape: SlideShape = SlideShape.LINEAR
-    low: float = 0.0
-    low_slide: float = 0.0
+    low: EffectParameterValue = 0.0
+    low_slide: EffectParameterValue = 0.0
     low_slide_shape: SlideShape = SlideShape.LINEAR
-    low_note: float = 59.2130948
-    low_note_slide: float = 0.0
+    low_note: EffectParameterValue = 59.2130948
+    low_note_slide: EffectParameterValue = 0.0
     low_note_slide_shape: SlideShape = SlideShape.LINEAR
-    low_q: float = 0.6
-    low_q_slide: float = 0.0
+    low_q: EffectParameterValue = 0.6
+    low_q_slide: EffectParameterValue = 0.0
     low_q_slide_shape: SlideShape = SlideShape.LINEAR
-    mid: float = 0.0
-    mid_slide: float = 0.0
+    mid: EffectParameterValue = 0.0
+    mid_slide: EffectParameterValue = 0.0
     mid_slide_shape: SlideShape = SlideShape.LINEAR
-    mid_note: float = 83.2130948
-    mid_note_slide: float = 0.0
+    mid_note: EffectParameterValue = 83.2130948
+    mid_note_slide: EffectParameterValue = 0.0
     mid_note_slide_shape: SlideShape = SlideShape.LINEAR
-    mid_q: float = 0.6
-    mid_q_slide: float = 0.0
+    mid_q: EffectParameterValue = 0.6
+    mid_q_slide: EffectParameterValue = 0.0
     mid_q_slide_shape: SlideShape = SlideShape.LINEAR
-    high: float = 0.0
-    high_slide: float = 0.0
+    high: EffectParameterValue = 0.0
+    high_slide: EffectParameterValue = 0.0
     high_slide_shape: SlideShape = SlideShape.LINEAR
-    high_note: float = 104.9013539
-    high_note_slide: float = 0.0
+    high_note: EffectParameterValue = 104.9013539
+    high_note_slide: EffectParameterValue = 0.0
     high_note_slide_shape: SlideShape = SlideShape.LINEAR
-    high_q: float = 0.6
-    high_q_slide: float = 0.0
+    high_q: EffectParameterValue = 0.6
+    high_q_slide: EffectParameterValue = 0.0
     high_q_slide_shape: SlideShape = SlideShape.LINEAR
-    high_shelf: float = 0.0
-    high_shelf_slide: float = 0.0
+    high_shelf: EffectParameterValue = 0.0
+    high_shelf_slide: EffectParameterValue = 0.0
     high_shelf_slide_shape: SlideShape = SlideShape.LINEAR
-    high_shelf_note: float = 114.2326448
-    high_shelf_note_slide: float = 0.0
+    high_shelf_note: EffectParameterValue = 114.2326448
+    high_shelf_note_slide: EffectParameterValue = 0.0
     high_shelf_note_slide_shape: SlideShape = SlideShape.LINEAR
-    high_shelf_slope: float = 1.0
-    high_shelf_slope_slide: float = 0.0
+    high_shelf_slope: EffectParameterValue = 1.0
+    high_shelf_slope_slide: EffectParameterValue = 0.0
     high_shelf_slope_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_shelf: float = 0.0,
-        low_shelf_slide: float = 0.0,
+        low_shelf: EffectParameterValue = 0.0,
+        low_shelf_slide: EffectParameterValue = 0.0,
         low_shelf_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_shelf_note: float = 43.349957,
-        low_shelf_note_slide: float = 0.0,
+        low_shelf_note: EffectParameterValue = 43.349957,
+        low_shelf_note_slide: EffectParameterValue = 0.0,
         low_shelf_note_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_shelf_slope: float = 1.0,
-        low_shelf_slope_slide: float = 0.0,
+        low_shelf_slope: EffectParameterValue = 1.0,
+        low_shelf_slope_slide: EffectParameterValue = 0.0,
         low_shelf_slope_slide_shape: SlideShape = SlideShape.LINEAR,
-        low: float = 0.0,
-        low_slide: float = 0.0,
+        low: EffectParameterValue = 0.0,
+        low_slide: EffectParameterValue = 0.0,
         low_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_note: float = 59.2130948,
-        low_note_slide: float = 0.0,
+        low_note: EffectParameterValue = 59.2130948,
+        low_note_slide: EffectParameterValue = 0.0,
         low_note_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_q: float = 0.6,
-        low_q_slide: float = 0.0,
+        low_q: EffectParameterValue = 0.6,
+        low_q_slide: EffectParameterValue = 0.0,
         low_q_slide_shape: SlideShape = SlideShape.LINEAR,
-        mid: float = 0.0,
-        mid_slide: float = 0.0,
+        mid: EffectParameterValue = 0.0,
+        mid_slide: EffectParameterValue = 0.0,
         mid_slide_shape: SlideShape = SlideShape.LINEAR,
-        mid_note: float = 83.2130948,
-        mid_note_slide: float = 0.0,
+        mid_note: EffectParameterValue = 83.2130948,
+        mid_note_slide: EffectParameterValue = 0.0,
         mid_note_slide_shape: SlideShape = SlideShape.LINEAR,
-        mid_q: float = 0.6,
-        mid_q_slide: float = 0.0,
+        mid_q: EffectParameterValue = 0.6,
+        mid_q_slide: EffectParameterValue = 0.0,
         mid_q_slide_shape: SlideShape = SlideShape.LINEAR,
-        high: float = 0.0,
-        high_slide: float = 0.0,
+        high: EffectParameterValue = 0.0,
+        high_slide: EffectParameterValue = 0.0,
         high_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_note: float = 104.9013539,
-        high_note_slide: float = 0.0,
+        high_note: EffectParameterValue = 104.9013539,
+        high_note_slide: EffectParameterValue = 0.0,
         high_note_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_q: float = 0.6,
-        high_q_slide: float = 0.0,
+        high_q: EffectParameterValue = 0.6,
+        high_q_slide: EffectParameterValue = 0.0,
         high_q_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_shelf: float = 0.0,
-        high_shelf_slide: float = 0.0,
+        high_shelf: EffectParameterValue = 0.0,
+        high_shelf_slide: EffectParameterValue = 0.0,
         high_shelf_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_shelf_note: float = 114.2326448,
-        high_shelf_note_slide: float = 0.0,
+        high_shelf_note: EffectParameterValue = 114.2326448,
+        high_shelf_note_slide: EffectParameterValue = 0.0,
         high_shelf_note_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_shelf_slope: float = 1.0,
-        high_shelf_slope_slide: float = 0.0,
+        high_shelf_slope: EffectParameterValue = 1.0,
+        high_shelf_slope_slide: EffectParameterValue = 0.0,
         high_shelf_slope_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -352,7 +354,7 @@ class EQ(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "eq"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -415,66 +417,66 @@ class EQ(EffectInstance):
 
 
 class GVerb(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    spread: float = 0.5
-    spread_slide: float = 0.0
+    spread: EffectParameterValue = 0.5
+    spread_slide: EffectParameterValue = 0.0
     spread_slide_shape: SlideShape = SlideShape.LINEAR
-    damp: float = 0.5
-    damp_slide: float = 0.0
+    damp: EffectParameterValue = 0.5
+    damp_slide: EffectParameterValue = 0.0
     damp_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_damp: float = 0.5
-    pre_damp_slide: float = 0.0
+    pre_damp: EffectParameterValue = 0.5
+    pre_damp_slide: EffectParameterValue = 0.0
     pre_damp_slide_shape: SlideShape = SlideShape.LINEAR
-    dry: float = 1.0
-    dry_slide: float = 0.0
+    dry: EffectParameterValue = 1.0
+    dry_slide: EffectParameterValue = 0.0
     dry_slide_shape: SlideShape = SlideShape.LINEAR
-    room: float = 10.0
-    release: float = 3.0
-    ref_level: float = 0.7
-    tail_level: float = 0.5
+    room: EffectParameterValue = 10.0
+    release: EffectParameterValue = 3.0
+    ref_level: EffectParameterValue = 0.7
+    tail_level: EffectParameterValue = 0.5
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        spread: float = 0.5,
-        spread_slide: float = 0.0,
+        spread: EffectParameterValue = 0.5,
+        spread_slide: EffectParameterValue = 0.0,
         spread_slide_shape: SlideShape = SlideShape.LINEAR,
-        damp: float = 0.5,
-        damp_slide: float = 0.0,
+        damp: EffectParameterValue = 0.5,
+        damp_slide: EffectParameterValue = 0.0,
         damp_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_damp: float = 0.5,
-        pre_damp_slide: float = 0.0,
+        pre_damp: EffectParameterValue = 0.5,
+        pre_damp_slide: EffectParameterValue = 0.0,
         pre_damp_slide_shape: SlideShape = SlideShape.LINEAR,
-        dry: float = 1.0,
-        dry_slide: float = 0.0,
+        dry: EffectParameterValue = 1.0,
+        dry_slide: EffectParameterValue = 0.0,
         dry_slide_shape: SlideShape = SlideShape.LINEAR,
-        room: float = 10.0,
-        release: float = 3.0,
-        ref_level: float = 0.7,
-        tail_level: float = 0.5,
+        room: EffectParameterValue = 10.0,
+        release: EffectParameterValue = 3.0,
+        ref_level: EffectParameterValue = 0.7,
+        tail_level: EffectParameterValue = 0.5,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -510,7 +512,7 @@ class GVerb(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "gverb"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -544,51 +546,51 @@ class GVerb(EffectInstance):
 
 
 class Krush(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    gain: float = 5.0
-    gain_slide: float = 0.0
+    gain: EffectParameterValue = 5.0
+    gain_slide: EffectParameterValue = 0.0
     gain_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.0
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.0
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        gain: float = 5.0,
-        gain_slide: float = 0.0,
+        gain: EffectParameterValue = 5.0,
+        gain_slide: EffectParameterValue = 0.0,
         gain_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.0,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.0,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -618,7 +620,7 @@ class Krush(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "krush"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -645,51 +647,51 @@ class Krush(EffectInstance):
 
 
 class Bitcrusher(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    sample_rate: float = 10000.0
-    sample_rate_slide: float = 0.0
+    sample_rate: EffectParameterValue = 10000.0
+    sample_rate_slide: EffectParameterValue = 0.0
     sample_rate_slide_shape: SlideShape = SlideShape.LINEAR
-    bits: float = 8.0
-    bits_slide: float = 0.0
+    bits: EffectParameterValue = 8.0
+    bits_slide: EffectParameterValue = 0.0
     bits_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 0.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 0.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        sample_rate: float = 10000.0,
-        sample_rate_slide: float = 0.0,
+        sample_rate: EffectParameterValue = 10000.0,
+        sample_rate_slide: EffectParameterValue = 0.0,
         sample_rate_slide_shape: SlideShape = SlideShape.LINEAR,
-        bits: float = 8.0,
-        bits_slide: float = 0.0,
+        bits: EffectParameterValue = 8.0,
+        bits_slide: EffectParameterValue = 0.0,
         bits_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 0.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 0.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -719,7 +721,7 @@ class Bitcrusher(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "bitcrusher"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -746,45 +748,45 @@ class Bitcrusher(EffectInstance):
 
 
 class Autotuner(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    note: float = 0.0
-    note_slide: float = 0.0
+    note: EffectParameterValue = 0.0
+    note_slide: EffectParameterValue = 0.0
     note_slide_shape: SlideShape = SlideShape.LINEAR
-    formant_ratio: float = 1.0
-    formant_ratio_slide: float = 0.0
+    formant_ratio: EffectParameterValue = 1.0
+    formant_ratio_slide: EffectParameterValue = 0.0
     formant_ratio_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        note: float = 0.0,
-        note_slide: float = 0.0,
+        note: EffectParameterValue = 0.0,
+        note_slide: EffectParameterValue = 0.0,
         note_slide_shape: SlideShape = SlideShape.LINEAR,
-        formant_ratio: float = 1.0,
-        formant_ratio_slide: float = 0.0,
+        formant_ratio: EffectParameterValue = 1.0,
+        formant_ratio_slide: EffectParameterValue = 0.0,
         formant_ratio_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -811,7 +813,7 @@ class Autotuner(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "autotuner"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -835,39 +837,39 @@ class Autotuner(EffectInstance):
 
 
 class Mono(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    pan: float = 0.0
-    pan_slide: float = 0.0
+    pan: EffectParameterValue = 0.0
+    pan_slide: EffectParameterValue = 0.0
     pan_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        pan: float = 0.0,
-        pan_slide: float = 0.0,
+        pan: EffectParameterValue = 0.0,
+        pan_slide: EffectParameterValue = 0.0,
         pan_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -891,7 +893,7 @@ class Mono(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "mono"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -912,48 +914,48 @@ class Mono(EffectInstance):
 
 
 class Echo(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.25
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.25
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    decay: float = 2.0
-    decay_slide: float = 0.0
+    decay: EffectParameterValue = 2.0
+    decay_slide: EffectParameterValue = 0.0
     decay_slide_shape: SlideShape = SlideShape.LINEAR
-    max_phase: float = 2.0
+    max_phase: EffectParameterValue = 2.0
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.25,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.25,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        decay: float = 2.0,
-        decay_slide: float = 0.0,
+        decay: EffectParameterValue = 2.0,
+        decay_slide: EffectParameterValue = 0.0,
         decay_slide_shape: SlideShape = SlideShape.LINEAR,
-        max_phase: float = 2.0,
+        max_phase: EffectParameterValue = 2.0,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -980,7 +982,7 @@ class Echo(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "echo"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1005,95 +1007,95 @@ class Echo(EffectInstance):
 
 
 class Slicer(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.25
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.25
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    amp_min: float = 0.0
-    amp_min_slide: float = 0.0
+    amp_min: EffectParameterValue = 0.0
+    amp_min_slide: EffectParameterValue = 0.0
     amp_min_slide_shape: SlideShape = SlideShape.LINEAR
-    amp_max: float = 1.0
-    amp_max_slide: float = 0.0
+    amp_max: EffectParameterValue = 1.0
+    amp_max_slide: EffectParameterValue = 0.0
     amp_max_slide_shape: SlideShape = SlideShape.LINEAR
-    pulse_width: float = 0.5
-    pulse_width_slide: float = 0.0
+    pulse_width: EffectParameterValue = 0.5
+    pulse_width_slide: EffectParameterValue = 0.0
     pulse_width_slide_shape: SlideShape = SlideShape.LINEAR
-    phase_offset: float = 0.0
-    wave: float = 1.0
-    invert_wave: float = 0.0
-    probability: float = 0.0
-    probability_slide: float = 0.0
+    phase_offset: EffectParameterValue = 0.0
+    wave: EffectParameterValue = 1.0
+    invert_wave: EffectParameterValue = 0.0
+    probability: EffectParameterValue = 0.0
+    probability_slide: EffectParameterValue = 0.0
     probability_slide_shape: SlideShape = SlideShape.LINEAR
-    prob_pos: float = 0.0
-    prob_pos_slide: float = 0.0
+    prob_pos: EffectParameterValue = 0.0
+    prob_pos_slide: EffectParameterValue = 0.0
     prob_pos_slide_shape: SlideShape = SlideShape.LINEAR
-    seed: float = 0.0
-    smooth: float = 0.0
-    smooth_slide: float = 0.0
+    seed: EffectParameterValue = 0.0
+    smooth: EffectParameterValue = 0.0
+    smooth_slide: EffectParameterValue = 0.0
     smooth_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_up: float = 0.0
-    smooth_up_slide: float = 0.0
+    smooth_up: EffectParameterValue = 0.0
+    smooth_up_slide: EffectParameterValue = 0.0
     smooth_up_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_down: float = 0.0
-    smooth_down_slide: float = 0.0
+    smooth_down: EffectParameterValue = 0.0
+    smooth_down_slide: EffectParameterValue = 0.0
     smooth_down_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.25,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.25,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        amp_min: float = 0.0,
-        amp_min_slide: float = 0.0,
+        amp_min: EffectParameterValue = 0.0,
+        amp_min_slide: EffectParameterValue = 0.0,
         amp_min_slide_shape: SlideShape = SlideShape.LINEAR,
-        amp_max: float = 1.0,
-        amp_max_slide: float = 0.0,
+        amp_max: EffectParameterValue = 1.0,
+        amp_max_slide: EffectParameterValue = 0.0,
         amp_max_slide_shape: SlideShape = SlideShape.LINEAR,
-        pulse_width: float = 0.5,
-        pulse_width_slide: float = 0.0,
+        pulse_width: EffectParameterValue = 0.5,
+        pulse_width_slide: EffectParameterValue = 0.0,
         pulse_width_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase_offset: float = 0.0,
-        wave: float = 1.0,
-        invert_wave: float = 0.0,
-        probability: float = 0.0,
-        probability_slide: float = 0.0,
+        phase_offset: EffectParameterValue = 0.0,
+        wave: EffectParameterValue = 1.0,
+        invert_wave: EffectParameterValue = 0.0,
+        probability: EffectParameterValue = 0.0,
+        probability_slide: EffectParameterValue = 0.0,
         probability_slide_shape: SlideShape = SlideShape.LINEAR,
-        prob_pos: float = 0.0,
-        prob_pos_slide: float = 0.0,
+        prob_pos: EffectParameterValue = 0.0,
+        prob_pos_slide: EffectParameterValue = 0.0,
         prob_pos_slide_shape: SlideShape = SlideShape.LINEAR,
-        seed: float = 0.0,
-        smooth: float = 0.0,
-        smooth_slide: float = 0.0,
+        seed: EffectParameterValue = 0.0,
+        smooth: EffectParameterValue = 0.0,
+        smooth_slide: EffectParameterValue = 0.0,
         smooth_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_up: float = 0.0,
-        smooth_up_slide: float = 0.0,
+        smooth_up: EffectParameterValue = 0.0,
+        smooth_up_slide: EffectParameterValue = 0.0,
         smooth_up_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_down: float = 0.0,
-        smooth_down_slide: float = 0.0,
+        smooth_down: EffectParameterValue = 0.0,
+        smooth_down_slide: EffectParameterValue = 0.0,
         smooth_down_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -1145,7 +1147,7 @@ class Slicer(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "slicer"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1194,103 +1196,103 @@ class Slicer(EffectInstance):
 
 
 class Wobble(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.5
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.5
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff_min: float = 60.0
-    cutoff_min_slide: float = 0.0
+    cutoff_min: EffectParameterValue = 60.0
+    cutoff_min_slide: EffectParameterValue = 0.0
     cutoff_min_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff_max: float = 120.0
-    cutoff_max_slide: float = 0.0
+    cutoff_max: EffectParameterValue = 120.0
+    cutoff_max_slide: EffectParameterValue = 0.0
     cutoff_max_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.8
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.8
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
-    phase_offset: float = 0.0
-    wave: float = 0.0
-    invert_wave: float = 0.0
-    pulse_width: float = 0.5
-    pulse_width_slide: float = 0.0
+    phase_offset: EffectParameterValue = 0.0
+    wave: EffectParameterValue = 0.0
+    invert_wave: EffectParameterValue = 0.0
+    pulse_width: EffectParameterValue = 0.5
+    pulse_width_slide: EffectParameterValue = 0.0
     pulse_width_slide_shape: SlideShape = SlideShape.LINEAR
-    filter: float = 0.0
-    probability: float = 0.0
-    probability_slide: float = 0.0
+    filter: EffectParameterValue = 0.0
+    probability: EffectParameterValue = 0.0
+    probability_slide: EffectParameterValue = 0.0
     probability_slide_shape: SlideShape = SlideShape.LINEAR
-    prob_pos: float = 0.0
-    prob_pos_slide: float = 0.0
+    prob_pos: EffectParameterValue = 0.0
+    prob_pos_slide: EffectParameterValue = 0.0
     prob_pos_slide_shape: SlideShape = SlideShape.LINEAR
-    seed: float = 0.0
-    smooth: float = 0.0
-    smooth_slide: float = 0.0
+    seed: EffectParameterValue = 0.0
+    smooth: EffectParameterValue = 0.0
+    smooth_slide: EffectParameterValue = 0.0
     smooth_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_up: float = 0.0
-    smooth_up_slide: float = 0.0
+    smooth_up: EffectParameterValue = 0.0
+    smooth_up_slide: EffectParameterValue = 0.0
     smooth_up_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_down: float = 0.0
-    smooth_down_slide: float = 0.0
+    smooth_down: EffectParameterValue = 0.0
+    smooth_down_slide: EffectParameterValue = 0.0
     smooth_down_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.5,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.5,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff_min: float = 60.0,
-        cutoff_min_slide: float = 0.0,
+        cutoff_min: EffectParameterValue = 60.0,
+        cutoff_min_slide: EffectParameterValue = 0.0,
         cutoff_min_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff_max: float = 120.0,
-        cutoff_max_slide: float = 0.0,
+        cutoff_max: EffectParameterValue = 120.0,
+        cutoff_max_slide: EffectParameterValue = 0.0,
         cutoff_max_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.8,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.8,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase_offset: float = 0.0,
-        wave: float = 0.0,
-        invert_wave: float = 0.0,
-        pulse_width: float = 0.5,
-        pulse_width_slide: float = 0.0,
+        phase_offset: EffectParameterValue = 0.0,
+        wave: EffectParameterValue = 0.0,
+        invert_wave: EffectParameterValue = 0.0,
+        pulse_width: EffectParameterValue = 0.5,
+        pulse_width_slide: EffectParameterValue = 0.0,
         pulse_width_slide_shape: SlideShape = SlideShape.LINEAR,
-        filter: float = 0.0,
-        probability: float = 0.0,
-        probability_slide: float = 0.0,
+        filter: EffectParameterValue = 0.0,
+        probability: EffectParameterValue = 0.0,
+        probability_slide: EffectParameterValue = 0.0,
         probability_slide_shape: SlideShape = SlideShape.LINEAR,
-        prob_pos: float = 0.0,
-        prob_pos_slide: float = 0.0,
+        prob_pos: EffectParameterValue = 0.0,
+        prob_pos_slide: EffectParameterValue = 0.0,
         prob_pos_slide_shape: SlideShape = SlideShape.LINEAR,
-        seed: float = 0.0,
-        smooth: float = 0.0,
-        smooth_slide: float = 0.0,
+        seed: EffectParameterValue = 0.0,
+        smooth: EffectParameterValue = 0.0,
+        smooth_slide: EffectParameterValue = 0.0,
         smooth_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_up: float = 0.0,
-        smooth_up_slide: float = 0.0,
+        smooth_up: EffectParameterValue = 0.0,
+        smooth_up_slide: EffectParameterValue = 0.0,
         smooth_up_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_down: float = 0.0,
-        smooth_down_slide: float = 0.0,
+        smooth_down: EffectParameterValue = 0.0,
+        smooth_down_slide: EffectParameterValue = 0.0,
         smooth_down_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -1346,7 +1348,7 @@ class Wobble(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "wobble"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1399,95 +1401,95 @@ class Wobble(EffectInstance):
 
 
 class PanSlicer(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.25
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.25
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    pan_min: float = -1.0
-    pan_min_slide: float = 0.0
+    pan_min: EffectParameterValue = -1.0
+    pan_min_slide: EffectParameterValue = 0.0
     pan_min_slide_shape: SlideShape = SlideShape.LINEAR
-    pan_max: float = 1.0
-    pan_max_slide: float = 0.0
+    pan_max: EffectParameterValue = 1.0
+    pan_max_slide: EffectParameterValue = 0.0
     pan_max_slide_shape: SlideShape = SlideShape.LINEAR
-    pulse_width: float = 0.5
-    pulse_width_slide: float = 0.0
+    pulse_width: EffectParameterValue = 0.5
+    pulse_width_slide: EffectParameterValue = 0.0
     pulse_width_slide_shape: SlideShape = SlideShape.LINEAR
-    phase_offset: float = 0.0
-    wave: float = 1.0
-    invert_wave: float = 0.0
-    probability: float = 0.0
-    probability_slide: float = 0.0
+    phase_offset: EffectParameterValue = 0.0
+    wave: EffectParameterValue = 1.0
+    invert_wave: EffectParameterValue = 0.0
+    probability: EffectParameterValue = 0.0
+    probability_slide: EffectParameterValue = 0.0
     probability_slide_shape: SlideShape = SlideShape.LINEAR
-    prob_pos: float = 0.0
-    prob_pos_slide: float = 0.0
+    prob_pos: EffectParameterValue = 0.0
+    prob_pos_slide: EffectParameterValue = 0.0
     prob_pos_slide_shape: SlideShape = SlideShape.LINEAR
-    seed: float = 0.0
-    smooth: float = 0.0
-    smooth_slide: float = 0.0
+    seed: EffectParameterValue = 0.0
+    smooth: EffectParameterValue = 0.0
+    smooth_slide: EffectParameterValue = 0.0
     smooth_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_up: float = 0.0
-    smooth_up_slide: float = 0.0
+    smooth_up: EffectParameterValue = 0.0
+    smooth_up_slide: EffectParameterValue = 0.0
     smooth_up_slide_shape: SlideShape = SlideShape.LINEAR
-    smooth_down: float = 0.0
-    smooth_down_slide: float = 0.0
+    smooth_down: EffectParameterValue = 0.0
+    smooth_down_slide: EffectParameterValue = 0.0
     smooth_down_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.25,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.25,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        pan_min: float = -1.0,
-        pan_min_slide: float = 0.0,
+        pan_min: EffectParameterValue = -1.0,
+        pan_min_slide: EffectParameterValue = 0.0,
         pan_min_slide_shape: SlideShape = SlideShape.LINEAR,
-        pan_max: float = 1.0,
-        pan_max_slide: float = 0.0,
+        pan_max: EffectParameterValue = 1.0,
+        pan_max_slide: EffectParameterValue = 0.0,
         pan_max_slide_shape: SlideShape = SlideShape.LINEAR,
-        pulse_width: float = 0.5,
-        pulse_width_slide: float = 0.0,
+        pulse_width: EffectParameterValue = 0.5,
+        pulse_width_slide: EffectParameterValue = 0.0,
         pulse_width_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase_offset: float = 0.0,
-        wave: float = 1.0,
-        invert_wave: float = 0.0,
-        probability: float = 0.0,
-        probability_slide: float = 0.0,
+        phase_offset: EffectParameterValue = 0.0,
+        wave: EffectParameterValue = 1.0,
+        invert_wave: EffectParameterValue = 0.0,
+        probability: EffectParameterValue = 0.0,
+        probability_slide: EffectParameterValue = 0.0,
         probability_slide_shape: SlideShape = SlideShape.LINEAR,
-        prob_pos: float = 0.0,
-        prob_pos_slide: float = 0.0,
+        prob_pos: EffectParameterValue = 0.0,
+        prob_pos_slide: EffectParameterValue = 0.0,
         prob_pos_slide_shape: SlideShape = SlideShape.LINEAR,
-        seed: float = 0.0,
-        smooth: float = 0.0,
-        smooth_slide: float = 0.0,
+        seed: EffectParameterValue = 0.0,
+        smooth: EffectParameterValue = 0.0,
+        smooth_slide: EffectParameterValue = 0.0,
         smooth_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_up: float = 0.0,
-        smooth_up_slide: float = 0.0,
+        smooth_up: EffectParameterValue = 0.0,
+        smooth_up_slide: EffectParameterValue = 0.0,
         smooth_up_slide_shape: SlideShape = SlideShape.LINEAR,
-        smooth_down: float = 0.0,
-        smooth_down_slide: float = 0.0,
+        smooth_down: EffectParameterValue = 0.0,
+        smooth_down_slide: EffectParameterValue = 0.0,
         smooth_down_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -1539,7 +1541,7 @@ class PanSlicer(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "panslicer"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1588,59 +1590,59 @@ class PanSlicer(EffectInstance):
 
 
 class IXITechno(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 4.0
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 4.0
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    phase_offset: float = 0.0
-    cutoff_min: float = 60.0
-    cutoff_min_slide: float = 0.0
+    phase_offset: EffectParameterValue = 0.0
+    cutoff_min: EffectParameterValue = 60.0
+    cutoff_min_slide: EffectParameterValue = 0.0
     cutoff_min_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff_max: float = 120.0
-    cutoff_max_slide: float = 0.0
+    cutoff_max: EffectParameterValue = 120.0
+    cutoff_max_slide: EffectParameterValue = 0.0
     cutoff_max_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.8
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.8
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 4.0,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 4.0,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase_offset: float = 0.0,
-        cutoff_min: float = 60.0,
-        cutoff_min_slide: float = 0.0,
+        phase_offset: EffectParameterValue = 0.0,
+        cutoff_min: EffectParameterValue = 60.0,
+        cutoff_min_slide: EffectParameterValue = 0.0,
         cutoff_min_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff_max: float = 120.0,
-        cutoff_max_slide: float = 0.0,
+        cutoff_max: EffectParameterValue = 120.0,
+        cutoff_max_slide: EffectParameterValue = 0.0,
         cutoff_max_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.8,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.8,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -1674,7 +1676,7 @@ class IXITechno(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "ixi_techno"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1705,46 +1707,46 @@ class IXITechno(EffectInstance):
 
 
 class Whammy(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    transpose: float = 12.0
-    transpose_slide: float = 0.0
+    transpose: EffectParameterValue = 12.0
+    transpose_slide: EffectParameterValue = 0.0
     transpose_slide_shape: SlideShape = SlideShape.LINEAR
-    max_delay_time: float = 1.0
-    deltime: float = 0.05
-    grainsize: float = 0.075
+    max_delay_time: EffectParameterValue = 1.0
+    deltime: EffectParameterValue = 0.05
+    grainsize: EffectParameterValue = 0.075
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        transpose: float = 12.0,
-        transpose_slide: float = 0.0,
+        transpose: EffectParameterValue = 12.0,
+        transpose_slide: EffectParameterValue = 0.0,
         transpose_slide_shape: SlideShape = SlideShape.LINEAR,
-        max_delay_time: float = 1.0,
-        deltime: float = 0.05,
-        grainsize: float = 0.075,
+        max_delay_time: EffectParameterValue = 1.0,
+        deltime: EffectParameterValue = 0.05,
+        grainsize: EffectParameterValue = 0.075,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -1770,7 +1772,7 @@ class Whammy(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "whammy"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1794,57 +1796,57 @@ class Whammy(EffectInstance):
 
 
 class Compressor(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    threshold: float = 0.2
-    threshold_slide: float = 0.0
+    threshold: EffectParameterValue = 0.2
+    threshold_slide: EffectParameterValue = 0.0
     threshold_slide_shape: SlideShape = SlideShape.LINEAR
-    ratio: float = 2.0
-    ratio_slide: float = 0.0
+    ratio: EffectParameterValue = 2.0
+    ratio_slide: EffectParameterValue = 0.0
     ratio_slide_shape: SlideShape = SlideShape.LINEAR
-    attack: float = 0.01
-    attack_slide: float = 0.0
+    attack: EffectParameterValue = 0.01
+    attack_slide: EffectParameterValue = 0.0
     attack_slide_shape: SlideShape = SlideShape.LINEAR
-    release: float = 0.1
-    release_slide: float = 0.0
+    release: EffectParameterValue = 0.1
+    release_slide: EffectParameterValue = 0.0
     release_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        threshold: float = 0.2,
-        threshold_slide: float = 0.0,
+        threshold: EffectParameterValue = 0.2,
+        threshold_slide: EffectParameterValue = 0.0,
         threshold_slide_shape: SlideShape = SlideShape.LINEAR,
-        ratio: float = 2.0,
-        ratio_slide: float = 0.0,
+        ratio: EffectParameterValue = 2.0,
+        ratio_slide: EffectParameterValue = 0.0,
         ratio_slide_shape: SlideShape = SlideShape.LINEAR,
-        attack: float = 0.01,
-        attack_slide: float = 0.0,
+        attack: EffectParameterValue = 0.01,
+        attack_slide: EffectParameterValue = 0.0,
         attack_slide_shape: SlideShape = SlideShape.LINEAR,
-        release: float = 0.1,
-        release_slide: float = 0.0,
+        release: EffectParameterValue = 0.1,
+        release_slide: EffectParameterValue = 0.0,
         release_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -1877,7 +1879,7 @@ class Compressor(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "compressor"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1907,17 +1909,17 @@ class Compressor(EffectInstance):
 
 
 class Vowel(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
     vowel: int = 0
     voice: int = 0
@@ -1925,17 +1927,17 @@ class Vowel(EffectInstance):
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
         vowel: int = 0,
         voice: int = 0,
@@ -1960,7 +1962,7 @@ class Vowel(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "vowel"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -1980,51 +1982,51 @@ class Vowel(EffectInstance):
 
 
 class Octaver(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    super_amp: float = 1.0
-    super_amp_slide: float = 0.0
+    super_amp: EffectParameterValue = 1.0
+    super_amp_slide: EffectParameterValue = 0.0
     super_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    sub_amp: float = 1.0
-    sub_amp_slide: float = 0.0
+    sub_amp: EffectParameterValue = 1.0
+    sub_amp_slide: EffectParameterValue = 0.0
     sub_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    subsub_amp: float = 1.0
-    subsub_amp_slide: float = 0.0
+    subsub_amp: EffectParameterValue = 1.0
+    subsub_amp_slide: EffectParameterValue = 0.0
     subsub_amp_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        super_amp: float = 1.0,
-        super_amp_slide: float = 0.0,
+        super_amp: EffectParameterValue = 1.0,
+        super_amp_slide: EffectParameterValue = 0.0,
         super_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        sub_amp: float = 1.0,
-        sub_amp_slide: float = 0.0,
+        sub_amp: EffectParameterValue = 1.0,
+        sub_amp_slide: EffectParameterValue = 0.0,
         sub_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        subsub_amp: float = 1.0,
-        subsub_amp_slide: float = 0.0,
+        subsub_amp: EffectParameterValue = 1.0,
+        subsub_amp_slide: EffectParameterValue = 0.0,
         subsub_amp_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2054,7 +2056,7 @@ class Octaver(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "octaver"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2081,48 +2083,48 @@ class Octaver(EffectInstance):
 
 
 class Chorus(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.25
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.25
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    decay: float = 0.0
-    decay_slide: float = 0.0
+    decay: EffectParameterValue = 0.0
+    decay_slide: EffectParameterValue = 0.0
     decay_slide_shape: SlideShape = SlideShape.LINEAR
-    max_phase: float = 1.0
+    max_phase: EffectParameterValue = 1.0
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.25,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.25,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        decay: float = 0.0,
-        decay_slide: float = 0.0,
+        decay: EffectParameterValue = 0.0,
+        decay_slide: EffectParameterValue = 0.0,
         decay_slide_shape: SlideShape = SlideShape.LINEAR,
-        max_phase: float = 1.0,
+        max_phase: EffectParameterValue = 1.0,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -2149,7 +2151,7 @@ class Chorus(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "chorus"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2174,45 +2176,45 @@ class Chorus(EffectInstance):
 
 
 class RingMod(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    freq: float = 30.0
-    freq_slide: float = 0.0
+    freq: EffectParameterValue = 30.0
+    freq_slide: EffectParameterValue = 0.0
     freq_slide_shape: SlideShape = SlideShape.LINEAR
-    mod_amp: float = 1.0
-    mod_amp_slide: float = 0.0
+    mod_amp: EffectParameterValue = 1.0
+    mod_amp_slide: EffectParameterValue = 0.0
     mod_amp_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        freq: float = 30.0,
-        freq_slide: float = 0.0,
+        freq: EffectParameterValue = 30.0,
+        freq_slide: EffectParameterValue = 0.0,
         freq_slide_shape: SlideShape = SlideShape.LINEAR,
-        mod_amp: float = 1.0,
-        mod_amp_slide: float = 0.0,
+        mod_amp: EffectParameterValue = 1.0,
+        mod_amp_slide: EffectParameterValue = 0.0,
         mod_amp_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2239,7 +2241,7 @@ class RingMod(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "ring_mod"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2263,39 +2265,39 @@ class RingMod(EffectInstance):
 
 
 class BPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2319,7 +2321,7 @@ class BPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "bpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2340,45 +2342,45 @@ class BPF(EffectInstance):
 
 
 class RBPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2405,7 +2407,7 @@ class RBPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "rbpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2429,39 +2431,39 @@ class RBPF(EffectInstance):
 
 
 class NBPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2485,7 +2487,7 @@ class NBPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "nbpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2506,45 +2508,45 @@ class NBPF(EffectInstance):
 
 
 class NRBPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2571,7 +2573,7 @@ class NRBPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "nrbpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2595,39 +2597,39 @@ class NRBPF(EffectInstance):
 
 
 class LPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2651,7 +2653,7 @@ class LPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "lpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2672,45 +2674,45 @@ class LPF(EffectInstance):
 
 
 class RLPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2737,7 +2739,7 @@ class RLPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "rlpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2761,45 +2763,45 @@ class RLPF(EffectInstance):
 
 
 class NormRLPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2826,7 +2828,7 @@ class NormRLPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "norm_rlpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2850,39 +2852,39 @@ class NormRLPF(EffectInstance):
 
 
 class HPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2906,7 +2908,7 @@ class HPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "hpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -2927,45 +2929,45 @@ class HPF(EffectInstance):
 
 
 class RHPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -2992,7 +2994,7 @@ class RHPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "rhpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3016,45 +3018,45 @@ class RHPF(EffectInstance):
 
 
 class NormRHPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
-    res: float = 0.5
-    res_slide: float = 0.0
+    res: EffectParameterValue = 0.5
+    res_slide: EffectParameterValue = 0.0
     res_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
-        res: float = 0.5,
-        res_slide: float = 0.0,
+        res: EffectParameterValue = 0.5,
+        res_slide: EffectParameterValue = 0.0,
         res_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3081,7 +3083,7 @@ class NormRHPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "norm_rhpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3105,69 +3107,69 @@ class NormRHPF(EffectInstance):
 
 
 class BandEQ(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    low: float = 0.0
-    low_slide: float = 0.0
+    low: EffectParameterValue = 0.0
+    low_slide: EffectParameterValue = 0.0
     low_slide_shape: SlideShape = SlideShape.LINEAR
-    low_freq: float = 100.0
-    low_freq_slide: float = 0.0
+    low_freq: EffectParameterValue = 100.0
+    low_freq_slide: EffectParameterValue = 0.0
     low_freq_slide_shape: SlideShape = SlideShape.LINEAR
-    mid: float = 0.0
-    mid_slide: float = 0.0
+    mid: EffectParameterValue = 0.0
+    mid_slide: EffectParameterValue = 0.0
     mid_slide_shape: SlideShape = SlideShape.LINEAR
-    mid_freq: float = 1000.0
-    mid_freq_slide: float = 0.0
+    mid_freq: EffectParameterValue = 1000.0
+    mid_freq_slide: EffectParameterValue = 0.0
     mid_freq_slide_shape: SlideShape = SlideShape.LINEAR
-    high: float = 0.0
-    high_slide: float = 0.0
+    high: EffectParameterValue = 0.0
+    high_slide: EffectParameterValue = 0.0
     high_slide_shape: SlideShape = SlideShape.LINEAR
-    high_freq: float = 10000.0
-    high_freq_slide: float = 0.0
+    high_freq: EffectParameterValue = 10000.0
+    high_freq_slide: EffectParameterValue = 0.0
     high_freq_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        low: float = 0.0,
-        low_slide: float = 0.0,
+        low: EffectParameterValue = 0.0,
+        low_slide: EffectParameterValue = 0.0,
         low_slide_shape: SlideShape = SlideShape.LINEAR,
-        low_freq: float = 100.0,
-        low_freq_slide: float = 0.0,
+        low_freq: EffectParameterValue = 100.0,
+        low_freq_slide: EffectParameterValue = 0.0,
         low_freq_slide_shape: SlideShape = SlideShape.LINEAR,
-        mid: float = 0.0,
-        mid_slide: float = 0.0,
+        mid: EffectParameterValue = 0.0,
+        mid_slide: EffectParameterValue = 0.0,
         mid_slide_shape: SlideShape = SlideShape.LINEAR,
-        mid_freq: float = 1000.0,
-        mid_freq_slide: float = 0.0,
+        mid_freq: EffectParameterValue = 1000.0,
+        mid_freq_slide: EffectParameterValue = 0.0,
         mid_freq_slide_shape: SlideShape = SlideShape.LINEAR,
-        high: float = 0.0,
-        high_slide: float = 0.0,
+        high: EffectParameterValue = 0.0,
+        high_slide: EffectParameterValue = 0.0,
         high_slide_shape: SlideShape = SlideShape.LINEAR,
-        high_freq: float = 10000.0,
-        high_freq_slide: float = 0.0,
+        high_freq: EffectParameterValue = 10000.0,
+        high_freq_slide: EffectParameterValue = 0.0,
         high_freq_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3206,7 +3208,7 @@ class BandEQ(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "band_eq"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3242,39 +3244,39 @@ class BandEQ(EffectInstance):
 
 
 class NormLPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3298,7 +3300,7 @@ class NormLPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "norm_lpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3319,39 +3321,39 @@ class NormLPF(EffectInstance):
 
 
 class NormHPF(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    cutoff: float = 100.0
-    cutoff_slide: float = 0.0
+    cutoff: EffectParameterValue = 100.0
+    cutoff_slide: EffectParameterValue = 0.0
     cutoff_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        cutoff: float = 100.0,
-        cutoff_slide: float = 0.0,
+        cutoff: EffectParameterValue = 100.0,
+        cutoff_slide: EffectParameterValue = 0.0,
         cutoff_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3375,7 +3377,7 @@ class NormHPF(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "norm_hpf"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3396,33 +3398,33 @@ class NormHPF(EffectInstance):
 
 
 class Normaliser(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3443,7 +3445,7 @@ class Normaliser(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "normaliser"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3461,39 +3463,39 @@ class Normaliser(EffectInstance):
 
 
 class Tanh(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    krunch: float = 2.0
-    krunch_slide: float = 0.0
+    krunch: EffectParameterValue = 2.0
+    krunch_slide: EffectParameterValue = 0.0
     krunch_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        krunch: float = 2.0,
-        krunch_slide: float = 0.0,
+        krunch: EffectParameterValue = 2.0,
+        krunch_slide: EffectParameterValue = 0.0,
         krunch_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3517,7 +3519,7 @@ class Tanh(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "tanh"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3538,57 +3540,57 @@ class Tanh(EffectInstance):
 
 
 class PitchShift(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    transpose: float = 0.0
-    transpose_slide: float = 0.0
+    transpose: EffectParameterValue = 0.0
+    transpose_slide: EffectParameterValue = 0.0
     transpose_slide_shape: SlideShape = SlideShape.LINEAR
-    window_size: float = 0.2
-    window_size_slide: float = 0.0
+    window_size: EffectParameterValue = 0.2
+    window_size_slide: EffectParameterValue = 0.0
     window_size_slide_shape: SlideShape = SlideShape.LINEAR
-    pitch_dis: float = 0.0
-    pitch_dis_slide: float = 0.0
+    pitch_dis: EffectParameterValue = 0.0
+    pitch_dis_slide: EffectParameterValue = 0.0
     pitch_dis_slide_shape: SlideShape = SlideShape.LINEAR
-    time_dis: float = 0.0
-    time_dis_slide: float = 0.0
+    time_dis: EffectParameterValue = 0.0
+    time_dis_slide: EffectParameterValue = 0.0
     time_dis_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        transpose: float = 0.0,
-        transpose_slide: float = 0.0,
+        transpose: EffectParameterValue = 0.0,
+        transpose_slide: EffectParameterValue = 0.0,
         transpose_slide_shape: SlideShape = SlideShape.LINEAR,
-        window_size: float = 0.2,
-        window_size_slide: float = 0.0,
+        window_size: EffectParameterValue = 0.2,
+        window_size_slide: EffectParameterValue = 0.0,
         window_size_slide_shape: SlideShape = SlideShape.LINEAR,
-        pitch_dis: float = 0.0,
-        pitch_dis_slide: float = 0.0,
+        pitch_dis: EffectParameterValue = 0.0,
+        pitch_dis_slide: EffectParameterValue = 0.0,
         pitch_dis_slide_shape: SlideShape = SlideShape.LINEAR,
-        time_dis: float = 0.0,
-        time_dis_slide: float = 0.0,
+        time_dis: EffectParameterValue = 0.0,
+        time_dis_slide: EffectParameterValue = 0.0,
         time_dis_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3621,7 +3623,7 @@ class PitchShift(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "pitch_shift"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3651,39 +3653,39 @@ class PitchShift(EffectInstance):
 
 
 class Distortion(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    distort: float = 0.5
-    distort_slide: float = 0.0
+    distort: EffectParameterValue = 0.5
+    distort_slide: EffectParameterValue = 0.0
     distort_slide_shape: SlideShape = SlideShape.LINEAR
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        distort: float = 0.5,
-        distort_slide: float = 0.0,
+        distort: EffectParameterValue = 0.5,
+        distort_slide: EffectParameterValue = 0.0,
         distort_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
     ):
@@ -3707,7 +3709,7 @@ class Distortion(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "distortion"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3728,48 +3730,48 @@ class Distortion(EffectInstance):
 
 
 class Flanger(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 4.0
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 4.0
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    decay: float = 2.0
-    decay_slide: float = 0.0
+    decay: EffectParameterValue = 2.0
+    decay_slide: EffectParameterValue = 0.0
     decay_slide_shape: SlideShape = SlideShape.LINEAR
-    max_phase: float = 2.0
+    max_phase: EffectParameterValue = 2.0
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 4.0,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 4.0,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        decay: float = 2.0,
-        decay_slide: float = 0.0,
+        decay: EffectParameterValue = 2.0,
+        decay_slide: EffectParameterValue = 0.0,
         decay_slide_shape: SlideShape = SlideShape.LINEAR,
-        max_phase: float = 2.0,
+        max_phase: EffectParameterValue = 2.0,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -3796,7 +3798,7 @@ class Flanger(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "flanger"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3821,65 +3823,65 @@ class Flanger(EffectInstance):
 
 
 class Tremolo(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 4.0
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 4.0
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    amp_min: float = 0.0
-    amp_min_slide: float = 0.0
+    amp_min: EffectParameterValue = 0.0
+    amp_min_slide: EffectParameterValue = 0.0
     amp_min_slide_shape: SlideShape = SlideShape.LINEAR
-    amp_max: float = 1.0
-    amp_max_slide: float = 0.0
+    amp_max: EffectParameterValue = 1.0
+    amp_max_slide: EffectParameterValue = 0.0
     amp_max_slide_shape: SlideShape = SlideShape.LINEAR
     # Wave type - 0 saw, 1 pulse, 2 triangle, 3 sine, 4 cubic. Different waves will produce different tremolo modulation effects.
     # Default: 2
     # Must be one of the following values: [0, 1, 2, 3, 4]
     # May be changed whilst playing
-    wave: float = 3.0
-    phase_offset: float = 0.0
-    invert_wave: float = 0.0
-    depth: float = 1.0
+    wave: EffectParameterValue = 3.0
+    phase_offset: EffectParameterValue = 0.0
+    invert_wave: EffectParameterValue = 0.0
+    depth: EffectParameterValue = 1.0
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 4.0,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 4.0,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        amp_min: float = 0.0,
-        amp_min_slide: float = 0.0,
+        amp_min: EffectParameterValue = 0.0,
+        amp_min_slide: EffectParameterValue = 0.0,
         amp_min_slide_shape: SlideShape = SlideShape.LINEAR,
-        amp_max: float = 1.0,
-        amp_max_slide: float = 0.0,
+        amp_max: EffectParameterValue = 1.0,
+        amp_max_slide: EffectParameterValue = 0.0,
         amp_max_slide_shape: SlideShape = SlideShape.LINEAR,
         controllable: bool = False,
-        wave: float = 3.0,
-        phase_offset: float = 0.0,
+        wave: EffectParameterValue = 3.0,
+        phase_offset: EffectParameterValue = 0.0,
         invert_wave: bool = False,
-        depth: float = 1.0,
+        depth: EffectParameterValue = 1.0,
     ):
         super().__init__(id=id, controllable=controllable)
         self.amp = amp
@@ -3911,7 +3913,7 @@ class Tremolo(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "tremolo"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,
@@ -3942,50 +3944,50 @@ class Tremolo(EffectInstance):
 
 
 class PingPong(EffectInstance):
-    amp: float = 1.0
-    amp_slide: float = 0.0
+    amp: EffectParameterValue = 1.0
+    amp_slide: EffectParameterValue = 0.0
     amp_slide_shape: SlideShape = SlideShape.LINEAR
-    mix: float = 1.0
-    mix_slide: float = 0.0
+    mix: EffectParameterValue = 1.0
+    mix_slide: EffectParameterValue = 0.0
     mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_mix: float = 1.0
-    pre_mix_slide: float = 0.0
+    pre_mix: EffectParameterValue = 1.0
+    pre_mix_slide: EffectParameterValue = 0.0
     pre_mix_slide_shape: SlideShape = SlideShape.LINEAR
-    pre_amp: float = 1.0
-    pre_amp_slide: float = 0.0
+    pre_amp: EffectParameterValue = 1.0
+    pre_amp_slide: EffectParameterValue = 0.0
     pre_amp_slide_shape: SlideShape = SlideShape.LINEAR
-    phase: float = 0.25
-    phase_slide: float = 0.0
+    phase: EffectParameterValue = 0.25
+    phase_slide: EffectParameterValue = 0.0
     phase_slide_shape: SlideShape = SlideShape.LINEAR
-    decay: float = 2.0
-    decay_slide: float = 0.0
+    decay: EffectParameterValue = 2.0
+    decay_slide: EffectParameterValue = 0.0
     decay_slide_shape: SlideShape = SlideShape.LINEAR
-    max_phase: float = 2.0
-    feedback: float = 0.5
+    max_phase: EffectParameterValue = 2.0
+    feedback: EffectParameterValue = 0.5
 
     def __init__(
         self,
         id: str,
-        amp: float = 1.0,
-        amp_slide: float = 0.0,
+        amp: EffectParameterValue = 1.0,
+        amp_slide: EffectParameterValue = 0.0,
         amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        mix: float = 1.0,
-        mix_slide: float = 0.0,
+        mix: EffectParameterValue = 1.0,
+        mix_slide: EffectParameterValue = 0.0,
         mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_mix: float = 1.0,
-        pre_mix_slide: float = 0.0,
+        pre_mix: EffectParameterValue = 1.0,
+        pre_mix_slide: EffectParameterValue = 0.0,
         pre_mix_slide_shape: SlideShape = SlideShape.LINEAR,
-        pre_amp: float = 1.0,
-        pre_amp_slide: float = 0.0,
+        pre_amp: EffectParameterValue = 1.0,
+        pre_amp_slide: EffectParameterValue = 0.0,
         pre_amp_slide_shape: SlideShape = SlideShape.LINEAR,
-        phase: float = 0.25,
-        phase_slide: float = 0.0,
+        phase: EffectParameterValue = 0.25,
+        phase_slide: EffectParameterValue = 0.0,
         phase_slide_shape: SlideShape = SlideShape.LINEAR,
-        decay: float = 2.0,
-        decay_slide: float = 0.0,
+        decay: EffectParameterValue = 2.0,
+        decay_slide: EffectParameterValue = 0.0,
         decay_slide_shape: SlideShape = SlideShape.LINEAR,
-        max_phase: float = 2.0,
-        feedback: float = 0.5,
+        max_phase: EffectParameterValue = 2.0,
+        feedback: EffectParameterValue = 0.5,
         controllable: bool = False,
     ):
         super().__init__(id=id, controllable=controllable)
@@ -4013,7 +4015,7 @@ class PingPong(EffectInstance):
     def get_ruby_effect_name(self) -> str:
         return "ping_pong"
 
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, EffectParameterValue]:
         return {
             "amp": self.amp,
             "amp_slide": self.amp_slide,

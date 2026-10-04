@@ -24,6 +24,7 @@ class StateValue:
     initial_value: float
     target_value: float
     transition_change_per_bar: int
+    project: "Project" = None
 
     def __post_init__(self):
         StateValue._instances.append(self)
@@ -285,18 +286,24 @@ class EffectInstance(ABC):
         raise NotImplementedError("Subclasses must implement get_ruby_effect_name()")
 
     @abstractmethod
-    def get_fx_params_dict(self) -> dict[str, float]:
+    def get_fx_params_dict(self) -> dict[str, float | int | StateValue]:
         raise NotImplementedError("Subclasses must implement get_fx_params_dict()")
 
     def get_param_names(self) -> list[str]:
         return list(self.get_fx_params_dict().keys())
 
     def to_dict(self) -> dict:
+        params = {}
+        for name, value in self.get_fx_params_dict().items():
+            if isinstance(value, StateValue):
+                params[name] = {"type": "state_value_ref", "name": value.name}
+            else:
+                params[name] = value
         return {
             "id": self.id,
             "controllable": self.controllable,
             "effect_ruby_name": self.get_ruby_effect_name(),
-            "params": self.get_fx_params_dict(),
+            "params": params,
         }
 
     @classmethod
@@ -309,8 +316,17 @@ class EffectInstance(ABC):
             raise ValueError(f"Unknown effect name: {effect_ruby_name}")
         effect_instance = effect_class(id=data["id"], controllable=data["controllable"])
         for param_name, param_value in data["params"].items():
-            # Convert integer values back to SlideShape enum for shape fields
-            if param_name.endswith("_slide_shape") and isinstance(param_value, int):
+            if (
+                isinstance(param_value, dict)
+                and param_value.get("type") == "state_value_ref"
+            ):
+                param_value = StateValue(
+                    name=param_value["name"],
+                    initial_value=0,
+                    target_value=0,
+                    transition_change_per_bar=0,
+                )
+            elif param_name.endswith("_slide_shape") and isinstance(param_value, int):
                 param_value = SlideShape(param_value)
             setattr(effect_instance, param_name, param_value)
         return effect_instance
@@ -617,7 +633,7 @@ class Project:
 
         self.top_level_tracks = top_level_tracks
         self.beat_length_seconds = beat_length_seconds
-        self.state_values = state_values
+        self.state_values = list(state_values)
         self.save_references = save_references
 
         master_gain_state_value = StateValue(
@@ -666,6 +682,9 @@ class Project:
             # Set project reference on all effects in this track
             for fx in track.get_effects():
                 fx.project = self
+                for param_value in fx.get_fx_params_dict().values():
+                    if isinstance(param_value, StateValue):
+                        param_value.project = self
 
             if isinstance(track, GeneratorTrack):
                 # Set project reference on the generator
